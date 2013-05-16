@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+  
+  <route id="galaxy_back_end_homepage" pattern="/">
+    <default key="_controller">GalaxyBackEndBundle:Default:index</default>
+  </route>
+  
+  <import resource="@FOSUserBundle/Resources/config/routing/security.xml"/>
+  <import resource="@FOSUserBundle/Resources/config/routing/profile.xml" prefix="/profile"/>
+  <import resource="@FOSUserBundle/Resources/config/routing/registration.xml" prefix="/register"/>
+  <import resource="@FOSUserBundle/Resources/config/routing/resetting.xml" prefix="/resetting"/>
+  <import resource="@FOSUserBundle/Resources/config/routing/change_password.xml" prefix="/profile"/>
+  
+
+
+  <route id="split_into_segments" pattern="/split_into_segments">
+    <default key="_controller">GalaxyBackEndBundle:Space\Bootstrap:splitIntoSegments</default>
+  </route>
+  <route id="update_split_into_segment" pattern="/update_split_into_segment" methods="post">
+    <default key="_controller">GalaxyBackEndBundle:Space\Bootstrap:updateSplitIntoSegment</default>
+  </route>
+  <route id="show_segments" pattern="/show_segments">
+    <default key="_controller">GalaxyBackEndBundle:Space\Bootstrap:showSegments</default>
+  </route>
+  <route id="show_points_on_segment" pattern="/{id}/show_points_on_segment">
+    <default key="_controller">GalaxyBackEndBundle:Space\Bootstrap:showPointsOnSegment</default>
+  </route>
+  <route id="update_segment_length" pattern="/{id}/update_segment_length" methods="post">
+    <default key="_controller">GalaxyBackEndBundle:Space\Bootstrap:updateSegmentLength</default>
+    <default key="_format">json</default>
+  </route>
+  <route id="save_subtype" pattern="/{typeId}/save_subtype" methods="post">
+    <default key="_controller">GalaxyBackEndBundle:Space\Bootstrap:saveSubtype</default>
+    <default key="_format">json</default>
+  </route>
+  
+</routes>

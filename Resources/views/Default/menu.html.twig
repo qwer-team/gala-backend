@@ -1,0 +1,92 @@
+{% block menu %}
+<div class="navbar {#navbar-inverse#} navbar-static-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="http://qwer.com.ua/">ITCompany</a>
+            <a href="/itc/logout" class="btn btn-small btn-primary disabled input-prepend pull-right last">layout.logout</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav nav-tabs" id="myTab">
+                    {% for menu in allMenu %}
+                        {% if menu.url %}
+                            <li {% if menu.active %}class="active"{% endif %}><a href="{{ path(menu.href) }}" >{{menu.title}}</a></li> 
+                        {% else %}
+                            <li {% if menu.active %}class="active"{% endif %}><a href="#{{menu.href}}" >{{menu.title}}</a></li>   
+                        {% endif %}
+                    {% endfor%}
+                </ul>
+            </div>
+        </div>
+            
+    </div>
+    <div class="tab-content">
+        {% for menu in allMenu if menu.url == false%}
+            <div class="tab-pane {% if menu.active %}active{% endif %}" id="{{menu.href}}">
+                {% if  menu.child %}
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <div class="nav-collapse collapse">
+                                <ul class="nav nav-tabs" id="myTab2">
+                                    {% for child in menu.child %}
+                                        {% if child.url %}
+                                            <li {% if child.active %}class="active"{% endif %}><a href="{{ path(child.href) }}">{{child.title}}</a></li>
+                                        {% else %}
+                                            <li {% if child.active %}class="active"{% endif %}><a href="#{{child.href}}">{{child.title}}</a></li>    
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        {% for child in menu.child if child.url == false %}
+                            <div class="tab-pane {% if child.active %}active{% endif %}" id="{{child.href}}">
+                            {% if  child.child %}
+                                <div class="navbar-inner">
+                                    <div class="container">
+                                        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                        <div class="nav-collapse collapse">
+                                            <ul class="nav nav-tabs" id="myTab3">
+                                                {% for grandchildren in child.child %}
+                                                    {% if grandchildren.url %}
+                                                        <li {% if grandchildren.active %}class="active"{% endif %}><a href="{{ path(grandchildren.href) }}">{{grandchildren.title}}</a></li>
+                                                    {%else%}
+                                                        <li {% if grandchildren.active %}class="active"{% endif %}><a href="#{{grandchildren.href}}">{{grandchildren.title}}</a></li>    
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-content">
+                                    {% for grandchildren in child.child if grandchildren.url == false%}
+                                        <div class="tab-pane {% if grandchildren.active %}active{% endif %}" id="{{grandchildren.href}}">{{grandchildren.title}}</div>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{child.title}}
+                            {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div> 
+                {% else %}
+                    {{menu.title}}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
