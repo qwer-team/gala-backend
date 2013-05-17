@@ -6,8 +6,8 @@
 
 
     <parameters>
-        <parameter key="galaxy.container.aware.class">Galaxy\BackEndBundle\Listener\ContainerAware</parameter>
-        <parameter key="segment.service.class">Galaxy\BackEndBundle\Service\SegmentService</parameter>
+        <parameter key="galaxy.container.aware.class">Galaxy\BackendBundle\Listener\ContainerAware</parameter>
+        <parameter key="segment.service.class">Galaxy\BackendBundle\Service\SegmentService</parameter>
         
         <parameter key="points.in.space">1000000000</parameter>
         

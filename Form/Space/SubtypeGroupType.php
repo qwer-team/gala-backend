@@ -1,6 +1,6 @@
 <?php
 
-namespace Galaxy\BackEndBundle\Form\Space;
+namespace Galaxy\BackendBundle\Form\Space;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +22,7 @@ class SubtypeGroupType extends AbstractType
 
     public function getName()
     {
-        return 'galaxy_backendbundle_form_space_subtypegrouptype';
+        return 'galaxy_BackendBundle_form_space_subtypegrouptype';
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver)

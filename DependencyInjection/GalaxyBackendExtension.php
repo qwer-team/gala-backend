@@ -1,6 +1,6 @@
 <?php
 
-namespace Galaxy\BackEndBundle\DependencyInjection;
+namespace Galaxy\BackendBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class GalaxyBackEndExtension extends Extension
+class GalaxyBackendExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -24,5 +24,6 @@ class GalaxyBackEndExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+        
     }
 }

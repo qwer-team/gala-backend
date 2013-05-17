@@ -1,6 +1,6 @@
 <?php
 
-namespace Galaxy\BackEndBundle\Tests\Controller;
+namespace Galaxy\BackendBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

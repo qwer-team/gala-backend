@@ -1,15 +1,15 @@
 <?php
 
-namespace Galaxy\BackEndBundle\Controller;
+namespace Galaxy\BackendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Galaxy\BackEndBundle\Menu\MenuControl;
+use Galaxy\BackendBundle\Menu\MenuControl;
 
 class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('GalaxyBackEndBundle:Default:index.html.twig');
+        return $this->render('GalaxyBackendBundle:Default:index.html.twig');
     }
     
     public function menuAction($route)
@@ -47,11 +47,11 @@ class DefaultController extends Controller
         
         
         $allMenu = $menu->getAllMenu($route);
-        return $this->render('GalaxyBackEndBundle:Default:menu.html.twig', array('allMenu' => $allMenu));
+        return $this->render('GalaxyBackendBundle:Default:menu.html.twig', array('allMenu' => $allMenu));
     }
     
     public function footerAction()
     {
-        return $this->render('GalaxyBackEndBundle:Default:footer.html.twig');
+        return $this->render('GalaxyBackendBundle:Default:footer.html.twig');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Galaxy\BackEndBundle\Form\Space;
+namespace Galaxy\BackendBundle\Form\Space;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,6 +25,6 @@ class SegmentType extends AbstractType
 
     public function getName()
     {
-        return 'galaxy_backendbundle_form_space_segmenttype';
+        return 'galaxy_BackendBundle_form_space_segmenttype';
     }
 }

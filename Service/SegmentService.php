@@ -1,8 +1,8 @@
 <?php
 
-namespace Galaxy\BackEndBundle\Service;
+namespace Galaxy\BackendBundle\Service;
 
-use Galaxy\BackEndBundle\Listener\ContainerAware;
+use Galaxy\BackendBundle\Listener\ContainerAware;
 
 class SegmentService extends ContainerAware
 {

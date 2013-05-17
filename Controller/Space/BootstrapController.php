@@ -1,14 +1,14 @@
 <?php
 
-namespace Galaxy\BackEndBundle\Controller\Space;
+namespace Galaxy\BackendBundle\Controller\Space;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
-use Galaxy\BackEndBundle\Form\Space\SplitIntoSegmentType;
-use Galaxy\BackEndBundle\Form\Space\SegmentType;
+use Galaxy\BackendBundle\Form\Space\SplitIntoSegmentType;
+use Galaxy\BackendBundle\Form\Space\SegmentType;
 use Symfony\Component\HttpFoundation\Response;
-use Galaxy\BackEndBundle\Form\Space\SubtypeGroupType;
+use Galaxy\BackendBundle\Form\Space\SubtypeGroupType;
 
 class BootstrapController extends Controller
 {
@@ -27,7 +27,7 @@ class BootstrapController extends Controller
     }
 
     /**
-     * @Template("GalaxyBackEndBundle:Space\Bootstrap:downloadSection.html.twig")
+     * @Template("GalaxyBackendBundle:Space\Bootstrap:downloadSection.html.twig")
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
      */

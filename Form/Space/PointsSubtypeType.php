@@ -1,6 +1,6 @@
 <?php
 
-namespace Galaxy\BackEndBundle\Form\Space;
+namespace Galaxy\BackendBundle\Form\Space;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,7 +21,7 @@ class PointsSubtypeType extends AbstractType
 
     public function getName()
     {
-        return 'galaxy_backendbundle_form_space_pointssubtypetype';
+        return 'galaxy_BackendBundle_form_space_pointssubtypetype';
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {

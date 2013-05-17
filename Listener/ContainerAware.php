@@ -1,6 +1,6 @@
 <?php
 
-namespace Galaxy\BackEndBundle\Listener;
+namespace Galaxy\BackendBundle\Listener;
 
 use Symfony\Component\DependencyInjection\ContainerAware
                                                         as KernelContainerAware;

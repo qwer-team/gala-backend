@@ -1,5 +1,5 @@
 <?php
-namespace Galaxy\BackEndBundle\Entity;
+namespace Galaxy\BackendBundle\Entity;
     
 class MenuItem
 {

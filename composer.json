@@ -1,0 +1,38 @@
+{
+    "name": "galaxy/backend",
+    "description": "galaxy backend",
+    "type": "symfony-bundle",
+    "require": {
+        "symfony/framework-bundle": "~2.2",
+        "braincrafted/bootstrap-bundle": "dev-master",
+        "twitter/bootstrap": "2.3.*",
+        "jquery/jquery": "1.9.*",
+        "leafo/lessphp": "master",
+        "friendsofsymfony/user-bundle": "*"
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "jquery/jquery",
+                "version": "1.9.1",
+                "dist": {
+                    "url": "http://code.jquery.com/jquery-1.9.1.js",
+                    "type": "file"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "lessphp/lessphp",
+                "version": "master",
+                "source": {
+                    "url": "https://github.com/leafo/lessphp.git",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        }
+    ]
+}

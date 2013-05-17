@@ -1,6 +1,6 @@
 <?php
 
-namespace Galaxy\BackEndBundle\Tests\Controller\Space;
+namespace Galaxy\BackendBundle\Tests\Controller\Space;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

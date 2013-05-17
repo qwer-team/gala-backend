@@ -5,7 +5,7 @@
  * (c) 2012 Florian Eckerstorfer
  */
 
-namespace Galaxy\BackEndBundle\Menu;
+namespace Galaxy\BackendBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;

@@ -1,6 +1,6 @@
 <?php
-namespace Galaxy\BackEndBundle\Menu;
-use Galaxy\BackEndBundle\Entity\MenuItem;
+namespace Galaxy\BackendBundle\Menu;
+use Galaxy\BackendBundle\Entity\MenuItem;
 
 class MenuControl
 {
