@@ -33,14 +33,10 @@
 </div>
 <div class="accordion" id="accordion2">
     {% for segment in allSegments %}
-        <div class="accordion-group">
+        <div class="accordion-group" data-id="{{segment.id}}" >
             <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#segment_{{segment.id}}"
-                   id="ajaxHtml" 
-                   data-action="{{segment.id}}/show_points_on_segment" 
-                   data-success="#segment_{{segment.id}}"
-                   >segment № {{loop.index}}</a>
-                    <form class="form-search segments_form ajaxForm" id="{{segment.id}}" action="{{ path('update_segment_length', { 'id': segment.id }) }}" method="post">                          
+                <a class="accordion-toggle load-segment-info" data-toggle="collapse" data-parent="#accordion2" href="#segment_{{segment.id}}">segment № {{loop.index}}</a>
+                    <form class="form-search segments_form ajaxForm" action="{{ path('update_segment_length', { 'id': segment.id }) }}" method="post">                          
                         <div class="controls controls-row">
                             {{ form_widget( segments_form[segment.id].length ) }}
                             {{ form_widget( segments_form[segment.id].percent) }}                        

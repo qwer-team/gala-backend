@@ -34,9 +34,9 @@ class SegmentService extends ContainerAware
     public function getPointsOnSegment($id)
     {
         $url = $this->container->getParameter("get.points.on.segment.url");
-        $response = $this->makeRequest($url.$id);
+        $response = $this->makeRequest($url . $id);
         $result = json_decode($response);
-        
+
         for ($i = 0; $i < count($result->subtypes); $i++) {
             $pers = ($result->subtypes[$i]->pointsCount / $result->length) * 100;
             $result->subtypes[$i]->percent = round($pers, 10);
@@ -45,15 +45,15 @@ class SegmentService extends ContainerAware
         return $result;
     }
 
-    public function saveSubtype($typeId, $data){
+    public function saveSubtype($id, $data)
+    {
         $url = $this->container->getParameter("save.subtype.url");
-        unset($data['percent']);
-        $response = $this->makeRequest($url . $typeId, $data);
+        $response = $this->makeRequest($url.$id, $data);
         $result = json_decode($response);
         return $result;
     }
 
-        public function updateSegmentLength($id, $length)
+    public function updateSegmentLength($id, $length)
     {
         $url = $this->container->getParameter("update.segment.length.url");
         $data = array(

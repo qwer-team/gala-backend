@@ -17,115 +17,11 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js') }}"><\/script>')</script>
         <script src="{{ asset('js/bootstrap.js') }}"></script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
         {% javascripts '@GalaxyBackendBundle/Resources/public/js/*' %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        <script src="{{ asset ('js/jquery.form.js' ) }}" ></script>
-        <script>
-            $( document ).ready(function() {
-                $('#myTab a').click(function (e) {
-                    if($(this).attr('href').charAt(0)=='#')
-                    {
-                        e.preventDefault();
-                        $(this).tab('show');
-                    }
-                });
-                $('#myTab2 a').click(function (e) {
-                    if($(this).attr('href').charAt(0)=='#')
-                    {
-                        e.preventDefault();
-                        $(this).tab('show');
-                    }
-                });
-                $('#myTab3 a').click(function (e) {
-                    if($(this).attr('href').charAt(0)=='#')
-                    {
-                        e.preventDefault();
-                        $(this).tab('show');
-                    }
-                });
-                var points = 1000000000;
-                var length = "galaxy_BackendBundle_form_space_segmenttype_length";
-                var percent = "galaxy_BackendBundle_form_space_segmenttype_percent";
-                
-                function seeTotal(){
-                   var totalPoints = total($("form.segments_form #"+length),true)  
-                   $('.totalPoints').val(totalPoints);
-                    chengeClass(parseInt(totalPoints), points, $(".control-group").has('.totalPoints'));
-        
-                   var totalProcent =  total($("form.segments_form #"+percent),false)
-                   $('.totalProcent').val(totalProcent+'%');
-                   chengeClass(parseFloat(totalProcent), 100, $(".control-group").has('.totalProcent'));
-                }
-                function chengeClass(nowHas, need, object){
-                   if(nowHas!=need){
-                       object.removeClass('success');
-                       object.addClass('error');
-                   }
-                   else{
-                      object.removeClass('error');
-                      object.addClass('success');
-                   }
-                }
-                seeTotal();
-                
-                $('form.segments_form').on('change', 'input', function(){
-                   var segment = $('form.segments_form').has(this);
-
-                   var lengthInp = segment.children().find("#"+length);
-                   var percentInp = segment.children().find("#"+percent);
-                   
-                   if($(this).attr('id') == length){
-                       percentInp.val((($(this).val()/points)*100).toFixed(2));
-                   }
-                   if($(this).attr('id') == percent){
-                       lengthInp.val(Math.round((points/100)*$(this).val()));
-                   }
-                   seeTotal();
-                });
-
-                
-                function total(bloks, int){
-                    var total = 0;
-                    for(var i=0; i<bloks.size();i++){
-                        if(int==true)
-                        total += parseInt(bloks.eq(i).val());
-                        else
-                        total += parseFloat(bloks.eq(i).val());
-                    }
-                    return total;
-                }
-                
-             $('a#ajaxHtml').on('click',function(){
-                var href = $(this).data('action'); 
-                var success = $(this).data('success');
-                if(!$(success).hasClass('in'))
-                {
-                    $.ajax({
-                        url: href,
-                        success: function(html){
-                            $(success+' .accordion-inner').replaceWith(html);
-                        }
-                    }); 
-                }
-                
-             })   
-                
-             $('body').delegate(".ajaxForm a#sendAjaxForm", "click", function(){
-                $('.ajaxForm').has(this).ajaxSubmit({
-                    'success' : function( data ){
-                        if(data['result']=='success'){
-                            $('#hiddenMassageSuccess').clone().prependTo('.ajaxForm[id = '+data['id']+']').show();
-                        }
-                        else{
-                            $('#hiddenMassageError').clone().prependTo('.ajaxForm[id = '+data['id']+']').show(); 
-                        }
-                    }
-                });
-            });
-                
-    });
-    </script>
     {% endblock %}
         
     {% block css %}

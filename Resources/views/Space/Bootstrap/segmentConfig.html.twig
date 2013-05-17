@@ -1,0 +1,28 @@
+{% block segment %}
+    {% for type in types %}
+    <div>
+        {{type.name}}
+        <ul class="subtypes">
+            {% for subtype in type.subtypes %}
+            <li>
+                <input name="pointsCount" value="{{subtype.pointsCount}}">
+                <input name="block" {%if subtype.block%}checked="checked"{%endif%} type="checkbox">
+                <input name="restore" {%if subtype.restore%}checked="checked"{%endif%} type="checkbox">
+                <input name="persent" >
+                <input type="hidden" name="id" value="{{subtype.id}}">
+                <input type="hidden" name="typeId" value="{{subtype.typeId}}">
+                <button type="button" class="btn btn-primary">Изменить</button>
+            </li>
+            {% endfor %}
+            <li>
+                <input name="pointsCount" value="">
+                <input name="block" type="checkbox">
+                <input name="restore"  type="checkbox">
+                <input name="persent" >
+                <input type="hidden"  name="typeId" value="{{type.id}}">
+                <button type="button" class="add-subtype btn btn-primary">Добавить</button>
+            </li>
+        </ul>
+    </div>
+    {% endfor %}
+{% endblock %}

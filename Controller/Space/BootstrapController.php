@@ -5,10 +5,11 @@ namespace Galaxy\BackendBundle\Controller\Space;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
-use Galaxy\BackendBundle\Form\Space\SplitIntoSegmentType;
+use Galaxy\BackendBundle\Form\Space\SplitType;
 use Galaxy\BackendBundle\Form\Space\SegmentType;
 use Symfony\Component\HttpFoundation\Response;
 use Galaxy\BackendBundle\Form\Space\SubtypeGroupType;
+use Galaxy\BackendBundle\Form\Space\SubtypeType;
 
 class BootstrapController extends Controller
 {
@@ -17,23 +18,23 @@ class BootstrapController extends Controller
      * @Template()
      * @return type
      */
-    public function splitIntoSegmentsAction()
+    public function segmentsAction()
     {
-        $SplitIntoSegmentForm = $this->createForm(new SplitIntoSegmentType())
-                ->createView();
+        $type = new SplitType();
+        $formView = $this->createForm($type)->createView();
         return array(
-            'splitIntoSegmentForm' => $SplitIntoSegmentForm,
+            'splitIntoSegmentForm' => $formView,
         );
     }
 
     /**
-     * @Template("GalaxyBackendBundle:Space\Bootstrap:downloadSection.html.twig")
+     * @Template("GalaxyBackendBundle:Space\Bootstrap:segments.html.twig")
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
      */
-    public function updateSplitIntoSegmentAction(Request $request)
+    public function splitAction(Request $request)
     {
-        $form = $this->createForm(new SplitIntoSegmentType());
+        $form = $this->createForm(new SplitType());
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -45,7 +46,9 @@ class BootstrapController extends Controller
                 return $this->redirect($this->generateUrl('show_segments'));
             }
         }
-        return array();
+        return array(
+            'splitIntoSegmentForm' => $form->createView(),
+        );
     }
 
     /**
@@ -61,7 +64,7 @@ class BootstrapController extends Controller
 
         foreach ($allSegments as $oneSegment) {
             $segmentsForm[$oneSegment->id] = $this->createForm(new SegmentType(), $oneSegment)
-                    ->createView();
+            ->createView();
         }
 
         return array(
@@ -74,67 +77,48 @@ class BootstrapController extends Controller
      * @param type $id
      * @return type
      */
-    public function showPointsOnSegmentAction($id)
+    public function segmentConfigAction($id)
     {
         $segment = $this->container->get('segment.service');
         $entity = $segment->getPointsOnSegment($id);
         $types = array();
-        foreach($entity->types as $type){
+        foreach ($entity->types as $type) {
             $type->subtypes = array();
             $types[$type->id] = $type;
         }
-        
-        foreach($entity->subtypes as $subtypes){
+
+        foreach ($entity->subtypes as $subtypes) {
             $typeId = $subtypes->typeId;
             $types[$typeId]->subtypes[] = $subtypes;
         }
-        foreach ($types as $oneType) {
-           $typesForm[$oneType->id] = $this->createForm(new SubtypeGroupType(), $oneType)->createView(); 
-        }
-        
+
         return array(
             'id' => $id,
-            'typesForm' => $typesForm,
             'types' => $types,
         );
     }
 
     /**
-     * @param type $id
-     * @return type
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder(array('id' => $id))
-                        ->add('id', 'hidden')
-                        ->getForm()
-        ;
-    }
-
-    /**
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param type $id
+     * @param integer $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function saveSubtypeAction(Request $request, $typeId)
+    public function saveSubtypeAction(Request $request, $id)
     {
         $segment = $this->container->get('segment.service');
-            $form = $this->createForm(new PointsSubtypeType());
+        $form = $this->createForm(new SubtypeType());
         $form->bind($request);
         $json = array();
         if ($form->isValid()) {
             $data = $form->getData();
-            $json = $segment->saveSubtype($typeId, $data);
-        } else {
-            print_r($form->getErrors());
-        }
-        $json->id = $id;
+            $json = $segment->saveSubtype($id, $data);
+        } 
         $response = new Response();
         $response->setContent(json_encode($json));
 
         return $response;
     }
-    
+
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param type $id

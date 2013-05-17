@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>createSplitIntoSegment</h1>
-    <form  class="form-search" action="{{ path('update_split_into_segment') }}" method="post" {{ form_enctype(splitIntoSegmentForm) }}>        
+    <form  class="form-search" action="{{ path('split') }}" method="post" {{ form_enctype(splitIntoSegmentForm) }}>        
         <div class="input-append">
             {{ form_widget(splitIntoSegmentForm.count) }}
             <button type="submit" class="btn">SplitIntoSegment</button>

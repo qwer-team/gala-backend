@@ -8,7 +8,8 @@
         "twitter/bootstrap": "2.3.*",
         "jquery/jquery": "1.9.*",
         "leafo/lessphp": "master",
-        "friendsofsymfony/user-bundle": "*"
+        "friendsofsymfony/user-bundle": "*",
+        "friendsofsymfony/jsrouting-bundle": "~1.1"
     },
     "repositories": [
         {
@@ -34,9 +35,5 @@
                 }
             }
         }
-    ],
-    "psr-0": { 
-        "": "src/",
-        "Galaxy\\BackendBundle": ""
-    }
+    ]
 }

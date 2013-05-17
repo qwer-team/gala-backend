@@ -6,27 +6,26 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PointsSubtypeType extends AbstractType
+class SubtypeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            //->add('id')
             ->add('pointsCount', 'integer')
-            ->add('block', 'checkbox')
-            ->add('restore', 'checkbox')
-            ->add('percent')
+            ->add('block', 'integer')
+            ->add('restore', 'integer')
+            ->add('typeId', 'integer')
          ;
     }
 
     public function getName()
     {
-        return 'galaxy_BackendBundle_form_space_pointssubtypetype';
+        return '';
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'stdClass'
+            'csrf_protection'   => false,
         ));
     }
 }

@@ -13,25 +13,27 @@
   
 
 
-  <route id="split_into_segments" pattern="/split_into_segments">
-    <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:splitIntoSegments</default>
+  <route id="segments" pattern="/segments">
+    <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:segments</default>
   </route>
-  <route id="update_split_into_segment" pattern="/update_split_into_segment" methods="post">
-    <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:updateSplitIntoSegment</default>
+  <route id="split" pattern="/split" methods="post">
+    <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:split</default>
   </route>
   <route id="show_segments" pattern="/show_segments">
     <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:showSegments</default>
   </route>
-  <route id="show_points_on_segment" pattern="/{id}/show_points_on_segment">
-    <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:showPointsOnSegment</default>
+  <route id="segment_config" pattern="/{id}/segment_config">
+    <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:segmentConfig</default>
+    <option key="expose">true</option>
   </route>
   <route id="update_segment_length" pattern="/{id}/update_segment_length" methods="post">
     <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:updateSegmentLength</default>
     <default key="_format">json</default>
   </route>
-  <route id="save_subtype" pattern="/{typeId}/save_subtype" methods="post">
+  <route id="save_subtype" pattern="/{id}/save_subtype" methods="post">
     <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:saveSubtype</default>
     <default key="_format">json</default>
+    <option key="expose">true</option>
   </route>
   
 </routes>
