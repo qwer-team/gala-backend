@@ -12,9 +12,10 @@ class SubtypeType extends AbstractType
     {
         $builder
             ->add('pointsCount', 'integer')
-            ->add('block', 'integer')
-            ->add('restore', 'integer')
-            ->add('typeId', 'integer')
+            ->add('block', 'checkbox', array('required' => false))
+            ->add('restore', 'checkbox', array('required' => false))
+            ->add('typeId', 'hidden')
+            ->add('id', 'hidden')
          ;
     }
 

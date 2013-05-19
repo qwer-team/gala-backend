@@ -84,12 +84,15 @@ class BootstrapController extends Controller
         $types = array();
         foreach ($entity->types as $type) {
             $type->subtypes = array();
+            $new = array("typeId" => $type->id);
+            $type->form = array($this->createForm(new SubtypeType(), $new)->createView());
             $types[$type->id] = $type;
         }
 
         foreach ($entity->subtypes as $subtypes) {
             $typeId = $subtypes->typeId;
-            $types[$typeId]->subtypes[] = $subtypes;
+            $form = $this->createForm(new SubtypeType(), $subtypes)->createView();
+            $types[$typeId]->subtypes[] = $form;
         }
 
         return array(
@@ -105,14 +108,40 @@ class BootstrapController extends Controller
      */
     public function saveSubtypeAction(Request $request, $id)
     {
+        return $this->saveSubtype($request, $id, "saveSubtype");
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param integer $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function updateSubtypeAction(Request $request, $id)
+    {
+        return $this->saveSubtype($request, $id, "updateSubtype");
+    }
+
+    private function saveSubtype(Request $request, $id, $method)
+    {
         $segment = $this->container->get('segment.service');
-        $form = $this->createForm(new SubtypeType());
+        $form = $this->createForm(new SubtypeType(), array());
         $form->bind($request);
         $json = array();
         if ($form->isValid()) {
             $data = $form->getData();
-            $json = $segment->saveSubtype($id, $data);
-        } 
+            $json = $segment->$method($id, $data);
+        }
+        $response = new Response();
+        $response->setContent(json_encode($json));
+
+        return $response;
+    }
+
+    public function removeSubtypeAction($id)
+    {
+        $segment = $this->container->get('segment.service');
+        
+        $json = $segment->removeSubtype($id);
         $response = new Response();
         $response->setContent(json_encode($json));
 

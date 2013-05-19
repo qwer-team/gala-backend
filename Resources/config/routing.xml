@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
   
-  <route id="galaxy_back_end_homepage" pattern="/">
-    <default key="_controller">GalaxyBackendBundle:Default:index</default>
-  </route>
+    <route id="galaxy_back_end_homepage" pattern="/">
+        <default key="_controller">GalaxyBackendBundle:Default:index</default>
+    </route>
   
-  <import resource="@FOSUserBundle/Resources/config/routing/security.xml"/>
-  <import resource="@FOSUserBundle/Resources/config/routing/profile.xml" prefix="/profile"/>
-  <import resource="@FOSUserBundle/Resources/config/routing/registration.xml" prefix="/register"/>
-  <import resource="@FOSUserBundle/Resources/config/routing/resetting.xml" prefix="/resetting"/>
-  <import resource="@FOSUserBundle/Resources/config/routing/change_password.xml" prefix="/profile"/>
+    <import resource="@FOSUserBundle/Resources/config/routing/security.xml"/>
+    <import resource="@FOSUserBundle/Resources/config/routing/profile.xml" prefix="/profile"/>
+    <import resource="@FOSUserBundle/Resources/config/routing/registration.xml" prefix="/register"/>
+    <import resource="@FOSUserBundle/Resources/config/routing/resetting.xml" prefix="/resetting"/>
+    <import resource="@FOSUserBundle/Resources/config/routing/change_password.xml" prefix="/profile"/>
   
 
 
-  <route id="segments" pattern="/segments">
-    <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:segments</default>
-  </route>
-  <route id="split" pattern="/split" methods="post">
-    <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:split</default>
-  </route>
-  <route id="show_segments" pattern="/show_segments">
-    <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:showSegments</default>
-  </route>
-  <route id="segment_config" pattern="/{id}/segment_config">
-    <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:segmentConfig</default>
-    <option key="expose">true</option>
-  </route>
-  <route id="update_segment_length" pattern="/{id}/update_segment_length" methods="post">
-    <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:updateSegmentLength</default>
-    <default key="_format">json</default>
-  </route>
-  <route id="save_subtype" pattern="/{id}/save_subtype" methods="post">
-    <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:saveSubtype</default>
-    <default key="_format">json</default>
-    <option key="expose">true</option>
-  </route>
-  
+    <route id="segments" pattern="/segments">
+        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:segments</default>
+    </route>
+    <route id="split" pattern="/split" methods="post">
+        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:split</default>
+    </route>
+    <route id="show_segments" pattern="/show_segments">
+        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:showSegments</default>
+    </route>
+    <route id="segment_config" pattern="/{id}/segment_config">
+        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:segmentConfig</default>
+        <option key="expose">true</option>
+    </route>
+    <route id="update_segment_length" pattern="/{id}/update_segment_length" methods="post">
+        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:updateSegmentLength</default>
+        <default key="_format">json</default>
+    </route>
+    <route id="new_subtype" pattern="/{id}/save_subtype" methods="post">
+        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:saveSubtype</default>
+        <default key="_format">json</default>
+        <option key="expose">true</option>
+    </route>
+    <route id="update_subtype" pattern="/{id}/update_subtype" methods="post">
+        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:updateSubtype</default>
+        <default key="_format">json</default>
+        <option key="expose">true</option>
+    </route>
+    <route id="remove_subtype" pattern="/{id}/remove_subtype" methods="get">
+        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:removeSubtype</default>
+        <default key="_format">json</default>
+        <option key="expose">true</option>
+    </route>
 </routes>

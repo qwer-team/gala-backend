@@ -1,28 +1,39 @@
+
 {% block segment %}
+<div class='subtypes-form'>
     {% for type in types %}
-    <div>
+    
         {{type.name}}
-        <ul class="subtypes">
+        <ul class="subtypes unstyled">
             {% for subtype in type.subtypes %}
             <li>
-                <input name="pointsCount" value="{{subtype.pointsCount}}">
-                <input name="block" {%if subtype.block%}checked="checked"{%endif%} type="checkbox">
-                <input name="restore" {%if subtype.restore%}checked="checked"{%endif%} type="checkbox">
-                <input name="persent" >
-                <input type="hidden" name="id" value="{{subtype.id}}">
-                <input type="hidden" name="typeId" value="{{subtype.typeId}}">
-                <button type="button" class="btn btn-primary">Изменить</button>
+                <form class="form-inline">
+                {{ form_row(subtype.pointsCount)}}
+                {{ form_row(subtype.block)}}
+                {{ form_row(subtype.restore)}}
+                    <input type="number" name="persent" >
+                {{ form_row(subtype.id)}}
+                {{ form_row(subtype.typeId)}}
+                <button type="button" class="update-subtype btn btn-primary btn-small">Изменить</button>
+                <button type="button" class="remove-subtype btn btn-danger btn-small">Удалить</button>
+                    </form>
             </li>
             {% endfor %}
+            {% for form in type.form %}
             <li>
-                <input name="pointsCount" value="">
-                <input name="block" type="checkbox">
-                <input name="restore"  type="checkbox">
-                <input name="persent" >
-                <input type="hidden"  name="typeId" value="{{type.id}}">
-                <button type="button" class="add-subtype btn btn-primary">Добавить</button>
+                <form class="form-inline">
+                {{ form_row(form.pointsCount)}}
+                {{ form_row(form.block)}}
+                {{ form_row(form.restore)}}
+                    <input type="number" name="persent" >
+                {{ form_row(form.id)}}
+                {{ form_row(form.typeId)}}
+                <button type="button" class="add-subtype btn btn-primary btn-small">Добавить</button>
+                </form>
             </li>
+            {% endfor %}
         </ul>
-    </div>
+    
     {% endfor %}
+</div>
 {% endblock %}

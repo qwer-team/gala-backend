@@ -73,8 +73,6 @@ $( document ).ready(function() {
     }
                 
     $('.load-segment-info').on('click',function(){
-        var id = $(this).data('id'); 
-        
         var segment = $(this).parents('.accordion-group');
         if(!segment.hasClass('in'))
         {

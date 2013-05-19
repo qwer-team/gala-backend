@@ -8,18 +8,23 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class SegmentType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            //->add('class')
-            //->add('id')
-            //->add('end')
-            ->add('length', 'integer', array('attr' => array( 
-                'class' => 'span3')))
-            //->add('start')
-            ->add('percent', 'integer', array('attr' => array( 
+        $lengthOpts = array(
+            'attr' => array(
                 'class' => 'span2',
-                'append_input' => '%')))
+            )
+        );
+        $percentOpts = array(
+            'attr' => array(
+                'class' => 'span6',
+                'append_input' => '%',
+            )
+        );
+        $builder
+        ->add('length', 'integer', $lengthOpts)
+        ->add('percent', 'integer', $percentOpts)
         ;
     }
 
@@ -27,4 +32,5 @@ class SegmentType extends AbstractType
     {
         return 'galaxy_BackendBundle_form_space_segmenttype';
     }
+
 }

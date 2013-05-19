@@ -20,7 +20,7 @@ class SegmentService extends ContainerAware
         $url = $this->container->getParameter("get.segment.url");
         $points = $this->container->getParameter("points.in.space");
         if (!is_integer($points)) {
-            throw new \Exception("lalalaal");
+            throw new \Exception("You must set valid points number!");
         }
         $response = $this->makeRequest($url);
         $result = json_decode($response);
@@ -47,8 +47,24 @@ class SegmentService extends ContainerAware
 
     public function saveSubtype($id, $data)
     {
-        $url = $this->container->getParameter("save.subtype.url");
-        $response = $this->makeRequest($url.$id, $data);
+        $url = $this->container->getParameter("create.subtype.url");
+        $response = $this->makeRequest($url . $id, $data);
+        $result = json_decode($response);
+        return $result;
+    }
+
+    public function updateSubtype($id, $data)
+    {
+        $url = $this->container->getParameter("update.subtype.url");
+        $response = $this->makeRequest($url . $data["id"], $data);
+        $result = json_decode($response);
+        return $result;
+    }
+
+    public function removeSubtype($id)
+    {
+        $url = $this->container->getParameter("remove.subtype.url");
+        $response = $this->makeRequest($url . $id);
         $result = json_decode($response);
         return $result;
     }

@@ -3,6 +3,7 @@
 {% block title %}showSegments{% endblock %}
 
 {% block body %}
+
 <div class="form-horizontal">
     <div class="control-group">
         <label class="control-label" >Input with error</label>
@@ -33,7 +34,9 @@
 </div>
 <div class="accordion" id="accordion2">
     {% for segment in allSegments %}
-        <div class="accordion-group" data-id="{{segment.id}}" >
+        <div class="row-fluid">
+    <div class="span12" >
+        <div class="accordion-group" data-id="{{segment.id}}" style="padding: 8px;">
             <div class="accordion-heading">
                 <a class="accordion-toggle load-segment-info" data-toggle="collapse" data-parent="#accordion2" href="#segment_{{segment.id}}">segment № {{loop.index}}</a>
                     <form class="form-search segments_form ajaxForm" action="{{ path('update_segment_length', { 'id': segment.id }) }}" method="post">                          
@@ -51,6 +54,9 @@
                 </div>
             </div>
         </div>
+        </div>
+        </div>
     {% endfor %}
 </div>
+        
 {% endblock %}

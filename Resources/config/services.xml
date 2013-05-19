@@ -6,16 +6,19 @@
 
 
     <parameters>
+        <parameter key="garilsurl">http://localhost:8080</parameter>
         <parameter key="galaxy.container.aware.class">Galaxy\BackendBundle\Listener\ContainerAware</parameter>
         <parameter key="segment.service.class">Galaxy\BackendBundle\Service\SegmentService</parameter>
         
         <parameter key="points.in.space">1000000000</parameter>
         
-        <parameter key="segment.update.url">http://localhost:8080/gala/segment/reset/</parameter>
-        <parameter key="get.segment.url">http://localhost:8080/gala/segment/list</parameter>
-        <parameter key="update.segment.length.url">http://localhost:8080/gala/segment/update/</parameter>
-        <parameter key="get.points.on.segment.url">http://localhost:8080/gala/subtype/getPointsOnSegment/</parameter>
-        <parameter key="save.subtype.url">http://localhost:8080/gala/subtype/save/</parameter>
+        <parameter key="segment.update.url">%garilsurl%/gala/segment/reset/</parameter>
+        <parameter key="get.segment.url">%garilsurl%/gala/segment/list</parameter>
+        <parameter key="update.segment.length.url">%garilsurl%/gala/segment/update/</parameter>
+        <parameter key="get.points.on.segment.url">%garilsurl%/gala/subtype/getPointsOnSegment/</parameter>
+        <parameter key="create.subtype.url">%garilsurl%/gala/subtype/save/</parameter>
+        <parameter key="update.subtype.url">%garilsurl%/gala/subtype/update/</parameter>
+        <parameter key="remove.subtype.url">%garilsurl%/gala/subtype/remove/</parameter>
     </parameters>
 
     <services>
