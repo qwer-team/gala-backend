@@ -18,19 +18,18 @@ class SegmentType extends AbstractType
         );
         $percentOpts = array(
             'attr' => array(
-                'class' => 'span6',
-                'append_input' => '%',
+                'class' => 'span2',
             )
         );
         $builder
         ->add('length', 'integer', $lengthOpts)
-        ->add('percent', 'integer', $percentOpts)
+        ->add('percent', 'field', $percentOpts)
         ;
     }
 
     public function getName()
     {
-        return 'galaxy_BackendBundle_form_space_segmenttype';
+        return '';
     }
 
 }

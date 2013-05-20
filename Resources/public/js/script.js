@@ -20,57 +20,14 @@ $( document ).ready(function() {
             $(this).tab('show');
         }
     });
-    var points = 1000000000;
-    var length = "galaxy_BackendBundle_form_space_segmenttype_length";
-    var percent = "galaxy_BackendBundle_form_space_segmenttype_percent";
-                
-    function seeTotal(){
-        var totalPoints = total($("form.segments_form #"+length),true)  
-        $('.totalPoints').val(totalPoints);
-        chengeClass(parseInt(totalPoints), points, $(".control-group").has('.totalPoints'));
-        
-        var totalProcent =  total($("form.segments_form #"+percent),false)
-        $('.totalProcent').val(totalProcent+'%');
-        chengeClass(parseFloat(totalProcent), 100, $(".control-group").has('.totalProcent'));
-    }
-    function chengeClass(nowHas, need, object){
-        if(nowHas!=need){
-            object.removeClass('success');
-            object.addClass('error');
-        }
-        else{
-            object.removeClass('error');
-            object.addClass('success');
-        }
-    }
-    seeTotal();
-                
-    $('form.segments_form').on('change', 'input', function(){
-        var segment = $('form.segments_form').has(this);
-
-        var lengthInp = segment.children().find("#"+length);
-        var percentInp = segment.children().find("#"+percent);
-                   
-        if($(this).attr('id') == length){
-            percentInp.val((($(this).val()/points)*100).toFixed(2));
-        }
-        if($(this).attr('id') == percent){
-            lengthInp.val(Math.round((points/100)*$(this).val()));
-        }
-        seeTotal();
+    
+    $('form.segments_form').on('change', 'input[name="length"]', function(){
+        onSegmentLength($(this));
     });
-
-                
-    function total(bloks, integer){
-        var total = 0;
-        for(var i=0; i<bloks.size();i++){
-            if(integer==true)
-                total += parseInt(bloks.eq(i).val());
-            else
-                total += parseFloat(bloks.eq(i).val());
-        }
-        return total;
-    }
+    
+    $('form.segments_form').on('change', 'input[name="percent"]', function(){
+        onSegmentPercent($(this));
+    });
                 
     $('.load-segment-info').on('click',function(){
         var segment = $(this).parents('.accordion-group');
@@ -92,9 +49,60 @@ $( document ).ready(function() {
             }
         });
     });
-                
+    segmentsTotal();
 });
 
+var points = 1000000000;
+var length = "length";
+var percent = "percent";
+                
+function segmentsTotal(){
+    var totalPoints = 0;
+    $('form.segments_form input[name="length"]').each(function(){
+       totalPoints += parseInt($(this).val()); 
+    });
+    $('.totalPoints').val(totalPoints);
+    
+    var totalPercent = 0;
+    $('form.segments_form input[name="percent"]').each(function(){
+       totalPercent += parseFloat($(this).val()); 
+    });
+    $('.totalPercent').val(totalPercent+'%');
+    
+    var remove, add;
+    console.log('points '+totalPoints);
+    if(totalPoints != points){
+        remove = "success";
+        add = "error";
+    } else {
+        remove = "error";
+        add = "success";
+    }
+    $.each(['.totalPoints', '.totalPercent'], function(i, v){
+        console.log('class '+ v);
+        console.log(remove + ' ' + add);
+        var obj = $(".control-group").has(v);
+        //obj.hide(100).show(100);
+        obj.removeClass(remove)
+        obj.addClass(add);
+    });
+}
+
+function onSegmentLength(obj){
+    var form = obj.parents('.segments_form');
+    var percent = form.find('input[name="percent"]');
+    var value = (( obj.val() / points ) * 100)
+    percent.val(value.toFixed(2));
+    segmentsTotal();
+}
+function onSegmentPercent(obj){
+    var form = obj.parents('form');
+    var lenInp = form.find('input[name="length"]');
+    var value = Math.round( ( points/100 ) * obj.val());
+    lenInp.val(value.toFixed(0));
+    segmentsTotal();
+}
+    
 function updateSegmentConfig(segment, body){
     body = body || '.accordion-inner';
     var id = segment.data('id'); 

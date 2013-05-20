@@ -45,4 +45,7 @@
         <default key="_format">json</default>
         <option key="expose">true</option>
     </route>
+    <route id="space_loading" pattern="/loading" methods="get">
+        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:loading</default>
+    </route>
 </routes>

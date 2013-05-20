@@ -174,5 +174,16 @@ class BootstrapController extends Controller
 
         return $response;
     }
+    
+    /**
+     * @Template()
+     * @return type
+     */
+    public function loadingAction(){
+        $segment = $this->container->get('segment.service');
+        $allSegments = $segment->getSegments();
+        
+        return array('segments' => $allSegments);
+    }
 
 }

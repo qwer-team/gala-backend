@@ -20,6 +20,7 @@ class DefaultController extends Controller
             $menu->addChild('Начальная загрузка', 'noroute3');
                 $menu->addGrandchildren('Разбить на отрезки', 'segments', true);
                 $menu->addGrandchildren('Редактирование отрезков', 'show_segments', true);
+                $menu->addGrandchildren('Загрузка', 'space_loading', true);
             $menu->addChild('Изминение координат', 'noroute4');
             $menu->addChild('Перегрузка', 'noroute5');
             $menu->addChild('Призы', 'noroute6');

@@ -17,7 +17,7 @@ class SplitType extends AbstractType
 
     public function getName()
     {
-        return 'galaxy_BackendBundle_form_space_splitintosegmenttype';
+        return 'split_type';
     }
 
 }
