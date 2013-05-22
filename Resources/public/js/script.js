@@ -70,7 +70,6 @@ function segmentsTotal(){
     $('.totalPercent').val(totalPercent+'%');
     
     var remove, add;
-    console.log('points '+totalPoints);
     if(totalPoints != points){
         remove = "success";
         add = "error";
@@ -79,10 +78,7 @@ function segmentsTotal(){
         add = "success";
     }
     $.each(['.totalPoints', '.totalPercent'], function(i, v){
-        console.log('class '+ v);
-        console.log(remove + ' ' + add);
         var obj = $(".control-group").has(v);
-        //obj.hide(100).show(100);
         obj.removeClass(remove)
         obj.addClass(add);
     });

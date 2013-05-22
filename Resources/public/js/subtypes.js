@@ -1,8 +1,56 @@
 $( document ).ready(function() {
-    $(".accordion-group").on("click", ".add-subtype", function(){saveSubtype('new_subtype', $(this))});
-    $(".accordion-group").on("click", ".update-subtype",function(){saveSubtype('update_subtype', $(this))});
-    $(".accordion-group").on("click", ".remove-subtype",function(){removeSubtype($(this))});
+    $(".accordion-group").on("click", ".add-subtype", function(){
+        saveSubtype('new_subtype', $(this))
+    });
+    $(".accordion-group").on("click", ".update-subtype",function(){
+        saveSubtype('update_subtype', $(this))
+    });
+    $(".accordion-group").on("click", ".remove-subtype",function(){
+        removeSubtype($(this))
+    });
+    $(".accordion-group").on("change", ".subtypes-form input[name='percent']", function(){
+        onSubtypePercent($(this));
+    });
+    $(".accordion-group").on("change", ".subtypes-form input[name='pointsCount']", function(){
+        onSubtypePoints($(this));
+    });
 });
+
+function onSubtypePercent(obj){
+    var segment = obj.parents('.accordion-group');
+    var pointsCount = parseInt(segment.find("input[name='length']").val());
+    var value = Math.round( ( pointsCount/100 ) * obj.val());
+    var pointInput = obj.parent().find('input[name="pointsCount"]');
+    checkSegmentPointcount(segment);
+    pointInput.val(value);
+    
+}
+
+function onSubtypePoints(obj){
+    var segment = obj.parents('.accordion-group');
+    var pointsCount = parseInt(segment.find("input[name='length']").val());
+    var value = (( obj.val() / pointsCount ) * 100)
+    var percentInput = obj.parent().find('input[name="percent"]');
+    checkSegmentPointcount(segment);
+    percentInput.val(value);
+}
+
+function checkSegmentPointcount(segment){
+    var pointsCount = parseInt(segment.find("input[name='length']").val());
+    
+    var subtypesPoints = 0;
+    segment.find("input[name='pointsCount']").each(function(){
+        var val = $(this).val();
+        subtypesPoints += (val == ''? 0: parseInt(val));
+    });
+    console.log(subtypesPoints);
+    var buttons = segment.find(".add-subtype, .update-subtype");
+    if(subtypesPoints > pointsCount){
+        buttons.attr('disabled', 'disabled');
+    } else {
+        buttons.removeAttr('disabled');
+    }
+}
 
 function saveSubtype(routing, obj){
     var parent = obj.parent();
