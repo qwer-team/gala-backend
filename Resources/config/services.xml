@@ -8,7 +8,7 @@
     <parameters>
         <parameter key="garilsurl">http://localhost:8080</parameter>
         <parameter key="galaxy.container.aware.class">Galaxy\BackendBundle\Listener\ContainerAware</parameter>
-        <parameter key="segment.service.class">Galaxy\BackendBundle\Service\SegmentService</parameter>
+        <parameter key="remote.service.class">Galaxy\BackendBundle\Service\RemoteService</parameter>
         
         <parameter key="points.in.space">1000000000</parameter>
         
@@ -19,6 +19,8 @@
         <parameter key="create.subtype.url">%garilsurl%/gala/subtype/save/</parameter>
         <parameter key="update.subtype.url">%garilsurl%/gala/subtype/update/</parameter>
         <parameter key="remove.subtype.url">%garilsurl%/gala/subtype/remove/</parameter>
+        <parameter key="get.type.url">%garilsurl%/gala/type/show/</parameter>
+        <parameter key="update.type.url">%garilsurl%/gala/type/update</parameter>
     </parameters>
 
     <services>
@@ -27,7 +29,7 @@
                 <argument type="service" id="service_container"/>
             </call>
         </service>
-        <service id="segment.service" parent="galaxy.container.aware" class="%segment.service.class%"/>
+        <service id="remote.service" parent="galaxy.container.aware" class="%remote.service.class%"/>
     </services>
     
 </container>

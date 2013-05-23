@@ -1,0 +1,8 @@
+{% extends 'GalaxyBackendBundle::layout.html.twig' %}
+
+{% block body %}
+<form action="{{path('type_config', {'tag': tag})}}" method="POST">
+    {{form_widget(form)}}
+    <button type="submit" class='btn btn-primary'>Сохранить</button>
+</form>
+{% endblock %}

@@ -19,9 +19,9 @@ class MenuControl
        $menu->setChild($child);
     }
     
-    public function addGrandchildren($title, $href, $url = false)
+    public function addGrandchildren($title, $href, $url = false, $param = array())
     {
-        $Grandchildren = new MenuItem($title, $href, $url);
+        $Grandchildren = new MenuItem($title, $href, $url, $param);
         $menu = $this->menu[count($this->menu)-1];
         $child = $menu->getChild();
         $child = $child[count($child)-1];

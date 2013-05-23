@@ -25,7 +25,7 @@ class DefaultController extends Controller
             $menu->addChild('Перегрузка', 'noroute5');
             $menu->addChild('Призы', 'noroute6');
             $menu->addChild('Точки', 'noroute7');
-                $menu->addGrandchildren('Черные', 'noroute8');
+                $menu->addGrandchildren('Черные', 'type_config', true, array('tag' => 'black'));
                 $menu->addGrandchildren('Ловушка', 'noroute9');
                 $menu->addGrandchildren('+%', 'noroute10');
                 $menu->addGrandchildren('-%', 'noroute11');

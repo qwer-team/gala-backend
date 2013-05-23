@@ -4,7 +4,7 @@ namespace Galaxy\BackendBundle\Service;
 
 use Galaxy\BackendBundle\Listener\ContainerAware;
 
-class SegmentService extends ContainerAware
+class RemoteService extends ContainerAware
 {
 
     public function updateSplitIntoSegment($count)
@@ -94,5 +94,19 @@ class SegmentService extends ContainerAware
 
         return $response;
     }
-
+    
+    
+    public function getType($tag){
+        $url = $this->container->getParameter("get.type.url");
+        $response = $this->makeRequest($url . $tag);
+        $result = (array)json_decode($response);
+        return $result;
+    }
+    
+    public function updateType($data){
+        $url = $this->container->getParameter("update.type.url");
+        $response = $this->makeRequest($url, $data);
+        $result = json_decode($response);
+        return $result;
+    }
 }

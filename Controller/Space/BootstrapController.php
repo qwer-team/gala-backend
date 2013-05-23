@@ -10,6 +10,7 @@ use Galaxy\BackendBundle\Form\Space\SegmentType;
 use Symfony\Component\HttpFoundation\Response;
 use Galaxy\BackendBundle\Form\Space\SubtypeGroupType;
 use Galaxy\BackendBundle\Form\Space\SubtypeType;
+use Galaxy\BackendBundle\Form\Space\TypeForm;
 
 class BootstrapController extends Controller
 {
@@ -40,7 +41,7 @@ class BootstrapController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
             $count = $data["count"];
-            $segment = $this->container->get('segment.service');
+            $segment = $this->container->get('remote.service');
 
             if ($segment->updateSplitIntoSegment($count)) {
                 return $this->redirect($this->generateUrl('show_segments'));
@@ -57,7 +58,7 @@ class BootstrapController extends Controller
      */
     public function showSegmentsAction()
     {
-        $segment = $this->container->get('segment.service');
+        $segment = $this->container->get('remote.service');
         $allSegments = $segment->getSegments();
 
         $segmentsForm = array();
@@ -79,7 +80,7 @@ class BootstrapController extends Controller
      */
     public function segmentConfigAction($id)
     {
-        $segment = $this->container->get('segment.service');
+        $segment = $this->container->get('remote.service');
         $entity = $segment->getPointsOnSegment($id);
         $types = array();
         foreach ($entity->types as $type) {
@@ -123,7 +124,7 @@ class BootstrapController extends Controller
 
     private function saveSubtype(Request $request, $id, $method)
     {
-        $segment = $this->container->get('segment.service');
+        $segment = $this->container->get('remote.service');
         $form = $this->createForm(new SubtypeType(), array());
         $form->bind($request);
         $json = array();
@@ -139,7 +140,7 @@ class BootstrapController extends Controller
 
     public function removeSubtypeAction($id)
     {
-        $segment = $this->container->get('segment.service');
+        $segment = $this->container->get('remote.service');
         
         $json = $segment->removeSubtype($id);
         $response = new Response();
@@ -155,7 +156,7 @@ class BootstrapController extends Controller
      */
     public function updateSegmentLengthAction(Request $request, $id)
     {
-        $segment = $this->container->get('segment.service');
+        $segment = $this->container->get('remote.service');
         $form = $this->createForm(new SegmentType());
         $form->bind($request);
         $json = array();
@@ -180,10 +181,30 @@ class BootstrapController extends Controller
      * @return type
      */
     public function loadingAction(){
-        $segment = $this->container->get('segment.service');
+        $segment = $this->container->get('remote.service');
         $allSegments = $segment->getSegments();
         
         return array('segments' => $allSegments);
+    }
+    
+    /**
+     * @Template()
+     */
+    public function typeConfigAction($tag, Request $request){
+        $typeService = $this->container->get('remote.service');
+        $type = $typeService->getType($tag);
+        $form = $this->createForm(new TypeForm(), $type);
+        if($request->getMethod() == 'POST'){
+            $form->bindRequest($request);
+            if($form->isValid()){
+                $data = $form->getData();
+                $typeService->updateType($data);
+            }
+        }
+        return array(
+            'tag' => $tag,
+            'form' => $form->createView(),
+        );
     }
 
 }

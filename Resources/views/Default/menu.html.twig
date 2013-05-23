@@ -13,7 +13,7 @@
                 <ul class="nav nav-tabs" id="myTab">
                     {% for menu in allMenu %}
                         {% if menu.url %}
-                            <li {% if menu.active %}class="active"{% endif %}><a href="{{ path(menu.href) }}" >{{menu.title}}</a></li> 
+                            <li {% if menu.active %}class="active"{% endif %}><a href="{{  path(menu.href, menu.param) }}" >{{menu.title}}</a></li> 
                         {% else %}
                             <li {% if menu.active %}class="active"{% endif %}><a href="#{{menu.href}}" >{{menu.title}}</a></li>   
                         {% endif %}
@@ -38,7 +38,7 @@
                                 <ul class="nav nav-tabs" id="myTab2">
                                     {% for child in menu.child %}
                                         {% if child.url %}
-                                            <li {% if child.active %}class="active"{% endif %}><a href="{{ path(child.href) }}">{{child.title}}</a></li>
+                                            <li {% if child.active %}class="active"{% endif %}><a href="{{ path(child.href, child.param) }}">{{child.title}}</a></li>
                                         {% else %}
                                             <li {% if child.active %}class="active"{% endif %}><a href="#{{child.href}}">{{child.title}}</a></li>    
                                         {% endif %}
@@ -62,7 +62,7 @@
                                             <ul class="nav nav-tabs" id="myTab3">
                                                 {% for grandchildren in child.child %}
                                                     {% if grandchildren.url %}
-                                                        <li {% if grandchildren.active %}class="active"{% endif %}><a href="{{ path(grandchildren.href) }}">{{grandchildren.title}}</a></li>
+                                                        <li {% if grandchildren.active %}class="active"{% endif %}><a href="{{ path(grandchildren.href, grandchildren.param) }}">{{grandchildren.title}}</a></li>
                                                     {%else%}
                                                         <li {% if grandchildren.active %}class="active"{% endif %}><a href="#{{grandchildren.href}}">{{grandchildren.title}}</a></li>    
                                                     {% endif %}

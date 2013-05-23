@@ -48,4 +48,7 @@
     <route id="space_loading" pattern="/loading" methods="get">
         <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:loading</default>
     </route>
+    <route id="type_config" pattern="/type_config/{tag}" methods="get,post">
+        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:typeConfig</default>
+    </route>
 </routes>

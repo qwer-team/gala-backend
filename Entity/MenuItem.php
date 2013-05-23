@@ -8,12 +8,14 @@ class MenuItem
     private $url;
     private $child = array();
     private $active;
+    private $param = array();
     
-    function __construct($title, $href, $url)
+    function __construct($title, $href, $url, $param = array())
     {
         $this->title = $title;
         $this->href = $href;
         $this->url = $url;
+        $this->param = $param;
     }
 
     public function getChild()
@@ -66,6 +68,14 @@ class MenuItem
         $this->active = $active;
     }
 
-}
+    public function getParam()
+    {
+        return $this->param;
+    }
 
-?>
+    public function setParam($param)
+    {
+        $this->param = $param;
+    }
+
+}
