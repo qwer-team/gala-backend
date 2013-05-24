@@ -2,7 +2,45 @@
 
 {% block body %}
 <form action="{{path('type_config', {'tag': tag})}}" method="POST">
-    {{form_widget(form)}}
+    {%set label1%}
+       {%if tag == 'zero_point'%}
+        Аннулирование активного счета
+       {% elseif tag == 'theft'%}
+        Уменьшение уровня флиппера на 1
+       {% elseif tag == 'trap' %}
+        Тип 1
+       {%else%}
+        Сообщение
+       {%endif%}
+    {% endset%}
+    {% if tag != 'message'%}
+        {{form_row(form.message1, {label: label1})}}
+    {% endif %}
+    {% if tag == 'zero_point'%}
+        {{form_row(form.message2, {label: 'Предоставление флиппера первого уровня'})}}
+        {{form_row(form.message3, {label: 'Аннулирование активного счета и предоставление флиппера первого уровня'})}}
+    {% endif %}
+    {% if tag == 'theft'%}
+        {{form_row(form.message2, {label: 'Уменьшение уровня флиппера на 2'})}}
+    {% endif%}
+    {% if tag == 'trap'%}
+        {{form_row(form.message2, {label: 'Тип 2'})}}
+    {% endif%}
+    {% if tag == 'message'%}
+        {{ form_widget(form.onCost) }}{{ form_label(form.cost) }}{{ form_widget(form.cost) }}
+        <br />
+        {{ form_widget(form.onBet) }}{{ form_label(form.bet) }}{{ form_widget(form.bet) }}{{ form_widget(form.betType) }}
+        <br />
+        {{ form_widget(form.onReturn) }}{{ form_label(form.returnValue) }}{{ form_widget(form.returnValue) }}{{ form_widget(form.returnInPercent) }}
+        <br />
+        {{ form_widget(form.onNextStep) }}{{ form_label(form.nextStepValue) }}{{ form_widget(form.nextStepValue) }}{{ form_widget(form.nextStepInPercent) }}
+    {% endif %}
+    {% if tag == 'black'%}
+        {{form_row(form.hours, {label: 'Часы'})}}
+        {{form_row(form.minutes, {label: 'Минуты'})}}
+    {% endif%}
+        <div style="display:none;">{{form_rest(form)}}</div>
+    <br />
     <button type="submit" class='btn btn-primary'>Сохранить</button>
 </form>
 {% endblock %}
