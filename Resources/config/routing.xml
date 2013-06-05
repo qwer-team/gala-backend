@@ -10,7 +10,8 @@
     <import resource="@FOSUserBundle/Resources/config/routing/registration.xml" prefix="/register"/>
     <import resource="@FOSUserBundle/Resources/config/routing/resetting.xml" prefix="/resetting"/>
     <import resource="@FOSUserBundle/Resources/config/routing/change_password.xml" prefix="/profile"/>
-  
+    <import resource="@GalaxyBackendBundle/Resources/config/routing/documents.xml" prefix="/documents" />
+    <import resource="@GalaxyBackendBundle/Resources/config/routing/games.xml" prefix="/games" />
 
 
     <route id="segments" pattern="/segments">
@@ -47,6 +48,14 @@
     </route>
     <route id="space_loading" pattern="/loading" methods="get">
         <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:loading</default>
+    </route>
+    <route id="change_coordinates" pattern="/changeCoords" methods="get">
+        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:changeCoords</default>
+    </route>
+    <route id="update_coordinates" pattern="/updateCoords" methods="post">
+        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:updateCoords</default>
+        <default key="_format">json</default>
+        <option key="expose">true</option>
     </route>
     <route id="type_config" pattern="/type_config/{tag}" methods="get,post">
         <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:typeConfig</default>

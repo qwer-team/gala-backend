@@ -1,4 +1,12 @@
 $( document ).ready(function() {
+    $('.updateCoords').submit(function() { 
+        try{
+            $(this).ajaxSubmit(); 
+        } catch(err) {
+            console.log(err);
+        }
+        return false; 
+    });
     $('#myTab a').click(function (e) {
         if($(this).attr('href').charAt(0)=='#')
         {
@@ -59,13 +67,13 @@ var percent = "percent";
 function segmentsTotal(){
     var totalPoints = 0;
     $('form.segments_form input[name="length"]').each(function(){
-       totalPoints += parseInt($(this).val()); 
+        totalPoints += parseInt($(this).val()); 
     });
     $('.totalPoints').val(totalPoints);
     
     var totalPercent = 0;
     $('form.segments_form input[name="percent"]').each(function(){
-       totalPercent += parseFloat($(this).val()); 
+        totalPercent += parseFloat($(this).val()); 
     });
     $('.totalPercent').val(totalPercent+'%');
     
@@ -111,4 +119,5 @@ function updateSegmentConfig(segment, body){
             segment.find(body).replaceWith(html);
         }
     }); 
+    
 }

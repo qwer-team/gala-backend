@@ -12,7 +12,7 @@ class DefaultController extends Controller
         return $this->render('GalaxyBackendBundle:Default:index.html.twig');
     }
     
-    public function menuAction($route)
+    public function menuAction($route, $params)
     {
         $menu = new MenuControl();
         $menu->addMenu('Общие настройки','noroute1');
@@ -21,7 +21,7 @@ class DefaultController extends Controller
                 $menu->addGrandchildren('Разбить на отрезки', 'segments', true);
                 $menu->addGrandchildren('Редактирование отрезков', 'show_segments', true);
                 $menu->addGrandchildren('Загрузка', 'space_loading', true);
-            $menu->addChild('Изминение координат', 'noroute4');
+            $menu->addChild('Изминение координат', 'change_coordinates', true);
             $menu->addChild('Перегрузка', 'noroute5');
             $menu->addChild('Призы', 'noroute6');
             $menu->addChild('Точки', 'noroute7');
@@ -39,19 +39,25 @@ class DefaultController extends Controller
                 $menu->addGrandchildren('+Период для всех', 'type_config', true, array('tag' => 'plus_all_period'));
                 $menu->addGrandchildren('-Период для всех', 'type_config', true, array('tag' => 'minus_all_period'));
         $menu->addMenu('Флиперы', 'noroute17');
-        $menu->addMenu('Счета', 'noroute18');
-            $menu->addChild('Кража флипера', 'noroute19');
+            $menu->addChild('Первый', 'flipper_show', true, array("id" => 1));
             $menu->addChild('Кража флипера2', 'noroute20');
             $menu->addChild('Кража флипера3', 'noroute21');
                 $menu->addGrandchildren('Кража флипера4', 'noroute22');
                 $menu->addGrandchildren('Кража флипера5', 'galaxy_back_end_homepage', true);
             $menu->addChild('Кража флипера6', 'noroute23');
+        $menu->addMenu('Счета', 'noroute18');
+            $menu->addChild('Активный', 'show_register', true, array("id" => 1));
+            $menu->addChild('Безопасный', 'show_register', true, array("id" => 2));
+            $menu->addChild('Депозитный', 'show_register', true, array("id" => 3));
         $menu->addMenu('Страхование', 'noroute24');
         $menu->addMenu('Администрирование', 'noroute25');
+        $menu->addMenu('Документы', 'noroute26');
+            $menu->addChild('Зачисление средств', 'document_list', true, array("type" => 'fundsTransfer'));
+            $menu->addChild('Списание средств', 'document_list', true, array("type" => 'servicesDebit'));
         $menu->addMenu('Отчеты', 'noroute26');
         
         
-        $allMenu = $menu->getAllMenu($route);
+        $allMenu = $menu->getAllMenu($route, $params);
         return $this->render('GalaxyBackendBundle:Default:menu.html.twig', array('allMenu' => $allMenu));
     }
     

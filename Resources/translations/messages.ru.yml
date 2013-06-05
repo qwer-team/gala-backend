@@ -1,0 +1,18 @@
+## YAML Template.
+---
+Title: Название
+Pointstypename: Наименование типа очков
+Start: Стартовое количество
+Accounthint: Подсказка о назначении счета
+Pointstypehint: Подсказка о назначении типа очков
+Textpaymentservice: Текст об оплате услуги
+Points: Количество очков
+Cost: Стоимость
+Period: Период
+Periodcost: Стоимость за период
+Notificationzerobalance: Текст уведомления о нулевом балансе счета и необходимости его пополнения
+Acquisitionextensionservices: Вопрос о приобретении/продлении услуги
+Maxjump: Макс. длина прыжка
+Costjump: Стомость прыжка
+Impossiblejumphint: Уведомление о невозможности прыжка
+Paymentfromdeposit: Оплата с Депозитного счета

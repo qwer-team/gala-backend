@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    
+    <route id="show_register" pattern="/register/{id}/show">
+        <default key="_controller">GalaxyBackendBundle:Documents\Register:show</default>
+    </route>
+    <route id="update_register" pattern="/register/{id}/update">
+        <default key="_controller">GalaxyBackendBundle:Documents\Register:update</default>
+    </route>
+    <route id="document_list" pattern="/list/{type}/{page}/{length}">
+        <default key="_controller">GalaxyBackendBundle:Documents\Document:list</default>
+        <default key="page">1</default>
+        <default key="length">100</default>
+    </route>
+    <route id="new_document" pattern="/new/{type}/">
+        <default key="_controller">GalaxyBackendBundle:Documents\Document:new</default>
+    </route>
+    <route id="create_document" pattern="/create/{type}/">
+        <default key="_controller">GalaxyBackendBundle:Documents\Document:create</default>
+    </route>
+    <route id="show_document" pattern="/show/{id}">
+        <default key="_controller">GalaxyBackendBundle:Documents\Document:show</default>
+    </route>
+    <route id="update_document" pattern="/update/{id}" methods="POST">
+        <default key="_controller">GalaxyBackendBundle:Documents\Document:update</default>
+    </route>
+    <route id="approve_document" pattern="/approve/{id}">
+        <default key="_controller">GalaxyBackendBundle:Documents\Document:approve</default>
+    </route>
+    <route id="return_document" pattern="/return/{id}">
+        <default key="_controller">GalaxyBackendBundle:Documents\Document:return</default>
+    </route>
+</routes>

@@ -35,7 +35,8 @@
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
       
     {% block menu %}
-       {% render controller("GalaxyBackendBundle:Default:menu", {'route': app.request.get('_route')})  %}
+       {% render controller("GalaxyBackendBundle:Default:menu", {'route': app.request.get('_route'), 'params': app.request.get('_route_params')})  %}
+    
     {% endblock %}
 
 

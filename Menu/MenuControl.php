@@ -1,53 +1,81 @@
 <?php
+
 namespace Galaxy\BackendBundle\Menu;
+
 use Galaxy\BackendBundle\Entity\MenuItem;
 
 class MenuControl
 {
-    private $menu=array();   
-    
+
+    private $menu = array();
+
     public function addMenu($title, $href, $url = false)
     {
-        $this->menu[]= new MenuItem($title, $href, $url);
-        
+        $this->menu[] = new MenuItem($title, $href, $url);
     }
-    
-    public function addChild($title, $href, $url = false)
+
+    public function addChild($title, $href, $url = false, $params = array())
     {
-       $menu = $this->menu[count($this->menu)-1];
-       $child = new MenuItem($title, $href, $url);
-       $menu->setChild($child);
+        $menu = $this->menu[count($this->menu) - 1];
+        $child = new MenuItem($title, $href, $url, $params);
+        $menu->setChild($child);
     }
-    
+
     public function addGrandchildren($title, $href, $url = false, $param = array())
     {
         $Grandchildren = new MenuItem($title, $href, $url, $param);
-        $menu = $this->menu[count($this->menu)-1];
+        $menu = $this->menu[count($this->menu) - 1];
         $child = $menu->getChild();
-        $child = $child[count($child)-1];
+        $child = $child[count($child) - 1];
         $child->setChild($Grandchildren);
     }
-    public function getAllMenu($route)
+
+    public function getAllMenu($route, $params)
     {
         foreach ($this->menu as $menu) {
-            if($menu->getHref() == $route)
-            {
+            if ($menu->getHref() == $route) {
                 $menu->setActive('active');
-            }
-            elseif ($menu->getChild()) {
+            } elseif ($menu->getChild()) {
                 foreach ($menu->getChild() as $child) {
-                    if($child->getHref() == $route)
-                    {
-                        $child->setActive('active');
-                        $menu->setActive('active');
-                    }
-                    elseif ($child->getChild()) {
+                    if ($child->getHref() == $route) {
+                        $active = false;
+                        $childParams = $child->getParam();
+                        if (count($params) > 0) {
+                            foreach ($params as $key => $param) {
+                                if (array_key_exists($key, $childParams) &&
+                                        $param == $childParams[$key]) {
+                                    $active = true;
+                                }
+                            }
+                        } else {
+                            $active = true;
+                        }
+                        if ($active) {
+                            $child->setActive('active');
+                            $menu->setActive('active');
+                            break;
+                        }
+                    } elseif ($child->getChild()) {
                         foreach ($child->getChild() as $grandchildren) {
-                            if($grandchildren->getHref() == $route)
-                            {
-                                $grandchildren->setActive('active');
-                                $child->setActive('active');
-                                $menu->setActive('active');
+                            if ($grandchildren->getHref() == $route) {
+                                $active = false;
+                                $childParams = $grandchildren->getParam();
+                                if (count($params) > 0) {
+                                    foreach ($params as $key => $param) {
+                                        if (array_key_exists($key, $childParams) &&
+                                                $param == $childParams[$key]) {
+                                            $active = true;
+                                        }
+                                    }
+                                } else {
+                                    $active = true;
+                                }
+                                if ($active) {
+                                    $grandchildren->setActive('active');
+                                    $child->setActive('active');
+                                    $menu->setActive('active');
+                                    break;
+                                }
                             }
                         }
                     }
@@ -56,6 +84,5 @@ class MenuControl
         }
         return $this->menu;
     }
-}
 
-?>
+}

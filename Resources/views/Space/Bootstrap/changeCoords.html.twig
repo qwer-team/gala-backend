@@ -1,0 +1,30 @@
+{% extends 'GalaxyBackendBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="container" style="margin-top: 20px;">
+<table class="table table-bordered table-striped table-hover table-condensed">
+{% for typeArr in types %}
+{% set type = typeArr["type"]%}
+{% set form = typeArr["form"]%}
+
+<tr>
+    <td>{{ type.id }}</form>
+    {% set form_attrs = {attr: {form: 'updateCoord'~loop.index, class: 'span2'}}%}</td>
+    <td>{{ type.name }}</td>
+    <td>{{ form_widget(form.a, form_attrs) }}</td>
+    <td>{{ form_widget(form.b, form_attrs) }}</td>
+    <td>{{ form_widget(form.c, form_attrs) }}</td>
+    <td>{{ form_widget(form.delta1, form_attrs) }}</td>
+    <td>{{ form_widget(form.delta2, form_attrs) }}</td>
+    <td>
+        <button type="submit" class="btn btn-primary" form="{{'updateCoord'~loop.index}}" >Сохранить</button>
+        <div style="display: none;">
+            <form id="updateCoord{{loop.index}}" class="updateCoords" method="POST" action="{{path('update_coordinates')}}">{{form_rest(form)}}</form>
+        </div>
+    </td>
+
+</tr>
+{% endfor %}
+</table>
+        </div>
+{% endblock body %}

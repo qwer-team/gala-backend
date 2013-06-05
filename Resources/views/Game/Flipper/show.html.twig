@@ -1,0 +1,11 @@
+{# empty Twig template #}
+{% extends 'GalaxyBackendBundle::layout.html.twig' %}
+
+{% block body %}
+<form method="post" action="{{path('flipper_update', {'id': flipper['id']})}}" {{ form_enctype(form) }}>
+    {{form_rest(form)}}
+
+        <br />
+<button class="btn btn-primary" type="submit">Сохранить</button>
+</form>
+{% endblock body %}

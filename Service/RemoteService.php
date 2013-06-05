@@ -109,4 +109,18 @@ class RemoteService extends ContainerAware
         $result = json_decode($response);
         return $result;
     }
+    
+    public function  getTypeList(){
+        $url = $this->container->getParameter("get.type_list.url");
+        $response = $this->makeRequest($url);
+        $result = json_decode($response);
+        return $result;
+    }
+    
+    public function updateCoords($data){
+        $url = $this->container->getParameter("get.type_update_coords.url"); 
+        $response = $this->makeRequest($url, $data);
+        $result = json_decode($response);
+        return $result;
+    }
 }

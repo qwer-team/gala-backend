@@ -1,0 +1,68 @@
+{# empty Twig template #}
+{% extends 'GalaxyBackendBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="container" style="margin-top: 20px;">
+<table class="table table-bordered table-condensed">
+<thead>
+    <tr>              
+                <th>Id</th>
+                <th>Дата</th>
+                <th>Счет</th>
+                <th>Пользователь</th> 
+                <th>Кол-во очков</th>
+                <th style="width: 15%;"></th>
+    </tr>
+</thead>
+<tbody>
+{% for document in documents%}
+<tr
+    {% if document.status == 2 %}
+      class="alert-success"
+{% endif %}
+    >
+    <td><a href="{{path('show_document', {id: document.id})}}">{{ document.id }}</a></td>
+    <td>{{ document.date}}</td>
+    <td>
+    {% if document.account == 1 %}
+            Активный
+    {% elseif document.account == 2 %}
+            Безопасный
+    {% elseif document.account == 3 %}
+            Депозитный
+    {% endif %}
+    </td>
+    <td>{{ document.OA1 }}</td>
+    <td>{{ document.summa1 }}</td>
+    <td><a href="{{path('show_document', {id: document.id})}}"><button style="width: 100%;" type="button" class="btn btn-primary">Редактировать</button></a></td>
+</tr>
+{% endfor%}
+</tbody>
+</table>
+        <a href="{{path('new_document', {type: type})}}"><button type="button" class="btn btn-primary">Создать</button></a>
+{% if pagesCnt > 1 %}
+<div class="pagination">
+  <ul>
+    {% if page != 1 %}
+    <li>
+        <a href="{{ path('document_list', {page: page - 1, type: type, length: length}) }}">Prev</a>
+    </li>
+    <li><a href="{{ path('document_list', {page: page - 1, type: type, length: length}) }}">{{page - 1}}</a></li>
+    {% endif %}
+    
+    {% set blockCnt = (page == 1)? 10 : 11 %}
+    <li class="disabled"><a>{{page}}</a></li>
+    {% for i in 1..blockCnt %}
+        {% if (page + i) <= pagesCnt %}
+            <li><a href="{{ path('document_list', {page: page + i, type: type, length: length}) }}">{{page + i}}</a></li>
+        {% endif %}
+    {% endfor %}
+    
+    {% if page != pagesCnt %}
+    <li><a href="{{ path('document_list', {page: page + 1, type: type, length: length}) }}">Next</a></li>
+    {% endif %}
+  </ul>
+</div>
+{% endif %}
+</div>
+{% endblock body %}

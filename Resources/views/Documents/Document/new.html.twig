@@ -1,0 +1,11 @@
+{% extends 'GalaxyBackendBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="container" style="margin-top: 20px;">
+    <form action="{{ path('create_document', {type: type}) }}" method="post" {{ form_enctype(form) }}>
+{{form_rest(form)}}
+            <br />
+            <button type="submit" class="btn btn-primary">Создать</button>
+    </form>
+</div>
+{% endblock body %}

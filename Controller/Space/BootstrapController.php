@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Galaxy\BackendBundle\Form\Space\SubtypeGroupType;
 use Galaxy\BackendBundle\Form\Space\SubtypeType;
 use Galaxy\BackendBundle\Form\Space\TypeForm;
+use Galaxy\BackendBundle\Form\Space\TypeCoordType;
 
 class BootstrapController extends Controller
 {
@@ -205,6 +206,43 @@ class BootstrapController extends Controller
             'tag' => $tag,
             'form' => $form->createView(),
         );
+    }
+    
+    /**
+     * @Template()
+     */
+    public function changeCoordsAction(){
+        $typeService = $this->container->get('remote.service');
+        $rawTypes = $typeService->getTypeList();
+        $types = array();
+        foreach($rawTypes as $type){
+            $typeArr = array();
+            $form = $this->createForm(new TypeCoordType(),(array)$type);
+            
+            $typeArr["type"] = $type;
+            $typeArr["form"] = $form->createView();
+            $types[] = $typeArr;
+        }
+        
+        
+        return array( "types" => $types);
+    }
+    
+    public function updateCoordsAction(Request $request){
+        $form = $this->createForm(new TypeCoordType());
+        $form->bindRequest($request);
+        
+        $result = json_encode(array("result" => "fail"));
+        if($form->isValid()){
+            $data = $form->getData();
+            $typeService = $this->container->get('remote.service');
+            $result = $typeService->updateCoords($data);
+        }
+        
+        $response = new Response();
+        $response->setContent(json_encode($result));
+
+        return $response;
     }
 
 }

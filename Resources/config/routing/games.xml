@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    
+    <route id="flipper_show" pattern="/flipper/{id}/show">
+        <default key="_controller">GalaxyBackendBundle:Game\Flipper:show</default>
+    </route>
+    <route id="flipper_update" pattern="/flipper/{id}/update"  methods="POST">
+        <default key="_controller">GalaxyBackendBundle:Game\Flipper:update</default>
+    </route>
+</routes>
