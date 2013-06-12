@@ -15,6 +15,7 @@ class SubtypeType extends AbstractType
             ->add('block', 'checkbox', array('required' => false))
             ->add('restore', 'checkbox', array('required' => false))
             ->add('percent')
+            ->add('parameter', 'integer', array('required' => false))
             ->add('typeId', 'hidden')
             ->add('id', 'hidden')
          ;

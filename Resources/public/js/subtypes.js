@@ -59,13 +59,15 @@ function saveSubtype(routing, obj){
     var block = parent.find("input[name='block']").is(':checked')?1:undefined;
     var restore = parent.find("input[name='restore']").is(':checked')?1:undefined;
     var typeId = parent.find("input[name='typeId']").val();
+    var parameter = parent.find("input[name='parameter']").val();
     
     var params = {
         id: subtypeId,
         pointsCount: points, 
         block: block,
         restore: restore, 
-        typeId: typeId
+        typeId: typeId,
+        parameter: parameter
     };
     
     var segment = obj.parents('.accordion-group');
