@@ -24,10 +24,10 @@
         <parameter key="update.type.url">%garilsurl%/gala/type/update</parameter>
         <!-- Документы -->
         <parameter key="document.remote_service.class">Galaxy\BackendBundle\Service\DocumentsRemoteService</parameter>
-        <parameter key="registersurl">gala.my/registers</parameter>
+        <parameter key="registersurl">http://demo10.qwer.com.ua/registers</parameter>
         <parameter key="documents.show_register.url">%registersurl%/{id}.json</parameter>
         <parameter key="documents.update_register.url">%registersurl%/{id}/update.json</parameter>
-	<parameter key="documentsurl">gala.my/documents</parameter>
+	<parameter key="documentsurl">http://demo10.qwer.com.ua/documents</parameter>
         <parameter key="documents.document_list.url">%documentsurl%/{page}/lengths/{length}/types/{type}.json</parameter>
 	<parameter key="documents.document_count.url">%documentsurl%/{type}/count.json</parameter>
 	<parameter key="documents.document_create.url">%documentsurl%/{type}/create.json</parameter>
@@ -38,7 +38,7 @@
         <!-- -->
 	<!-- Game -->
         <parameter key="game.remote_service.class">Galaxy\BackendBundle\Service\GameRemoteService</parameter>
-        <parameter key="flippersurl">gala.my/flippers</parameter>
+        <parameter key="flippersurl">http://demo10.qwer.com.ua/flippers</parameter>
         <parameter key="games.flipper_show.url">%flippersurl%/{id}.json</parameter>
 	<parameter key="games.flipper_update.url">%flippersurl%/{id}/update.json</parameter>
         <!-- -->
@@ -55,3 +55,4 @@
     </services>
     
 </container>
+

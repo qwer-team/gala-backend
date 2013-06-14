@@ -39,7 +39,7 @@
         {{form_row(form.hours, {label: 'Часы'})}}
         {{form_row(form.minutes, {label: 'Минуты'})}}
     {% endif%}
-        <div style="display:none;">{{form_rest(form)}}</div>
+        {{form_row(form.image, {label: 'Картинка'})}}
     <br />
     <button type="submit" class='btn btn-primary'>Сохранить</button>
 </form>
