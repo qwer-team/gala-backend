@@ -43,6 +43,9 @@ function checkSegmentPointcount(segment){
         var val = $(this).val();
         subtypesPoints += (val == ''? 0: parseInt(val));
     });
+    $("#allPointsCount").val(subtypesPoints);
+    percent = subtypesPoints / pointsCount;
+    $("#allPointsPercent").val(percent);
     console.log(subtypesPoints);
     var buttons = segment.find(".add-subtype, .update-subtype");
     if(subtypesPoints > pointsCount){

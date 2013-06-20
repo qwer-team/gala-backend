@@ -23,9 +23,15 @@ class BootstrapController extends Controller
     public function segmentsAction()
     {
         $type = new SplitType();
-        $formView = $this->createForm($type)->createView();
+        $segmentService = $this->container->get('remote.service');
+        $allSegments = $segmentService->getSegments();
+        $countSegments = count($allSegments);
+        $form = $this->createForm($type);
+        $form->setData(
+                array('count'=> $countSegments)
+                );
         return array(
-            'splitIntoSegmentForm' => $formView,
+            'splitIntoSegmentForm' => $form->createView(),
         );
     }
 
@@ -81,9 +87,12 @@ class BootstrapController extends Controller
      */
     public function segmentConfigAction($id)
     {
-        $segment = $this->container->get('remote.service');
-        $entity = $segment->getPointsOnSegment($id);
+        $segmentService = $this->container->get('remote.service');
+        $entity = $segmentService->getPointsOnSegment($id);
+        $segmentLength = $entity->length;
         $types = array();
+        $count= 0;
+        
         foreach ($entity->types as $type) {
             $type->subtypes = array();
             $new = array("typeId" => $type->id);
@@ -95,11 +104,15 @@ class BootstrapController extends Controller
             $typeId = $subtypes->typeId;
             $form = $this->createForm(new SubtypeType(), $subtypes)->createView();
             $types[$typeId]->subtypes[] = $form;
+            $count += $subtypes->pointsCount;
         }
+        
 
         return array(
             'id' => $id,
             'types' => $types,
+            'count' => $count,
+            'segmentLength' => $segmentLength,
         );
     }
 

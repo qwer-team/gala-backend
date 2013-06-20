@@ -9,19 +9,19 @@ class MenuControl
 
     private $menu = array();
 
-    public function addMenu($title, $href, $url = false)
+    public function addMenu($title, $href, $url = null)
     {
         $this->menu[] = new MenuItem($title, $href, $url);
     }
 
-    public function addChild($title, $href, $url = false, $params = array())
+    public function addChild($title, $href, $url = null, $params = array())
     {
         $menu = $this->menu[count($this->menu) - 1];
         $child = new MenuItem($title, $href, $url, $params);
         $menu->setChild($child);
     }
 
-    public function addGrandchildren($title, $href, $url = false, $param = array())
+    public function addGrandchildren($title, $href, $url = null, $param = array())
     {
         $Grandchildren = new MenuItem($title, $href, $url, $param);
         $menu = $this->menu[count($this->menu) - 1];

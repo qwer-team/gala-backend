@@ -60,7 +60,7 @@ $( document ).ready(function() {
     segmentsTotal();
 });
 
-var points = 1000000000;
+var points = 10000000;//00;
 var length = "length";
 var percent = "percent";
                 

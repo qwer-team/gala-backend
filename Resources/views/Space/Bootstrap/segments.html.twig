@@ -3,11 +3,11 @@
 {% block title %}GalaxyBackendBundle:Space\Bootstrap:splitIntoSegments{% endblock %}
 
 {% block body %}
-    <h1>createSplitIntoSegment</h1>
+    <h1>Укажите кол-во отрезков</h1>
     <form  class="form-search" action="{{ path('split') }}" method="post" {{ form_enctype(splitIntoSegmentForm) }}>        
         <div class="input-append">
             {{ form_widget(splitIntoSegmentForm.count) }}
-            <button type="submit" class="btn">SplitIntoSegment</button>
+            <button type="submit" class="btn">Разделить</button>
         </div>
             {{ form_rest(splitIntoSegmentForm) }}
     </form>

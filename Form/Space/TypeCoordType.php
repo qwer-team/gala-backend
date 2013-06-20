@@ -21,7 +21,6 @@ class TypeCoordType extends AbstractType
             ->add('b', 'integer', $opts)
             ->add('c', 'integer', $opts)
             ->add('delta1', 'integer', $opts)
-            ->add('delta2', 'integer', $opts)
          ;
     }
 

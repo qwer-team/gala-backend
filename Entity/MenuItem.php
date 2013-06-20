@@ -1,15 +1,17 @@
 <?php
+
 namespace Galaxy\BackendBundle\Entity;
-    
+
 class MenuItem
 {
+
     private $title;
     private $href;
     private $url;
     private $child = array();
     private $active;
     private $param = array();
-    
+
     function __construct($title, $href, $url, $param = array())
     {
         $this->title = $title;
@@ -28,7 +30,7 @@ class MenuItem
         $this->child[] = $child;
     }
 
-        public function getTitle()
+    public function getTitle()
     {
         return $this->title;
     }
@@ -57,7 +59,7 @@ class MenuItem
     {
         $this->url = $url;
     }
-    
+
     public function getActive()
     {
         return $this->active;
@@ -76,6 +78,11 @@ class MenuItem
     public function setParam($param)
     {
         $this->param = $param;
+    }
+
+    public function isVisible()
+    {
+        return !is_null($this->url) || count($this->child);
     }
 
 }

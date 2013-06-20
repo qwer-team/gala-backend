@@ -30,6 +30,7 @@ class RemoteService extends ContainerAware
         }
         return $result;
     }
+   
 
     public function getPointsOnSegment($id)
     {

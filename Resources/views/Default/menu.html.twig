@@ -11,7 +11,7 @@
             <a href="/itc/logout" class="btn btn-small btn-primary disabled input-prepend pull-right last">layout.logout</a>
             <div class="nav-collapse collapse">
                 <ul class="nav nav-tabs" id="myTab">
-                    {% for menu in allMenu %}
+                    {% for menu in allMenu if menu.isVisible()%}
                         {% if menu.url %}
                             <li {% if menu.active %}class="active"{% endif %}><a href="{{  path(menu.href, menu.param) }}" >{{menu.title}}</a></li> 
                         {% else %}
@@ -24,7 +24,7 @@
             
     </div>
     <div class="tab-content">
-        {% for menu in allMenu if menu.url == false%}
+        {% for menu in allMenu if menu.isVisible()%}
             <div class="tab-pane {% if menu.active %}active{% endif %}" id="{{menu.href}}">
                 {% if  menu.child %}
                     <div class="navbar-inner">
@@ -37,11 +37,13 @@
                             <div class="nav-collapse collapse">
                                 <ul class="nav nav-tabs" id="myTab2">
                                     {% for child in menu.child %}
+                                        {% if child.isVisible()%}
                                         {% if child.url %}
                                             <li {% if child.active %}class="active"{% endif %}><a href="{{ path(child.href, child.param) }}">{{child.title}}</a></li>
                                         {% else %}
                                             <li {% if child.active %}class="active"{% endif %}><a href="#{{child.href}}">{{child.title}}</a></li>    
                                         {% endif %}
+                                            {% endif %}
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -61,10 +63,12 @@
                                         <div class="nav-collapse collapse">
                                             <ul class="nav nav-tabs" id="myTab3">
                                                 {% for grandchildren in child.child %}
+                                                    {% if grandchildren.isVisible()%}
                                                     {% if grandchildren.url %}
                                                         <li {% if grandchildren.active %}class="active"{% endif %}><a href="{{ path(grandchildren.href, grandchildren.param) }}">{{grandchildren.title}}</a></li>
                                                     {%else%}
                                                         <li {% if grandchildren.active %}class="active"{% endif %}><a href="#{{grandchildren.href}}">{{grandchildren.title}}</a></li>    
+                                                    {% endif %}
                                                     {% endif %}
                                                 {% endfor %}
                                             </ul>

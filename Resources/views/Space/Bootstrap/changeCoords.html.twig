@@ -3,6 +3,17 @@
 {% block body %}
 <div class="container" style="margin-top: 20px;">
 <table class="table table-bordered table-striped table-hover table-condensed">
+    <thead>
+  <tr>
+   <td> id </td>
+   <td> name </td>
+   <td> a </td>
+   <td> b </td>
+   <td> c </td>
+   <td> delta </td>
+   <td>  </td>
+  </tr>
+ </thead>
 {% for typeArr in types %}
 {% set type = typeArr["type"]%}
 {% set form = typeArr["form"]%}
@@ -15,7 +26,6 @@
     <td>{{ form_widget(form.b, form_attrs) }}</td>
     <td>{{ form_widget(form.c, form_attrs) }}</td>
     <td>{{ form_widget(form.delta1, form_attrs) }}</td>
-    <td>{{ form_widget(form.delta2, form_attrs) }}</td>
     <td>
         <button type="submit" class="btn btn-primary" form="{{'updateCoord'~loop.index}}" >Сохранить</button>
         <div style="display: none;">

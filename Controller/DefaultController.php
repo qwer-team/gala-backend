@@ -15,6 +15,7 @@ class DefaultController extends Controller
     public function menuAction($route, $params)
     {
         $menu = new MenuControl();
+        $menu->addMenu('Главная','galaxy_back_end_homepage');
         $menu->addMenu('Общие настройки','noroute1');
         $menu->addMenu('Пространство', 'noroute2');
             $menu->addChild('Начальная загрузка', 'noroute3');
@@ -40,11 +41,10 @@ class DefaultController extends Controller
                 $menu->addGrandchildren('-Период для всех', 'type_config', true, array('tag' => 'minus_all_period'));
         $menu->addMenu('Флиперы', 'noroute17');
             $menu->addChild('Первый', 'flipper_show', true, array("id" => 1));
-            $menu->addChild('Кража флипера2', 'noroute20');
-            $menu->addChild('Кража флипера3', 'noroute21');
-                $menu->addGrandchildren('Кража флипера4', 'noroute22');
-                $menu->addGrandchildren('Кража флипера5', 'galaxy_back_end_homepage', true);
-            $menu->addChild('Кража флипера6', 'noroute23');
+            $menu->addChild('Второй', 'noroute20');
+            $menu->addChild('Третий', 'noroute21');
+            $menu->addChild('Четвертый', 'noroute22');
+            $menu->addChild('Пятый', 'noroute23');
         $menu->addMenu('Счета', 'noroute18');
             $menu->addChild('Активный', 'show_register', true, array("id" => 1));
             $menu->addChild('Безопасный', 'show_register', true, array("id" => 2));

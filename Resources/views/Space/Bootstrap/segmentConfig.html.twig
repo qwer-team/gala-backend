@@ -1,8 +1,12 @@
 
 {% block segment %}
 <div class='subtypes-form'>
+    <div class="controls controls-row">
+    <input type="text" id="allPointsCount" name="allPointsCount"  class="span2" disabled="" value="{{ count }}">
+    <input type="text" id="allPointsPercent" name="allPointsPercent"  class="span2" disabled="" value="{{ count / segmentLength }}">
+    </div>
     {% for type in types %}
-    
+    {% if type.id != 15 %}
         <h2>{{type.name}}</h2>
         <ul class="subtypes unstyled">
             {% for subtype in type.subtypes %}
@@ -35,7 +39,7 @@
             </li>
             {% endfor %}
         </ul>
-    
+    {% endif %}
     {% endfor %}
 </div>
 {% endblock %}
