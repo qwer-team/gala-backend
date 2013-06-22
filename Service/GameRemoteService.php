@@ -18,11 +18,7 @@ class GameRemoteService extends ContainerAware
         $rawUrl = $this->container->getParameter("games.flipper_update.url");
         $url = str_replace("{id}", $id, $rawUrl);
 
-        print_r($data);
         $response = json_decode($this->makeRequest($url, $data));
-        echo "lala";
-        print_r($response);
-        echo "fafa";
         return $response;
     }
 

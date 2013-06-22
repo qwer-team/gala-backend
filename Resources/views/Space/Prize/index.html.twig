@@ -1,0 +1,65 @@
+{% extends 'GalaxyBackendBundle::layout.html.twig' %}
+
+{% block body %} 
+
+<div style="float: left; width: 200px">
+    <a href="{{path('prize_create')}}">
+        <button class="btn btn-success">add</button>
+    </a>
+    <ul>
+    {% for id, prize in prizes %}
+            <li>
+                <a href="{{path("prize_list", {id: id})}}">{{ prize['name'] }}</a>
+                <form action="{{path("prize_delete", {id: id})}}">
+                    <button type=submit class="btn btn-danger btn-small">delete</button>
+                </form>
+            </li>
+    {% endfor %}
+        </ul>
+        <a href="{{path('prize_create')}}">
+            <button class="btn btn-success">add</button>
+        </a>
+    </div>
+    <div style="float:left; width: 800px;">
+        <img src="{{main['img1']}}"/>
+        <form method="POST" action="{{path('prize_update', {id: main['id']})}}"  {{ form_enctype(prizeForm) }}>
+        {{ form_rest(prizeForm)}}
+                <br />
+                <button class="btn btn-primary" type="submit">save</button>
+            </form>
+            <a href="{{path('element_create', {prizeId: main['id']})}}">
+                <button class="btn btn-success">add</button>
+            </a>
+            <table class="table table-bordered table-hover table-striped">
+                <thead><tr>
+                        <td>id</td>
+                        <td>name</td>
+                        <td>available</td>
+                        <td>visible</td>
+                        <td>price</td>
+                        <td>account</td>
+                        <td>img</td>
+                        <td>blocked</td>
+                        <td>actions</td>
+                    </tr></thead>
+        {% for element in main.elements%}
+                <tr>
+                    <td>{{element.id}}</td>
+                    <td>{{element.name}}</td>
+                    <td>{{element.available}}</td>
+                    <td>{{element.visible}}</td>
+                    <td>{{element.price}}</td>
+                    <td>{{element.account}}</td>
+                    <td>{{element.img1}}</td>
+                    <td>{{element.blocked}}</td>
+                    <td>
+                        <a href="{{path('element_edit', {id: element.id})}}"><button class="btn btn-primary">edit</button></a>
+                        <form action="{{path('element_delete', {prizeId: main['id'], id: element.id})}}">
+                            <button class="btn btn-danger" type="submit">delete</button>
+                        </form>
+                    </td>
+                </tr>
+        {% endfor %}
+            </table>
+        </div>
+{% endblock %}

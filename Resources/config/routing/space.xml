@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    
+    <route id="prize_list" pattern="/prizes/{id}">
+        <default key="_controller">GalaxyBackendBundle:Space\Prize:index</default>
+        <default key="id" xsi:nil="true" />
+    </route>
+    <route id="prize_update" pattern="/prize_update/{id}" methods="POST">
+        <default key="_controller">GalaxyBackendBundle:Space\Prize:update</default>
+    </route>
+    <route id="prize_add" pattern="/prize_add" methods="POST">
+        <default key="_controller">GalaxyBackendBundle:Space\Prize:add</default>
+    </route>
+    <route id="prize_create" pattern="/prize_create">
+        <default key="_controller">GalaxyBackendBundle:Space\Prize:create</default>
+    </route>
+    <route id="prize_delete" pattern="/prize_delete/{id}">
+        <default key="_controller">GalaxyBackendBundle:Space\Prize:delete</default>
+    </route>
+    
+    <route id="element_edit" pattern="/element_edit/{id}">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:edit</default>
+    </route>
+    <route id="element_update" pattern="/element_update/{id}" methods="POST">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:update</default>
+    </route>
+    <route id="element_create" pattern="/element_create/{prizeId}" >
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:create</default>
+    </route>
+    <route id="element_add" pattern="/element_add/{prizeId}" methods="POST">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:add</default>
+    </route>
+    <route id="element_delete" pattern="/element_delete/{prizeId}/{id}">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:delete</default>
+    </route>
+    
+    <route id="element_load" pattern="/element_load">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:load</default>
+    </route>
+</routes>

@@ -30,7 +30,6 @@ class RemoteService extends ContainerAware
         }
         return $result;
     }
-   
 
     public function getPointsOnSegment($id)
     {
@@ -95,33 +94,109 @@ class RemoteService extends ContainerAware
 
         return $response;
     }
-    
-    
-    public function getType($tag){
+
+    public function getType($tag)
+    {
         $url = $this->container->getParameter("get.type.url");
         $response = $this->makeRequest($url . $tag);
-        $result = (array)json_decode($response);
+        $result = (array) json_decode($response);
         return $result;
     }
-    
-    public function updateType($data){
+
+    public function updateType($data)
+    {
         $url = $this->container->getParameter("update.type.url");
         $response = $this->makeRequest($url, $data);
         $result = json_decode($response);
         return $result;
     }
-    
-    public function  getTypeList(){
+
+    public function getTypeList()
+    {
         $url = $this->container->getParameter("get.type_list.url");
         $response = $this->makeRequest($url);
         $result = json_decode($response);
         return $result;
     }
-    
-    public function updateCoords($data){
-        $url = $this->container->getParameter("get.type_update_coords.url"); 
+
+    public function updateCoords($data)
+    {
+        $url = $this->container->getParameter("get.type_update_coords.url");
         $response = $this->makeRequest($url, $data);
         $result = json_decode($response);
         return $result;
     }
+
+    public function getPrizesList()
+    {
+        $url = $this->container->getParameter("get.prize_list.url");
+        $response = $this->makeRequest($url);
+        $result = json_decode($response, true);
+        return $result;
+    }
+
+    public function updatePrize($id, $data)
+    {
+        $url = $this->container->getParameter("get.prize_update.url");
+        $response = $this->makeRequest($url . $id, $data);
+        $result = json_decode($response, true);
+        return $result;
+    }
+
+    public function addPrize($data)
+    {
+        $url = $this->container->getParameter("get.prize_add.url");
+        $response = $this->makeRequest($url, $data);
+        $result = json_decode($response);
+        return $result->id;
+    }
+
+    public function getPrizeElement($id)
+    {
+        $url = $this->container->getParameter("get.element_get.url");
+        $response = $this->makeRequest($url . $id);
+        $result = json_decode($response, true);
+        return $result;
+    }
+
+    public function updatePrizeElement($id, $data)
+    {
+        $url = $this->container->getParameter("get.element_update.url");
+        $response = $this->makeRequest($url . $id, $data);
+        $result = json_decode($response, true);
+        return $result;
+    }
+
+    public function addPrizeElement($prizeId, $data)
+    {
+        $url = $this->container->getParameter("get.element_add.url");
+        $response = $this->makeRequest($url . $prizeId, $data);
+        $result = json_decode($response);
+        return $result->id;
+    }
+
+    public function deletePrizeElement($id)
+    {
+        $url = $this->container->getParameter("get.element_delete.url");
+        $response = $this->makeRequest($url . $id);
+        $result = json_decode($response);
+        return $result;
+    }
+
+    public function deletePrize($id)
+    {
+        $url = $this->container->getParameter("get.prize_delete.url");
+        $response = $this->makeRequest($url . $id);
+        $result = json_decode($response);
+        return $result;
+    }
+
+    public function getSubelementsSingleList()
+    {
+        $url = $this->container->getParameter("get.subelement_single_list.url");
+        $response = $this->makeRequest($url);
+        $result = json_decode($response);
+        return $result;
+    }
+
 }

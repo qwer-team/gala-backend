@@ -1,0 +1,9 @@
+{% extends 'GalaxyBackendBundle::layout.html.twig' %}
+
+{% block body %}
+    <form method="POST" action="{{path('element_add', {prizeId: prizeId})}}"  {{ form_enctype(form) }}>
+        {{ form_rest(form)}}
+        <br />
+        <button class="btn btn-primary" type="submit">add</button>
+    </form>
+{% endblock %}

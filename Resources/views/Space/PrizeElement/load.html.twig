@@ -1,0 +1,36 @@
+{% extends 'GalaxyBackendBundle::layout.html.twig' %}
+
+{% block body %}
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <td>element</td>
+            <td>x</td>
+            <td>y</td>
+            <td>z</td>
+            <td>actions</td>
+        </tr>
+    </thead>
+    {%for subelement in subelements%}
+    <tr>
+        <td>
+            {%set formId = 'subelement'~subelement.id %} 
+                <div style="display: none"><form id="{{formId}}"></form></div>
+            {{form_widget(subelement.form['element'], {attr:{form: formId} })}}
+        </td>
+        <td>
+            {{form_widget(subelement.form['x'], {attr:{form: formId} })}}
+        </td>
+         <td>
+            {{form_widget(subelement.form['y'], {attr:{form: formId} })}}
+        </td>
+        <td>
+            {{form_widget(subelement.form['z'], {attr:{form: formId} })}}
+        </td>
+        <td>
+            <button type="submit" class="btn btn-primary" form="{{formId}}">save</button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

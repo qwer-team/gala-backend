@@ -180,9 +180,7 @@ class BootstrapController extends Controller
             $length = $data["length"];
             //$percent = $data["percent"];
             $json = $segment->updateSegmentLength($id, $length);
-        } else {
-            print_r($form->getErrors());
-        }
+        } 
         $json->id = $id;
         $response = new Response();
         $response->setContent(json_encode($json));

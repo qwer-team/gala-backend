@@ -20,6 +20,15 @@
         <parameter key="remove.subtype.url">%garilsurl%/gala/subtype/remove/</parameter>
         <parameter key="get.type.url">%garilsurl%/gala/type/show/</parameter>
         <parameter key="get.type_list.url">%garilsurl%/gala/type/list/</parameter>
+	<parameter key="get.prize_list.url">%garilsurl%/gala/prize/list/</parameter>
+	<parameter key="get.prize_update.url">%garilsurl%/gala/prize/update/</parameter>
+	<parameter key="get.prize_add.url">%garilsurl%/gala/prize/add/</parameter>
+	<parameter key="get.prize_delete.url">%garilsurl%/gala/prize/delete/</parameter>
+	<parameter key="get.element_get.url">%garilsurl%/gala/prizeElement/get/</parameter>
+	<parameter key="get.element_update.url">%garilsurl%/gala/prizeElement/update/</parameter>
+	<parameter key="get.element_add.url">%garilsurl%/gala/prizeElement/add/</parameter>
+	<parameter key="get.element_delete.url">%garilsurl%/gala/prizeElement/delete/</parameter>
+	<parameter key="get.subelement_single_list.url">%garilsurl%/gala/subelement/singleList/</parameter>
         <parameter key="get.type_update_coords.url">%garilsurl%/gala/type/updateCoords/</parameter>
         <parameter key="update.type.url">%garilsurl%/gala/type/update</parameter>
         <!-- Документы -->
@@ -52,7 +61,16 @@
         <service id="remote.service" parent="galaxy.container.aware" class="%remote.service.class%"/>
         <service id="documents.remote_service" parent="galaxy.container.aware" class="%document.remote_service.class%"/>
 	<service id="game.remote_service" parent="galaxy.container.aware" class="%game.remote_service.class%"/>
+	<service id="storage" class="Galaxy\BackendBundle\Service\StorageService">
+            <call method="setFolder">
+                <argument type="string" >%kernel.root_dir%/../web/images/</argument>
+            </call>
+            <call method="setrelUrl">
+                <argument type="string" >/images/</argument>
+            </call>
+        </service>
     </services>
+ 	
     
 </container>
 

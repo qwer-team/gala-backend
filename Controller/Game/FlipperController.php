@@ -37,7 +37,7 @@ class FlipperController extends Controller
         if($form->isValid()){
             $data = $form->getData();
             unset($data['id']);
-            $gameService->updateFlipper($id, $data);
+            $response = $gameService->updateFlipper($id, $data);
         }
         return $this->redirect($this->generateUrl('flipper_show', array('id' => $id)));
     }
