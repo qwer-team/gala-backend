@@ -61,14 +61,4 @@
     <route id="type_config" pattern="/type_config/{tag}" methods="get,post">
         <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:typeConfig</default>
     </route>
-    <!-- prize segments -->
-     <route id="prize_segments" pattern="/prize_segments">
-        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:prizeSegments</default>
-    </route>
-    <route id="split_prize_segments" pattern="/split_prize_segments" methods="post">
-        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:splitPrizeSegments</default>
-    </route>
-    <route id="show_prize_segments" pattern="/show_prize_segments">
-        <default key="_controller">GalaxyBackendBundle:Space\Bootstrap:showPrizeSegments</default>
-    </route>
 </routes>
