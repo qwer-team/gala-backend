@@ -38,7 +38,14 @@
         <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:delete</default>
     </route>
     
-    <route id="element_load" pattern="/element_load">
-        <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:load</default>
+    <route id="element_load_list" pattern="/element_load">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:loadList</default>
     </route>
+    <route id="update_single_subelement" pattern="/update_single_subelement/{id}" methods="POST">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:updateSingleSubelement</default>
+    </route>
+    <route id="add_single_subelement" pattern="/add_single_subelement" methods="POST">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:addSingleSubelement</default>
+    </route>
+    
 </routes>

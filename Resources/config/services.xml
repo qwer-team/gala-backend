@@ -30,6 +30,8 @@
 	<parameter key="get.element_delete.url">%garilsurl%/gala/prizeElement/delete/</parameter>
 	<parameter key="get.subelement_single_list.url">%garilsurl%/gala/subelement/singleList/</parameter>
         <parameter key="get.type_update_coords.url">%garilsurl%/gala/type/updateCoords/</parameter>
+        <parameter key="get.update_single_subelement.url">%garilsurl%/gala/subelement/updateSingle/</parameter>
+        <parameter key="get.add_single_subelement.url">%garilsurl%/gala/subelement/addSingle/</parameter>
         <parameter key="update.type.url">%garilsurl%/gala/type/update</parameter>
         <!-- Документы -->
         <parameter key="document.remote_service.class">Galaxy\BackendBundle\Service\DocumentsRemoteService</parameter>

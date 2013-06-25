@@ -1,0 +1,65 @@
+{% extends 'GalaxyBackendBundle::layout.html.twig' %}
+
+{% block body %}
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <td>element</td>
+            <td>x</td>
+            <td>y</td>
+            <td>z</td>
+            <td>actions</td>
+        </tr>
+    </thead>
+    {%for subelement in subelements%}
+    <tr>
+        <td>
+            {%set formId = 'subelement'~subelement.id %} 
+               
+            {{form_widget(subelement.form['element'], {attr:{form: formId} })}}
+        </td>
+        <td>
+            {{form_widget(subelement.form['x'], {attr:{form: formId} })}}
+        </td>
+         <td>
+            {{form_widget(subelement.form['y'], {attr:{form: formId} })}}
+        </td>
+        <td>
+            {{form_widget(subelement.form['z'], {attr:{form: formId} })}}
+        </td>
+        <td>
+             <div style="display: none">
+                    <form id="{{formId}}" method="POST" action="{{path('update_single_subelement', {id: subelement.id})}}">
+                        {{form_rest(subelement.form)}}
+                    </form>
+             </div>
+            <button type="submit" class="btn btn-primary" form="{{formId}}">save</button>
+        </td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td>
+            {%set formId = 'subelementNew' %} 
+               
+            {{form_widget(newForm['element'], {attr:{form: formId} })}}
+        </td>
+        <td>
+            {{form_widget(newForm['x'], {attr:{form: formId} })}}
+        </td>
+         <td>
+            {{form_widget(newForm['y'], {attr:{form: formId} })}}
+        </td>
+        <td>
+            {{form_widget(newForm['z'], {attr:{form: formId} })}}
+        </td>
+        <td>
+             <div style="display: none">
+                    <form id="{{formId}}" method="POST" action="{{path('add_single_subelement')}}">
+                        {{form_rest(newForm)}}
+                    </form>
+             </div>
+            <button type="submit" class="btn btn-success" form="{{formId}}">add</button>
+        </td>
+    </tr>
+</table>
+{% endblock %}

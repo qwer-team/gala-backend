@@ -104,7 +104,7 @@ class PrizeElementController extends Controller
     /**
      * @Template()
      */
-    public function loadAction()
+    public function loadListAction()
     {
         $service = $this->container->get('remote.service');
         $subelements = $service->getSubelementsSingleList();
@@ -120,10 +120,53 @@ class PrizeElementController extends Controller
             $form = $this->createForm(new SubelementType(), $data);
             $subelement->form = $form->createView();
         }
-        
+
         return array(
             "subelements" => $subelements,
+            "newForm" => $this->createForm(new SubelementType())->createView(),
         );
+    }
+
+    public function addSingleSubelementAction(Request $request)
+    {
+        return $this->saveLoading($request);
+    }
+
+    public function updateSingleSubelementAction($id, Request $request)
+    {
+        return $this->saveLoading($request, $id);
+    }
+    
+    private function saveLoading(Request $request, $id = null){
+        $form = $this->createForm(new SubelementType());
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $data = $form->getData();
+            $x = $data['x'];
+            $y = $data['y'];
+            $z = $data['z'];
+
+            $pointId = $this->getId($x, $y, $z);
+            $element = $data["element"];
+
+            $requestData = array(
+                'pointId' => $pointId,
+                'element' => $element,
+            );
+            
+            $service = $this->container->get('remote.service');
+            if(is_null($id)){
+                $service->loadAddPrize($requestData);
+            } else {
+                $service->loadUpdatePrize($id, $requestData);
+            }
+        } else {
+            echo $form->getErrorsAsString();
+        }
+        
+        $url = $this->generateUrl("element_load_list");
+        return $this->redirect($url);
     }
 
     private function getCoords($id)
@@ -140,6 +183,13 @@ class PrizeElementController extends Controller
         $z++;
 
         return array($x, $y, $z);
+    }
+
+    private function getId($x, $y, $z)
+    {
+        $id = $x + ($y - 1) * 1000 + ($z - 1) * 1000000;
+
+        return $id;
     }
 
 }

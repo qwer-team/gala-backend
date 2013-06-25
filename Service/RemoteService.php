@@ -14,7 +14,7 @@ class RemoteService extends ContainerAware
         $result = json_decode($response);
         return $result->result == 'success';
     }
-    
+
     public function updatePrizeSplitSegment($count)
     {
         $url = $this->container->getParameter("prize_segment.update.url");
@@ -203,6 +203,22 @@ class RemoteService extends ContainerAware
     {
         $url = $this->container->getParameter("get.subelement_single_list.url");
         $response = $this->makeRequest($url);
+        $result = json_decode($response);
+        return $result;
+    }
+
+    public function loadUpdatePrize($id, $data)
+    {
+        $url = $this->container->getParameter("get.update_single_subelement.url");
+        $response = $this->makeRequest($url.$id, $data);
+        $result = json_decode($response);
+        return $result;
+    }
+    
+    public function loadAddPrize($data)
+    {
+        $url = $this->container->getParameter("get.add_single_subelement.url");
+        $response = $this->makeRequest($url, $data);
         $result = json_decode($response);
         return $result;
     }
