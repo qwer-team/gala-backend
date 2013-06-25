@@ -1,0 +1,62 @@
+{% extends 'GalaxyBackendBundle::layout.html.twig' %}
+
+{% block title %}showSegments{% endblock %}
+
+{% block body %}
+
+<div class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" >Input with error</label>
+        <div class="controls">
+            <input type="text" class="totalPoints" value="" disabled='disabled'>
+        </div>
+    </div>
+
+    <div class="control-group success">
+        <label class="control-label" for="inputSuccess">Input with success</label>
+        <div class="controls">
+            <input type="text" class="totalPercent" value="" disabled="disabled">
+            <span class="help-inline"></span>
+        </div>
+    </div>
+</div>
+<div style="display: none" id="hiddenMassageSuccess">
+        <div class="alert alert-success">
+            <button class="close" data-dismiss="alert" type="button">×</button>
+            <strong>Well done!</strong>
+        </div>
+</div>
+<div style="display: none" id="hiddenMassageError">
+        <div class="alert alert-error">
+              <button data-dismiss="alert" class="close" type="button">×</button>
+              <strong>Oh snap!</strong>
+        </div>
+</div>
+<div class="accordion" id="accordion2">
+    {% for segment in allSegments %}
+        <div class="row-fluid">
+    <div class="span12" >
+        <div class="accordion-group" data-id="{{segment.id}}" style="padding: 8px;">
+            <div class="accordion-heading">
+                <a class="accordion-toggle load-segment-info" data-toggle="collapse" data-parent="#accordion2" href="#segment_{{segment.id}}">segment № {{loop.index}}</a>
+                    <form class="form-search segments_form ajaxForm" action="{{ path('update_prize_segment_length', { 'id': segment.id }) }}" method="post">                          
+                        <div class="controls controls-row">
+                            {{ form_widget( segments_form[segment.id].length ) }}
+                            {{ form_widget( segments_form[segment.id].percent) }}                        
+                            <a class="btn" id="sendAjaxForm">Сохранить</a>
+                        </div>
+                        {{ form_rest(segments_form[segment.id] ) }}
+                    </form>
+            </div>
+            <div id="segment_{{segment.id}}" class="accordion-body collapse {#% if loop.first %}in{%endif%#}">
+                <div class="accordion-inner">
+                    {% block segment %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    {% endfor %}
+</div>
+        
+{% endblock %}

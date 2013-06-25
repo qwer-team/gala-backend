@@ -22,6 +22,33 @@ class RemoteService extends ContainerAware
         $result = json_decode($response);
         return $result->result == 'success';
     }
+    
+    public function getPrizeSegments()
+    {
+        $url = $this->container->getParameter("get.prize_segment.url");
+        $points = $this->container->getParameter("points.in.space");
+        if (!is_integer($points)) {
+            throw new \Exception("You must set valid points number!");
+        }
+        $response = $this->makeRequest($url);
+        $result = json_decode($response);
+        for ($i = 0; $i < count($result); $i++) {
+            $pers = ($result[$i]->length / $points) * 100;
+            $result[$i]->percent = round($pers, 2);
+        }
+        return $result;
+    }
+    
+    public function updatePrizeSegmentLength($id, $length)
+    {
+        $url = $this->container->getParameter("update.prize_segment.length.url");
+        $data = array(
+            "length" => $length
+        );
+        $response = $this->makeRequest($url . $id, $data);
+        $result = json_decode($response);
+        return $result;
+    }
 
     public function getSegments()
     {
@@ -49,6 +76,17 @@ class RemoteService extends ContainerAware
             $pers = ($result->subtypes[$i]->pointsCount / $result->length) * 100;
             $result->subtypes[$i]->percent = round($pers, 10);
         }
+
+        return $result;
+    }
+    
+     public function getElementsOnPrizeSegment($id)
+    {
+        $url = $this->container->getParameter("get.points.on.segment.url");
+        $response = $this->makeRequest($url . $id);
+        $result = json_decode($response);
+
+        
 
         return $result;
     }

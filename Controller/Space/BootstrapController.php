@@ -37,11 +37,31 @@ class BootstrapController extends Controller
     
     
     /**
+     * @Template()
+     * @return type
+     */
+    public function prizeSegmentsAction()
+    {
+        $type = new SplitType();
+        $segmentService = $this->container->get('remote.service');
+        $allSegments = $segmentService->getPrizeSegments();
+        $countSegments = count($allSegments);
+        $form = $this->createForm($type);
+        $form->setData(
+                array('count'=> $countSegments)
+                );
+        return array(
+            'splitIntoSegmentForm' => $form->createView(),
+        );
+    }
+    
+    
+    /**
      * @Template("GalaxyBackendBundle:Space\Bootstrap:prizeSegments.html.twig")
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
      */
-    public function splitPrizeSegments(Request $request)
+    public function splitPrizeAction(Request $request)
     {
         $form = $this->createForm(new SplitType());
         $form->bind($request);
@@ -78,7 +98,33 @@ class BootstrapController extends Controller
 
         return array(
             'segments_form' => $segmentsForm,
-            'allSegments' => $allSegments);
+            'allSegments' => $allSegments,
+            );
+    }
+    
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param type $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function updatePrizeSegmentLengthAction(Request $request, $id)
+    {
+        $segment = $this->container->get('remote.service');
+        $form = $this->createForm(new SegmentType());
+        $form->bind($request);
+        $json = array();
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $length = $data["length"];
+            //$percent = $data["percent"];
+            $json = $segment->updatePrizeSegmentLength($id, $length);
+        } 
+        $json->id = $id;
+        $response = new Response();
+        $response->setContent(json_encode($json));
+
+        return $response;
     }
 
     /**

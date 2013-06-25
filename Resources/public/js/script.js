@@ -29,11 +29,11 @@ $( document ).ready(function() {
         }
     });
     
-    $('form.segments_form').on('change', 'input[name="length"]', function(){
+    $('form.segments_form').on('keyup', 'input[name="length"]', function(){
         onSegmentLength($(this));
     });
     
-    $('form.segments_form').on('change', 'input[name="percent"]', function(){
+    $('form.segments_form').on('keyup', 'input[name="percent"]', function(){
         onSegmentPercent($(this));
     });
                 
@@ -102,7 +102,7 @@ function onSegmentLength(obj){
 function onSegmentPercent(obj){
     var form = obj.parents('form');
     var lenInp = form.find('input[name="length"]');
-    var value = Math.round( ( points/100 ) * obj.val());
+    var value = Math.round( points / 100 * obj.val());
     lenInp.val(value.toFixed(0));
     segmentsTotal();
 }

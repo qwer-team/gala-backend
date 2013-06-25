@@ -9,7 +9,7 @@
         <parameter key="galaxy.container.aware.class">Galaxy\BackendBundle\Listener\ContainerAware</parameter>
         <parameter key="remote.service.class">Galaxy\BackendBundle\Service\RemoteService</parameter>
         
-        <parameter key="points.in.space">1000000000</parameter>
+        <parameter key="points.in.space">10000000</parameter>
         
         <parameter key="segment.update.url">%garilsurl%/gala/segment/reset/</parameter>
         <parameter key="get.segment.url">%garilsurl%/gala/segment/list</parameter>
@@ -31,6 +31,11 @@
 	<parameter key="get.subelement_single_list.url">%garilsurl%/gala/subelement/singleList/</parameter>
         <parameter key="get.type_update_coords.url">%garilsurl%/gala/type/updateCoords/</parameter>
         <parameter key="update.type.url">%garilsurl%/gala/type/update</parameter>
+        <!-- Prize segments -->
+        <parameter key="prize_segment.update.url">%garilsurl%/gala/prizeSegment/reset/</parameter>
+        <parameter key="get.prize_segment.url">%garilsurl%/gala/prizeSegment/list</parameter>
+        <parameter key="update.prize_segment.length.url">%garilsurl%/gala/prizeSegment/update/</parameter>
+        <parameter key="get.points.on.prize_segment.url">%garilsurl%/gala/subelement/getPrizesOnSegment/</parameter>
         <!-- Документы -->
         <parameter key="document.remote_service.class">Galaxy\BackendBundle\Service\DocumentsRemoteService</parameter>
         <parameter key="registersurl">http://demo10.qwer.com.ua/registers</parameter>

@@ -41,4 +41,22 @@
     <route id="element_load" pattern="/element_load">
         <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:load</default>
     </route>
+    <!-- prize segments -->
+     <route id="prize_segments" pattern="/prize_segments">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeSegment:prizeSegments</default>
+    </route>
+    <route id="show_prize_segments" pattern="/show_prize_segments">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeSegment:showPrizeSegments</default>
+    </route>
+    <route id="split_prize" pattern="/split_prize" methods="post">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeSegment:splitPrize</default>
+    </route>
+     <route id="update_prize_segment_length" pattern="/{id}/update_prize_segment_length" methods="post">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeSegment:updatePrizeSegmentLength</default>
+        <default key="_format">json</default>
+    </route>
+    <route id="prize_segment_config" pattern="/{id}/prize_segment_config">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeSegment:prizeSegmentConfig</default>
+        <option key="expose">true</option>
+    </route>
 </routes>
