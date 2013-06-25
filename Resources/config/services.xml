@@ -26,6 +26,7 @@
 	<parameter key="get.prize_delete.url">%garilsurl%/gala/prize/delete/</parameter>
 	<parameter key="get.element_get.url">%garilsurl%/gala/prizeElement/get/</parameter>
 	<parameter key="get.element_update.url">%garilsurl%/gala/prizeElement/update/</parameter>
+	<parameter key="get.element_update_coords.url">%garilsurl%/gala/prizeElement/updateCoords/</parameter>
 	<parameter key="get.element_add.url">%garilsurl%/gala/prizeElement/add/</parameter>
 	<parameter key="get.element_delete.url">%garilsurl%/gala/prizeElement/delete/</parameter>
 	<parameter key="get.subelement_single_list.url">%garilsurl%/gala/subelement/singleList/</parameter>

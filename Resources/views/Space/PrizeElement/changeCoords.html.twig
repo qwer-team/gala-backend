@@ -1,0 +1,81 @@
+{% extends 'GalaxyBackendBundle::layout.html.twig' %}
+
+{% block body %}
+<style>
+   .input-mini-mini {
+        width: 30px;
+   }
+</style>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <td>prize</td>
+            <td>element</td>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+            <td>delta</td>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+            <td>delta</td>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+            <td>delta</td>
+            <td>actions</td>
+        </tr>
+    </thead>
+    {% for element in elements %}
+        {%set formId = 'element' ~ element['element']['id'] %} 
+        <tr>
+            <td>{{element['prize']}}</td>
+            <td>{{element['element']['name']}}</td>
+            <td>
+                {{form_widget(element['form']['a1'], {attr:{form: formId} })}}
+            </td>
+            <td>
+                {{form_widget(element['form']['b1'], {attr:{form: formId} })}}
+            </td>
+            <td>
+                {{form_widget(element['form']['c1'], {attr:{form: formId} })}}
+            </td>
+            <td>
+                {{form_widget(element['form']['delta1'], {attr:{form: formId} })}}
+            </td>
+            <td>
+                {{form_widget(element['form']['a2'], {attr:{form: formId} })}}
+            </td>
+            <td>
+                {{form_widget(element['form']['b2'], {attr:{form: formId} })}}
+            </td>
+            <td>
+                {{form_widget(element['form']['c2'], {attr:{form: formId} })}}
+            </td>
+            <td>
+                {{form_widget(element['form']['delta2'], {attr:{form: formId} })}}
+            </td>
+            <td>
+                {{form_widget(element['form']['a3'], {attr:{form: formId} })}}
+            </td>
+            <td>
+                {{form_widget(element['form']['b3'], {attr:{form: formId} })}}
+            </td>
+            <td>
+                {{form_widget(element['form']['c3'], {attr:{form: formId} })}}
+            </td>
+            <td>
+                {{form_widget(element['form']['delta3'], {attr:{form: formId} })}}
+            </td>
+            <td>
+                <div style="display: none">
+                    <form id="{{formId}}" method="POST" action="{{path('element_change_coords_save', {id: element['element']['id']})}}" >
+                        {{form_rest(element['form'])}}
+                    </form>
+                </div>
+                <button type="submit" class="btn btn-primary" form="{{formId}}">save</button>
+            </td>
+        </tr>
+    {% endfor%}
+</table>
+{% endblock %}

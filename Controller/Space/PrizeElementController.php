@@ -5,6 +5,7 @@ namespace Galaxy\BackendBundle\Controller\Space;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Galaxy\BackendBundle\Form\Space\PrizeElementType;
+use Galaxy\BackendBundle\Form\Space\PrizeElementsCoordsType;
 use Galaxy\BackendBundle\Form\Space\SubelementType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
@@ -127,6 +128,47 @@ class PrizeElementController extends Controller
         );
     }
 
+    /**
+     * @Template()
+     */
+    public function changeCoordsAction()
+    {
+        $service = $this->container->get('remote.service');
+        $prizes = $service->getPrizesList();
+
+        $elements = array();
+        foreach ($prizes as $prize) {
+            foreach ($prize['elements'] as $prizeElement) {
+                $type = new PrizeElementsCoordsType();
+                $form = $this->createForm($type, $prizeElement);
+                $elements[] = array(
+                    "form" => $form->createView(),
+                    "prize" => $prize["name"],
+                    "element" => $prizeElement,
+                );
+            }
+        }
+
+        return array(
+            "elements" => $elements,
+        );
+    }
+
+    public function saveChangeCoordsAction($id, request $request)
+    {
+        $form = $this->createForm(new PrizeElementsCoordsType());
+        $form->bind($request);
+
+        if($form->isValid()) {
+            $data = $form->getData();
+            $service = $this->container->get('remote.service');
+            $service->updateElementCoords($id, $data);
+        }
+        
+        $url = $this->generateUrl("element_change_coords");
+        return $this->redirect($url);
+    }
+
     public function addSingleSubelementAction(Request $request)
     {
         return $this->saveLoading($request);
@@ -136,8 +178,9 @@ class PrizeElementController extends Controller
     {
         return $this->saveLoading($request, $id);
     }
-    
-    private function saveLoading(Request $request, $id = null){
+
+    private function saveLoading(Request $request, $id = null)
+    {
         $form = $this->createForm(new SubelementType());
         $form->bind($request);
 
@@ -154,9 +197,9 @@ class PrizeElementController extends Controller
                 'pointId' => $pointId,
                 'element' => $element,
             );
-            
+
             $service = $this->container->get('remote.service');
-            if(is_null($id)){
+            if (is_null($id)) {
                 $service->loadAddPrize($requestData);
             } else {
                 $service->loadUpdatePrize($id, $requestData);
@@ -164,7 +207,7 @@ class PrizeElementController extends Controller
         } else {
             echo $form->getErrorsAsString();
         }
-        
+
         $url = $this->generateUrl("element_load_list");
         return $this->redirect($url);
     }

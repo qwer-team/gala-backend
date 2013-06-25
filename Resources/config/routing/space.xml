@@ -47,6 +47,12 @@
     <route id="add_single_subelement" pattern="/add_single_subelement" methods="POST">
         <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:addSingleSubelement</default>
     </route>
+    <route id="element_change_coords" pattern="/elements_coords">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:changeCoords</default>
+    </route>
+    <route id="element_change_coords_save" pattern="/elements_coords_save/{id}">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:saveChangeCoords</default>
+    </route>
     <!-- prize segments -->
      <route id="prize_segments" pattern="/prize_segments">
         <default key="_controller">GalaxyBackendBundle:Space\PrizeSegment:prizeSegments</default>

@@ -22,7 +22,7 @@ class RemoteService extends ContainerAware
         $result = json_decode($response);
         return $result->result == 'success';
     }
-    
+
     public function getPrizeSegments()
     {
         $url = $this->container->getParameter("get.prize_segment.url");
@@ -38,7 +38,7 @@ class RemoteService extends ContainerAware
         }
         return $result;
     }
-    
+
     public function updatePrizeSegmentLength($id, $length)
     {
         $url = $this->container->getParameter("update.prize_segment.length.url");
@@ -79,14 +79,14 @@ class RemoteService extends ContainerAware
 
         return $result;
     }
-    
-     public function getElementsOnPrizeSegment($id)
+
+    public function getElementsOnPrizeSegment($id)
     {
         $url = $this->container->getParameter("get.points.on.segment.url");
         $response = $this->makeRequest($url . $id);
         $result = json_decode($response);
 
-        
+
 
         return $result;
     }
@@ -248,15 +248,23 @@ class RemoteService extends ContainerAware
     public function loadUpdatePrize($id, $data)
     {
         $url = $this->container->getParameter("get.update_single_subelement.url");
-        $response = $this->makeRequest($url.$id, $data);
+        $response = $this->makeRequest($url . $id, $data);
         $result = json_decode($response);
         return $result;
     }
-    
+
     public function loadAddPrize($data)
     {
         $url = $this->container->getParameter("get.add_single_subelement.url");
         $response = $this->makeRequest($url, $data);
+        $result = json_decode($response);
+        return $result;
+    }
+    
+    public function updateElementCoords ($id, $data)
+    {
+        $url = $this->container->getParameter("get.element_update_coords.url");
+        $response = $this->makeRequest($url . $id, $data);
         $result = json_decode($response);
         return $result;
     }

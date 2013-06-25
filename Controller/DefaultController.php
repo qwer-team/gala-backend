@@ -27,6 +27,8 @@ class DefaultController extends Controller
             $menu->addChild('Призы', 'noroute27');
                 $menu->addGrandchildren('Разбить на отрезки', 'prize_segments', true);
                 $menu->addGrandchildren('Редактирование отрезков', 'show_prize_segments', true);
+                $menu->addGrandchildren('Ручная загрузка', 'element_load_list', true);
+                $menu->addGrandchildren('Изменение координат', 'element_change_coords', true);
             $menu->addChild('Точки', 'noroute7');
                 $menu->addGrandchildren('Черные', 'type_config', true, array('tag' => 'black'));
                 $menu->addGrandchildren('Ловушка', 'type_config', true, array('tag' => 'trap'));
