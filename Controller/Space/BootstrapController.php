@@ -34,6 +34,52 @@ class BootstrapController extends Controller
             'splitIntoSegmentForm' => $form->createView(),
         );
     }
+    
+    
+    /**
+     * @Template("GalaxyBackendBundle:Space\Bootstrap:prizeSegments.html.twig")
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return type
+     */
+    public function splitPrizeSegments(Request $request)
+    {
+        $form = $this->createForm(new SplitType());
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $data = $form->getData();
+            $count = $data["count"];
+            $segment = $this->container->get('remote.service');
+
+            if ($segment->updatePrizeSplitSegment($count)) {
+                return $this->redirect($this->generateUrl('show_prize_segments'));
+            }
+        }
+        return array(
+            'splitIntoSegmentForm' => $form->createView(),
+        );
+    }
+    
+    /**
+     * @Template()
+     * @return type
+     */
+    public function showPrizeSegmentsAction()
+    {
+        $segment = $this->container->get('remote.service');
+        $allSegments = $segment->getPrizeSegments();
+
+        $segmentsForm = array();
+
+        foreach ($allSegments as $oneSegment) {
+            $segmentsForm[$oneSegment->id] = $this->createForm(new SegmentType(), $oneSegment)
+            ->createView();
+        }
+
+        return array(
+            'segments_form' => $segmentsForm,
+            'allSegments' => $allSegments);
+    }
 
     /**
      * @Template("GalaxyBackendBundle:Space\Bootstrap:segments.html.twig")

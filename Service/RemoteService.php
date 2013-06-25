@@ -14,6 +14,14 @@ class RemoteService extends ContainerAware
         $result = json_decode($response);
         return $result->result == 'success';
     }
+    
+    public function updatePrizeSplitSegment($count)
+    {
+        $url = $this->container->getParameter("prize_segment.update.url");
+        $response = $this->makeRequest($url . $count);
+        $result = json_decode($response);
+        return $result->result == 'success';
+    }
 
     public function getSegments()
     {
