@@ -43,6 +43,13 @@ $( document ).ready(function() {
         {
             updateSegmentConfig(segment)
         }     
+    })
+    $('.load-prize-segment-info').on('click',function(){
+        var segment = $(this).parents('.accordion-group');
+        if(!segment.hasClass('in'))
+        {
+            updatePrizeSegmentConfig(segment)
+        }     
     })   
                 
     $('body').delegate(".ajaxForm a#sendAjaxForm", "click", function(){
@@ -111,6 +118,20 @@ function updateSegmentConfig(segment, body){
     body = body || '.accordion-inner';
     var id = segment.data('id'); 
     var href = Routing.generate('segment_config', {
+        id: id
+    });
+    $.ajax({
+        url: href,
+        success: function(html){
+            segment.find(body).replaceWith(html);
+        }
+    }); 
+    
+}
+function updatePrizeSegmentConfig(segment, body){
+    body = body || '.accordion-inner';
+    var id = segment.data('id'); 
+    var href = Routing.generate('prize_segment_config', {
         id: id
     });
     $.ajax({

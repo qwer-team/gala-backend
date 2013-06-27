@@ -38,7 +38,10 @@
         <parameter key="prize_segment.update.url">%garilsurl%/gala/prizeSegment/reset/</parameter>
         <parameter key="get.prize_segment.url">%garilsurl%/gala/prizeSegment/list</parameter>
         <parameter key="update.prize_segment.length.url">%garilsurl%/gala/prizeSegment/update/</parameter>
-        <parameter key="get.points.on.prize_segment.url">%garilsurl%/gala/subelement/getPrizesOnSegment/</parameter>
+        <parameter key="get.prizes.on.prize_segment.url">%garilsurl%/gala/subelement/getPrizesOnSegment/</parameter>
+        <parameter key="create.subelement.url">%garilsurl%/gala/subelement/save/</parameter>
+        <parameter key="update.subelement.url">%garilsurl%/gala/subelement/update/</parameter>
+        <parameter key="remove.subelement.url">%garilsurl%/gala/subelement/remove/</parameter>
         <!-- Документы -->
         <parameter key="document.remote_service.class">Galaxy\BackendBundle\Service\DocumentsRemoteService</parameter>
         <parameter key="registersurl">http://demo10.qwer.com.ua/registers</parameter>

@@ -82,11 +82,14 @@ class RemoteService extends ContainerAware
 
     public function getElementsOnPrizeSegment($id)
     {
-        $url = $this->container->getParameter("get.points.on.segment.url");
+        $url = $this->container->getParameter("get.prizes.on.prize_segment.url");
         $response = $this->makeRequest($url . $id);
         $result = json_decode($response);
 
-
+        foreach ($result->subelements as $subelement)
+        {
+            $subelement->percent = round($subelement->prizeCount / $result->length * 100, 10); 
+        }
 
         return $result;
     }
@@ -110,6 +113,30 @@ class RemoteService extends ContainerAware
     public function removeSubtype($id)
     {
         $url = $this->container->getParameter("remove.subtype.url");
+        $response = $this->makeRequest($url . $id);
+        $result = json_decode($response);
+        return $result;
+    }
+    
+    public function saveSubelement($id, $data)
+    {
+        $url = $this->container->getParameter("create.subelement.url");
+        $response = $this->makeRequest($url . $id, $data);
+        $result = json_decode($response);
+        return $result;
+    }
+
+    public function updateSubelement($id, $data)
+    {
+        $url = $this->container->getParameter("update.subelement.url");
+        $response = $this->makeRequest($url . $data["id"], $data);
+        $result = json_decode($response);
+        return $result;
+    }
+
+    public function removeSubelement($id)
+    {
+        $url = $this->container->getParameter("remove.subelement.url");
         $response = $this->makeRequest($url . $id);
         $result = json_decode($response);
         return $result;

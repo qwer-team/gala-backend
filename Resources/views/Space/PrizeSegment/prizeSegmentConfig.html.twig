@@ -1,0 +1,53 @@
+
+{% block segment %}
+<script>
+    var prizes = {{ prizes|json_encode|raw  }};
+    </script>
+    <div class='subelements-form'>
+        <div class="controls controls-row">
+            <input type="text" id="allPointsCount" name="allPointsCount"  class="span2" disabled="" value="{{ count }}">
+            <input type="text" id="allPointsPercent" name="allPointsPercent"  class="span2" disabled="" value="{{ count / segmentLength }}">
+        </div>
+
+        <ul class="subtypes unstyled">
+            <div class="controls controls-row">
+            {% for item in forms %}
+                    <li>
+                        <form class="form-inline">
+                            <input type="text"  name="prize" required="required" class="span2" value="{{item.prize}}" disabled="">
+                            <input type="text"  name="element" required="required" class="span2" value="{{item.element}}" disabled="">
+
+                {{ form_widget(item.form.prizeCount)}}
+                {{ form_widget(item.form.percent)}}
+                {{ form_widget(item.form.restore)}}
+                {{ form_row(item.form.id)}}
+                {{ form_row(item.form.elementId)}}
+                            <button type="button" class="update-subelement btn btn-primary btn-small">Изменить</button>
+                            <button type="button" class="remove-subelement btn btn-danger btn-small">Удалить</button>
+                        </form>
+                    </li>
+               {% endfor %}
+                    <li>
+                        <form class="form-out">
+                            <select size="1" class="span2" name="prize">
+                        {% for prize in entities %}
+                                    <option value="{{ prize.id }}">{{ prize.name }}</option>
+                        {% endfor %}
+                                </select>
+                                <select size="1" class="span2" name="element">
+                       {% for element in prizes|first %}
+                                        <option value="{{ element.id }}">{{ element.name }}</option>
+                       {% endfor %}
+                                    </select>
+                {{ form_widget(form.prizeCount)}}
+                {{ form_widget(form.percent)}}
+                 {{ form_widget(form.restore)}}
+                {{ form_row(form.id)}}
+                {{ form_row(form.elementId)}}
+                                    <button type="button" class="add-subelement btn btn-primary btn-small">Добавить</button>
+                                </form>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+{% endblock %}

@@ -71,4 +71,19 @@
         <default key="_controller">GalaxyBackendBundle:Space\PrizeSegment:prizeSegmentConfig</default>
         <option key="expose">true</option>
     </route>
+    <route id="new_subelement" pattern="/{id}/save_subelement" methods="post">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeSegment:saveSubelement</default>
+        <default key="_format">json</default>
+        <option key="expose">true</option>
+    </route>
+    <route id="update_subelement" pattern="/{id}/update_subelement" methods="post">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeSegment:updateSubelement</default>
+        <default key="_format">json</default>
+        <option key="expose">true</option>
+    </route>
+    <route id="remove_subelement" pattern="/{id}/remove_subelement" methods="get">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeSegment:removeSubelement</default>
+        <default key="_format">json</default>
+        <option key="expose">true</option>
+    </route>
 </routes>

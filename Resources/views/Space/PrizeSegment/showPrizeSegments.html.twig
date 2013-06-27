@@ -38,7 +38,7 @@
     <div class="span12" >
         <div class="accordion-group" data-id="{{segment.id}}" style="padding: 8px;">
             <div class="accordion-heading">
-                <a class="accordion-toggle load-segment-info" data-toggle="collapse" data-parent="#accordion2" href="#segment_{{segment.id}}">segment № {{loop.index}}</a>
+                <a class="accordion-toggle load-prize-segment-info" data-toggle="collapse" data-parent="#accordion2" href="#segment_{{segment.id}}">segment № {{loop.index}}</a>
                     <form class="form-search segments_form ajaxForm" action="{{ path('update_prize_segment_length', { 'id': segment.id }) }}" method="post">                          
                         <div class="controls controls-row">
                             {{ form_widget( segments_form[segment.id].length ) }}

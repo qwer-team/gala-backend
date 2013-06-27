@@ -10,9 +10,17 @@ class PrizeSubelementType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('pointsCount', 'integer')
-            ->add('restore', 'checkbox', array('required' => false))
+        $builder  
+            ->add('prizeCount', 'text', array(
+                'attr' => array('class' => 'span2'),
+            ))
+            ->add('percent', 'text', array(
+                'attr' => array('class' => 'span2'),
+            ))
+            ->add('restore', 'checkbox', array(
+                'required' => false,
+                'attr' => array('style' => 'width:30px'),
+                )) 
             ->add('elementId', 'hidden')
             ->add('id', 'hidden')
          ;
