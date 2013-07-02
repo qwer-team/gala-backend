@@ -65,6 +65,8 @@ class MenuControl
                                         if (array_key_exists($key, $childParams) &&
                                                 $param == $childParams[$key]) {
                                             $active = true;
+                                        }elseif(preg_match("/^(\s*|\d+)$/", $param) && $key == "id"){
+                                            $active = true;
                                         }
                                     }
                                 } else {

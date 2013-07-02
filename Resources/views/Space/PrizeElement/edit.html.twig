@@ -6,4 +6,11 @@
         <br />
         <button class="btn btn-primary" type="submit">edit</button>
     </form>
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('prize_list', {id: element['prizeId']}) }}">
+                {% trans%}Back to the prize{%endtrans%}
+            </a>
+        </li>
+        </ul>
 {% endblock %}

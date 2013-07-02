@@ -109,21 +109,36 @@ class PrizeElementController extends Controller
     {
         $service = $this->container->get('remote.service');
         $subelements = $service->getSubelementsSingleList();
-
-        foreach ($subelements as $subelement) {
-            list($x, $y, $z) = $this->getCoords($subelement->pointId);
-            $data = array(
-                "x" => $x,
-                "y" => $y,
-                "z" => $z,
-                "element" => $subelement->elementId,
-            );
-            $form = $this->createForm(new SubelementType(), $data);
-            $subelement->form = $form->createView();
+        $prizesList = $service->getPrizesList();
+        $prizes = array();
+        $forms = array();
+        
+        foreach ($prizesList as $prize) {
+            $prizes[$prize["id"]] = array();
+            foreach ($prize["elements"] as $element) {
+                $prizes[$prize["id"]][] = array("id" => $element["id"], "name" => $element["name"]);
+                foreach ($subelements as $i => $subelement) {
+                    if ($subelement->elementId == $element["id"]) {
+                        list($x, $y, $z) = $this->getCoords($subelement->pointId);
+                        $data = array(
+                            "x" => $x,
+                            "y" => $y,
+                            "z" => $z,
+                            "element" => $subelement->elementId,
+                        );
+                        $form = $this->createForm(new SubelementType(), $data);
+                        $forms[] = array("prize" => $prize["name"], "element" => $element["name"], "form" => $form->createView(), "id" => $subelement->id);
+                        unset($subelements[$i]);
+                    }
+                }
+            }
         }
-
+        
         return array(
             "subelements" => $subelements,
+            "prizes" => $prizes,
+            'forms' => $forms,
+            'entities' => $prizesList,
             "newForm" => $this->createForm(new SubelementType())->createView(),
         );
     }
@@ -159,12 +174,12 @@ class PrizeElementController extends Controller
         $form = $this->createForm(new PrizeElementsCoordsType());
         $form->bind($request);
 
-        if($form->isValid()) {
+        if ($form->isValid()) {
             $data = $form->getData();
             $service = $this->container->get('remote.service');
             $service->updateElementCoords($id, $data);
         }
-        
+
         $url = $this->generateUrl("element_change_coords");
         return $this->redirect($url);
     }

@@ -1,13 +1,23 @@
 $( document ).ready(function() {
     
-    $(".accordion-group").on("keyup", ".subelements-form input[name='percent']", function(){
-        onSubelementPercent($(this));
+    $(".accordion-group").on("keydown", ".subelements-form input[name='percent']", function(event){
+        validateInput(event);
+        if(!event.isDefaultPrevented()){
+            onSubelementPercent($(this));
+        }
     });
-    $(".accordion-group").on("keyup", ".subelements-form input[name='prizeCount']", function(){
-        onSubelementPoints($(this));
+    $(".accordion-group").on("keydown", ".subelements-form input[name='prizeCount']", function(event){
+        validateInput(event);
+        if(!event.isDefaultPrevented()){
+            onSubelementPoints($(this));
+        }
+        
     });
     $(".accordion-group").on("change", ".subelements-form select[name='prize']", function(){
         getPrizeElements($(this));
+    });
+    $("#loadPrize").on("change", "tr select[name='prize']", function(){
+        loadPrize($(this));
     });
     $(".accordion-group").on("click", ".add-subelement", function(){
         saveSubelement('new_subelement', $(this))
@@ -19,6 +29,16 @@ $( document ).ready(function() {
         removeSubelement($(this))
     });
 });
+
+function loadPrize(obj){
+    prizeId = obj.val();
+    elements = prizes[prizeId];
+    var tr = obj.parents('#loadPrize');
+    options = tr.find("select[name='element']").find('option').remove().end();
+    for(i = 0; i < elements.length; i++){
+        options.append('<option value='+elements[i].id+'>'+elements[i].name+'</option>')
+    }
+}
 
 function getPrizeElements(obj){
     prizeId = obj.val();

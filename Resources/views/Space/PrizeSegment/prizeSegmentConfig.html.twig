@@ -29,12 +29,12 @@
                {% endfor %}
                     <li>
                         <form class="form-out">
-                            <select size="1" class="span2" name="prize">
+                            <select size="1" required="true" class="span2" name="prize">
                         {% for prize in entities %}
                                     <option value="{{ prize.id }}">{{ prize.name }}</option>
                         {% endfor %}
                                 </select>
-                                <select size="1" class="span2" name="element">
+                                <select size="1" required="true" class="span2" name="element">
                        {% for element in prizes|first %}
                                         <option value="{{ element.id }}">{{ element.name }}</option>
                        {% endfor %}

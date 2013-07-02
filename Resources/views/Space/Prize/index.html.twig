@@ -21,7 +21,8 @@
         </a>
     </div>
     <div style="float:left; width: 800px;">
-        <img src="{{main['img1']}}"/>
+        Картинка 1:<img src="{{main['img1']}}"/><br>
+        Картинка 2:<img src="{{main['img2']}}"/>
         <form method="POST" action="{{path('prize_update', {id: main['id']})}}"  {{ form_enctype(prizeForm) }}>
         {{ form_rest(prizeForm)}}
                 <br />
@@ -38,7 +39,8 @@
                         <td>visible</td>
                         <td>price</td>
                         <td>account</td>
-                        <td>img</td>
+                        <td>img1</td>
+                        <td>img2</td>
                         <td>blocked</td>
                         <td>actions</td>
                     </tr></thead>
@@ -50,7 +52,8 @@
                     <td>{{element.visible}}</td>
                     <td>{{element.price}}</td>
                     <td>{{element.account}}</td>
-                    <td>{{element.img1}}</td>
+                    <td><img src="http://gala.my{{ element.img2 }}"></td>
+                    <td><img src="http://gala.my{{ element.img2 }}"></td>
                     <td>{{element.blocked}}</td>
                     <td>
                         <a href="{{path('element_edit', {id: element.id})}}"><button class="btn btn-primary">edit</button></a>

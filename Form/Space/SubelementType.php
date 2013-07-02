@@ -11,7 +11,7 @@ class SubelementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('element', 'integer')
+            ->add('element', 'hidden')
             ->add('x', 'integer')
             ->add('y', 'integer')
             ->add('z', 'integer')

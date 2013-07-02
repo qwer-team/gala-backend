@@ -1,21 +1,28 @@
 {% extends 'GalaxyBackendBundle::layout.html.twig' %}
 
 {% block body %}
-<table class="table table-bordered table-hover table-striped">
+<script>
+    var prizes = {{ prizes|json_encode|raw  }};
+    </script>
+<table class="table table-bordered table-hover table-striped" id="loadPrize">
     <thead>
         <tr>
-            <td>element</td>
+            <td>Prize</td>
+            <td>Element</td>
             <td>x</td>
             <td>y</td>
             <td>z</td>
             <td>actions</td>
         </tr>
     </thead>
-    {%for subelement in subelements%}
+    {%for subelement in forms%}
     <tr>
         <td>
             {%set formId = 'subelement'~subelement.id %} 
-               
+            <input type="text"  name="prize" required="required" class="span2" value="{{subelement.prize}}" disabled="">
+        </td>
+        <td>
+            <input type="text"  name="element" required="required" class="span2" value="{{subelement.element}}" disabled="">   
             {{form_widget(subelement.form['element'], {attr:{form: formId} })}}
         </td>
         <td>
@@ -40,8 +47,21 @@
     <tr>
         <td>
             {%set formId = 'subelementNew' %} 
-               
-            {{form_widget(newForm['element'], {attr:{form: formId} })}}
+            <select size="1" required="true" class="span2" name="prize">
+                        {% for prize in entities %}
+                                    <option value="{{ prize.id }}">{{ prize.name }}</option>
+                        {% endfor %}
+            </select>
+                               
+        </td>
+        <td>
+            
+              <select size="1" required="true" class="span2" name="element" form="{{formId}}">
+                       {% for element in prizes|first %}
+                                        <option value="{{ element.id }}">{{ element.name }}</option>
+                       {% endfor %}
+              </select>  
+            
         </td>
         <td>
             {{form_widget(newForm['x'], {attr:{form: formId} })}}
@@ -54,6 +74,7 @@
         </td>
         <td>
              <div style="display: none">
+                 {{form_widget(newForm['element'])}}
                     <form id="{{formId}}" method="POST" action="{{path('add_single_subelement')}}">
                         {{form_rest(newForm)}}
                     </form>

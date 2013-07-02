@@ -76,7 +76,8 @@ class PrizeSegmentController extends Controller
             $segmentsForm[$oneSegment->id] = $this->createForm(new SegmentType(), $oneSegment)
             ->createView();
         }
-
+        
+        
         return array(
             'segments_form' => $segmentsForm,
             'allSegments' => $allSegments,
