@@ -9,6 +9,7 @@
         <import resource="services.xml"/>
     </imports>    
     <parameters>
+	<parameter key="gala.url">gala.my</parameter>
         <!-- Документы -->
         <parameter key="registersurl">gala.my/registers</parameter>
 	<parameter key="documentsurl">gala.my/documents</parameter>

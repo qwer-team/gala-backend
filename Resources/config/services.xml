@@ -62,8 +62,37 @@
         <parameter key="games.flipper_show.url">%flippersurl%/{id}.json</parameter>
 	<parameter key="games.flipper_update.url">%flippersurl%/{id}/update.json</parameter>
         <!-- -->
+        <!-- Info -->
+        <parameter key="ingo.message_service.class">Galaxy\BackendBundle\Service\InfoService</parameter>
+        <parameter key="info.messages_list.url">%gala.url%/api/messages/{page}/lengths/{length}.json</parameter>
+        <parameter key="info.messages_count.url">%gala.url%/api/message/count.json</parameter>
+        <parameter key="info.message_create.url">%gala.url%/api/message/create.json</parameter>
+        <parameter key="info.message_get.url">%gala.url%/api/messages/{id}.json</parameter>
+        <parameter key="info.message_update.url">%gala.url%/api/messages/{id}/update.json</parameter>
+        <parameter key="info.message_delete.url">%gala.url%/api/messages/{id}/delete.json</parameter>
+        <!-- -->
     </parameters>
     <services>
+        <service id="info.service" class="%ingo.message_service.class%">
+            <call method="setMessagesListUrl">
+                <argument type="string">%info.messages_list.url%</argument>>
+            </call>
+            <call method="setMessagesCountUrl">
+                <argument type="string">%info.messages_count.url%</argument>>
+            </call>
+            <call method="setMessageCreateUrl">
+                <argument type="string">%info.message_create.url%</argument>>
+            </call>
+            <call method="setMessageGetUrl">
+                <argument type="string">%info.message_get.url%</argument>>
+            </call>
+            <call method="setMessageUpdateUrl">
+                <argument type="string">%info.message_update.url%</argument>>
+            </call>
+            <call method="setMessageDeleteUrl">
+                <argument type="string">%info.message_delete.url%</argument>>
+            </call>
+        </service>
         <service id="galaxy.container.aware" abstract="true" class="%galaxy.container.aware.class%" >
             <call method="setContainer">
                 <argument type="service" id="service_container"/>

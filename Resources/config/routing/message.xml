@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="messages_list" pattern="/messages/{page}">
+        <default key="_controller">GalaxyBackendBundle:Info\Message:message</default>
+        <default key="page">1</default>
+        <default key="length">10</default>
+    </route>
+     <route id="new_message" pattern="/message/new">
+        <default key="_controller">GalaxyBackendBundle:Info\Message:new</default>
+    </route>
+    <route id="create_message" pattern="/message/create">
+        <default key="_controller">GalaxyBackendBundle:Info\Message:create</default>
+    </route>
+    <route id="show_message" pattern="/message/show/{id}">
+        <default key="_controller">GalaxyBackendBundle:Info\Message:show</default>
+    </route>
+    <route id="update_message" pattern="/message/update/{id}" methods="POST">
+        <default key="_controller">GalaxyBackendBundle:Info\Message:update</default>
+    </route>
+    <route id="delete_message" pattern="/message/delete/{id}" methods="POST">
+        <default key="_controller">GalaxyBackendBundle:Info\Message:delete</default>
+    </route>
+</routes>

@@ -9,7 +9,13 @@
         <import resource="services.xml"/>
     </imports>    
     <parameters>
-        
+	<parameter key="galaurl">gala.my</parameter>
+        <!-- Документы -->
+        <parameter key="registersurl">gala.my/registers</parameter>
+	<parameter key="documentsurl">gala.my/documents</parameter>
+        <!-- -->
+	<!-- Game -->
+        <parameter key="flippersurl">gala.my/flippers</parameter>
         <!-- -->
     </parameters>
     

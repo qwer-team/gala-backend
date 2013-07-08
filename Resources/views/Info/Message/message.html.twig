@@ -1,0 +1,61 @@
+{% extends 'GalaxyBackendBundle::layout.html.twig' %}
+
+{% block body %} 
+
+    <div style="float:left; width: 800px;">
+            <table class="table table-bordered table-hover table-striped">
+                <thead><tr>
+                        <td>id</td>
+                        <td>theme</td>
+                        <td>title</td>
+                        <td>text</td>
+                        <td>visible</td>
+                        <td>actions</td>
+                    </tr></thead>
+        {% for message in messages%}
+                <tr>
+                    <td>{{message.id}}</td>
+                    <td>{{message.theme}}</td>
+                    <td>{{message.title}}</td>
+                    <td>{{message.text}}</td>
+                    <td>{{message.visible}}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('show_message', {id: message.id}) }}">Изменить</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('delete_message', {id: message.id}) }}">Удалить</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+        {% endfor %}
+            </table>
+             <a href="{{ path('new_message') }}"><button class="btn btn-primary">Создать</button></a><br>
+{% if pagesCnt > 1 %}
+<div class="pagination">
+  <ul>
+    {% if page != 1 %}
+    <li>
+        <a href="{{ path('messages_list', {page: page - 1}) }}">Prev</a>
+    </li>
+    <li><a href="{{ path('messages_list', {page: page - 1}) }}">{{page - 1}}</a></li>
+    {% endif %}
+    
+    {% set blockCnt = (page == 1)? 10 : 11 %}
+    <li class="disabled"><a>{{page}}</a></li>
+    {% for i in 1..blockCnt %}
+        {% if (page + i) <= pagesCnt %}
+            <li><a href="{{ path('messages_list', {page: page + i}) }}">{{page + i}}</a></li>
+        {% endif %}
+    {% endfor %}
+    
+    {% if page != pagesCnt %}
+    <li><a href="{{ path('messages_list', {page: page + 1}) }}">Next</a></li>
+    {% endif %}
+  </ul>
+</div>
+{% endif %}
+        </div>
+{% endblock %}
