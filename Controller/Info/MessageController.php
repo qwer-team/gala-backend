@@ -40,7 +40,14 @@ class MessageController extends Controller
      */
     public function newAction()
     {
-        $form = $this->createForm(new MessageType());
+        $data = array("answers" => array(
+            array("answer" => ""),
+            array("answer" => ""),
+            array("answer" => ""),
+            array("answer" => ""),
+            array("answer" => ""),
+        ));
+        $form = $this->createForm(new MessageType(), $data);
         return array(
             "form" => $form->createView(),
         );
@@ -51,9 +58,16 @@ class MessageController extends Controller
      */
     public function createAction(Request $request)
     {
+        $answers = array("answers" => array(
+            array("answer" => ""),
+            array("answer" => ""),
+            array("answer" => ""),
+            array("answer" => ""),
+            array("answer" => ""),
+        ));
         $infoService = $this->get("info.service");
-        $form = $this->createForm(new MessageType());
-        $form->bindRequest($request);
+        $form = $this->createForm(new MessageType(), $answers);
+        $form->bind($request);
         
         if ($form->isValid()) {
             $data = $form->getData();
@@ -61,6 +75,8 @@ class MessageController extends Controller
             $id = $resp->message->id ;
             $url = $this->generateUrl('show_message', array('id' => $id));
             return $this->redirect($url);
+        }else {
+            echo $form->getErrorsAsString();
         }
         return array(
             "form" => $form->createView(),
@@ -86,16 +102,24 @@ class MessageController extends Controller
      */
     public function updateAction($id, Request $request)
     {
+        $data = array("answers" => array(
+            array("answer" => ""),
+            array("answer" => ""),
+            array("answer" => ""),
+            array("answer" => ""),
+            array("answer" => ""),
+        ));
+        $form = $this->createForm(new MessageType(), $data);
         $infoService = $this->get("info.service");
-        $form = $this->createForm(new MessageType());
         $form->bindRequest($request);
         if ($form->isValid()) {
             $data = $form->getData();
-            $infoService->updateMessage($id, $data);
+            $res = $infoService->updateMessage($id, $data);
             return $this->redirect($this->generateUrl('show_message', array('id' => $id)));
+        } else {
+            echo $form->getErrorsAsString();
         }
         return array(
-            "message" => $message,
             "form" => $form->createView(),
         );
     }

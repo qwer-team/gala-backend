@@ -62,7 +62,7 @@ class InfoService
     public function getMessage($id){
         $url = str_replace("{id}", $id, $this->messageGetUrl);
 
-        $response = json_decode($this->makeRequest($url));
+        $response = json_decode($this->makeRequest($url), true);
         return $response;
     }
 
@@ -92,7 +92,7 @@ class InfoService
         curl_setopt($curl, CURLOPT_HEADER, 0);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         if (!is_null($data)) {
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
         }
         $response = curl_exec($curl);
         curl_close($curl);

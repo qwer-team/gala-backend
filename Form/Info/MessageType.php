@@ -14,13 +14,16 @@ class MessageType extends AbstractType
             ->add('incPoints', 'integer', array(
                 'required' => false,
             ))
+            ->add('answers', 'collection', array(
+                'type' => new AnswerType())
+                    )
             ->add('incPointsActv', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('incPointsProc', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('incPointsMess', 'textarea', array(
                 'required' => false,
@@ -30,7 +33,7 @@ class MessageType extends AbstractType
             ))
             ->add('incOwnElemActv', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('incOwnElemMess', 'textarea', array(
                 'required' => false,
@@ -40,7 +43,7 @@ class MessageType extends AbstractType
             ))
             ->add('incDurationMinElemActv', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('incDurationMinElemMess', 'textarea', array(
                 'required' => false,
@@ -50,7 +53,7 @@ class MessageType extends AbstractType
             ))
             ->add('incFlipAmountActv', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('incFlipAmountMess', 'textarea', array(
                 'required' => false,
@@ -60,7 +63,7 @@ class MessageType extends AbstractType
             ))
             ->add('superjumpAmountActv', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('superjumpAmountMess', 'textarea', array(
                 'required' => false,
@@ -70,7 +73,7 @@ class MessageType extends AbstractType
             ))
             ->add('incDurationAllElemActv', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('incDurationAllElemMess', 'textarea', array(
                 'required' => false,
@@ -80,11 +83,11 @@ class MessageType extends AbstractType
             ))
             ->add('decPointsActv', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('decPointsProc', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('decPointsMess', 'textarea', array(
                 'required' => false,
@@ -94,42 +97,42 @@ class MessageType extends AbstractType
             ))
             ->add('decFlipAmountActv', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('decFlipAmountMess', 'textarea', array(
                 'required' => false,
             ))
             ->add('superjumpCancelActv', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('superjumpCancelMess', 'textarea', array(
                 'required' => false,
             ))
             ->add('activeCancelActv', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('activeCancelMess', 'textarea', array(
                 'required' => false,
             ))
             ->add('firstFlipperActv', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('firstFlipperMess', 'textarea', array(
                 'required' => false,
             ))
             ->add('blackPointActv', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('blackPointMess', 'textarea', array(
                 'required' => false,
             ))
             ->add('delElemGroupActv', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('delElemGroupMess', 'textarea', array(
                 'required' => false,
@@ -139,7 +142,7 @@ class MessageType extends AbstractType
             ))
             ->add('decDurationAllElemActv', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('decDurationAllElemMess', 'textarea', array(
                 'required' => false,
@@ -150,17 +153,20 @@ class MessageType extends AbstractType
             ->add('title', 'text')
             ->add('visible', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('moderatorAccepted', 'checkbox', array(
                 'required' => false,
-                'data' => false,
+                
             ))
             ->add('theme', 'text')
             ->add('age', 'integer', array(
                 'required' => false,
             ))
-            ->add('text', 'text')
+            ->add('text', 'textarea', array(
+                'attr' => array('class' => 'tinymce'),
+                'required' => false,
+            ))
             ->add('image', 'text', array(
                 'required' => false,
             ))
@@ -171,9 +177,6 @@ class MessageType extends AbstractType
                 'required' => false,
             ))
             ->add('questions', 'integer', array(
-                'required' => false,
-            ))
-            ->add('rightAnswer', 'integer', array(
                 'required' => false,
             ))
         ;
