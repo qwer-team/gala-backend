@@ -75,6 +75,7 @@ class InfoService
     
     public function createMessage($data){
         $response = json_decode($this->makeRequest($this->messageCreateUrl, $data));
+        print_r($response);
         return $response;
     }
     

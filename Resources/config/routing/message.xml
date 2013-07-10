@@ -21,7 +21,7 @@
     <route id="update_message" pattern="/message/update/{id}" methods="POST">
         <default key="_controller">GalaxyBackendBundle:Info\Message:update</default>
     </route>
-    <route id="delete_message" pattern="/message/delete/{id}" methods="POST">
+    <route id="delete_message" pattern="/message/delete/{id}">
         <default key="_controller">GalaxyBackendBundle:Info\Message:delete</default>
     </route>
 </routes>
