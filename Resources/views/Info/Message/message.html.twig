@@ -15,14 +15,14 @@
         {% for message in messages%}
                 <tr>
                     <td>{{message.id}}</td>
-                    <td>{{message.theme}}</td>
+                    <td>{{message.theme.title}}</td>
                     <td>{{message.title}}</td>
                     <td>{{message.text|raw}}</td>
                     <td>{{message.visible}}</td>
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('show_message', {id: message.id}) }}">Изменить</a>
+                                <a href="{{ path('show_message', {id: message.id}) }}" target="_blank">Изменить</a>
                             </li>
                             <li>
                                 <a href="{{ path('delete_message', {id: message.id}) }}">Удалить</a>

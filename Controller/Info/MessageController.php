@@ -15,7 +15,7 @@ use Galaxy\BackendBundle\Form\Info\MessageType;
  */
 class MessageController extends Controller
 {
-    
+
     /**
      * @Template()
      */
@@ -25,57 +25,74 @@ class MessageController extends Controller
         $messages = $messageService->getMessagesList($page, $length);
         $count = $messageService->getMessagesCount();
         $pagesCount = ceil($count / $length);
-        
+
         return array(
-              "messages" => $messages,
-              'count' => $count,
-              'pagesCnt' => $pagesCount,
-              'page' => $page,
-              'length' => $length,
+            "messages" => $messages,
+            'count' => $count,
+            'pagesCnt' => $pagesCount,
+            'page' => $page,
+            'length' => $length,
         );
     }
-    
+
     /**
      * @Template()
      */
     public function newAction()
     {
-        $data = array("answers" => array(
-            array("answer" => ""),
-            array("answer" => ""),
-            array("answer" => ""),
-            array("answer" => ""),
-            array("answer" => ""),
-        ));
-        $form = $this->createForm(new MessageType(), $data);
+        $form = $this->getMessageForm();
         return array(
             "form" => $form->createView(),
         );
     }
-    
+
+    private function getMessageForm($message = null)
+    {
+        $infoService = $this->get("info.service");
+        $form = new MessageType();
+        
+        $themes = $infoService->getThemesList();
+        foreach ($themes as $theme) {
+            $themesArr[$theme->id] = $theme->title;
+        }
+        $form->setThemes($themesArr);
+        $data = array("answers" => array(
+                array("answer" => ""),
+                array("answer" => ""),
+                array("answer" => ""),
+                array("answer" => ""),
+                array("answer" => ""),),
+        );
+        
+        return $this->createForm($form, $message === null ? $data : $message);
+    }
+
     /**
      * @Template("GalaxyBackendBundle:Info/Message:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $answers = array("answers" => array(
-            array("answer" => ""),
-            array("answer" => ""),
-            array("answer" => ""),
-            array("answer" => ""),
-            array("answer" => ""),
-        ));
         $infoService = $this->get("info.service");
-        $form = $this->createForm(new MessageType(), $answers);
+        $isRoleContent = $this->get('security.context')->isGranted('ROLE_CONTENT');
+        $form = $this->getMessageForm();
         $form->bind($request);
-        
         if ($form->isValid()) {
             $data = $form->getData();
+            if ($isRoleContent) {
+                $data['moderatorAccepted'] = true;
+            }
+            $storage = $this->get("storage");
+            $img = $data['imgfile'];
+            if (!is_null($img)) {
+                $path = $storage->saveImage($img);
+                $data['img'] = $path;
+                unset($data['imgfile']);
+            }
             $resp = $infoService->createMessage($data);
-            $id = $resp->message->id ;
+            $id = $resp->message->id;
             $url = $this->generateUrl('show_message', array('id' => $id));
             return $this->redirect($url);
-        }else {
+        } else {
             echo $form->getErrorsAsString();
         }
         return array(
@@ -90,7 +107,9 @@ class MessageController extends Controller
     {
         $infoService = $this->get("info.service");
         $message = (array) $infoService->getMessage($id);
-        $form = $this->createForm(new MessageType(), $message);
+        $message['theme'] = $message['theme']['id'];
+        $message['imageDelete'] = false;
+        $form = $this->getMessageForm($message);
         return array(
             "message" => $message,
             "form" => $form->createView(),
@@ -102,18 +121,30 @@ class MessageController extends Controller
      */
     public function updateAction($id, Request $request)
     {
-        $data = array("answers" => array(
-            array("answer" => ""),
-            array("answer" => ""),
-            array("answer" => ""),
-            array("answer" => ""),
-            array("answer" => ""),
-        ));
-        $form = $this->createForm(new MessageType(), $data);
         $infoService = $this->get("info.service");
+        $isRoleContent = $this->get('security.context')->isGranted('ROLE_CONTENT');
+        $form = $this->getMessageForm();
         $form->bindRequest($request);
         if ($form->isValid()) {
             $data = $form->getData();
+            if ($isRoleContent) {
+                $data['moderatorAccepted'] = true;
+            }
+            $storage = $this->get("storage");
+            $img = $data['imgfile'];
+            if (!is_null($img)) {
+                $path = $storage->saveImage($img);
+                $data['img'] = $path;
+                unset($data['imgfile']);
+            } else {
+                $message = $infoService->getMessage($id);
+                $data['img'] = array_key_exists("img",$message) ? $message['img'] : '';
+            }
+            if($data['imageDelete'] && array_key_exists("img",$message)){
+                $storage->deleteImage($message['img']);
+                $data['img'] = Null;
+                $data['imageDelete'] = false;
+            }
             $res = $infoService->updateMessage($id, $data);
             return $this->redirect($this->generateUrl('show_message', array('id' => $id)));
         } else {
@@ -123,8 +154,7 @@ class MessageController extends Controller
             "form" => $form->createView(),
         );
     }
-    
-    
+
     public function deleteAction($id)
     {
         $infoService = $this->get("info.service");

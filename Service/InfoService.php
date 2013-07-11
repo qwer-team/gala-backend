@@ -2,16 +2,28 @@
 
 namespace Galaxy\BackendBundle\Service;
 
-
 class InfoService
 {
+
     private $messagesListUrl;
     private $messagesCountUrl;
     private $messageCreateUrl;
     private $messageUpdateUrl;
     private $messageGetUrl;
     private $messageDeleteUrl;
-    
+    private $themeListUrl;
+    private $themeUrl;
+
+    public function setThemeUrl($themeUrl)
+    {
+        $this->themeUrl = $themeUrl;
+    }
+
+    public function setThemeListUrl($themeListUrl)
+    {
+        $this->themeListUrl = $themeListUrl;
+    }
+
     public function setMessagesListUrl($messagesListUrl)
     {
         $this->messagesListUrl = $messagesListUrl;
@@ -42,7 +54,6 @@ class InfoService
         $this->messageDeleteUrl = $messageDeleteUrl;
     }
 
-            
     public function getMessagesList($page, $length)
     {
         $find = array("{page}", "{length}");
@@ -52,33 +63,50 @@ class InfoService
         $response = json_decode($this->makeRequest($url));
         return $response;
     }
-    
+
+    public function getTheme($id)
+    {
+        $url = str_replace("{id}", $id, $this->themeUrl);
+
+        $response = json_decode($this->makeRequest($url));
+        return $response;
+    }
+
+    public function getThemesList()
+    {
+        $response = json_decode($this->makeRequest($this->themeListUrl));
+        return $response;
+    }
+
     public function getMessagesCount()
     {
         $response = json_decode($this->makeRequest($this->messagesCountUrl));
         return $response;
     }
-    
-    public function getMessage($id){
+
+    public function getMessage($id)
+    {
         $url = str_replace("{id}", $id, $this->messageGetUrl);
 
         $response = json_decode($this->makeRequest($url), true);
         return $response;
     }
 
-    public function deleteMessage($id){
+    public function deleteMessage($id)
+    {
         $url = str_replace("{id}", $id, $this->messageDeleteUrl);
 
         $response = json_decode($this->makeRequest($url));
         return $response;
     }
-    
-    public function createMessage($data){
+
+    public function createMessage($data)
+    {
         $response = json_decode($this->makeRequest($this->messageCreateUrl, $data));
         print_r($response);
         return $response;
     }
-    
+
     public function updateMessage($id, $data)
     {
         $url = str_replace("{id}", $id, $this->messageUpdateUrl);

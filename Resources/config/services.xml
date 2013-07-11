@@ -10,6 +10,8 @@
         <parameter key="remote.service.class">Galaxy\BackendBundle\Service\RemoteService</parameter>
         
         <parameter key="points.in.space">10000000</parameter>
+        <parameter key="image.resize.height">30</parameter>
+        <parameter key="image.resize.width">30</parameter>
         
         <parameter key="segment.update.url">%garilsurl%/gala/segment/reset/</parameter>
         <parameter key="get.segment.url">%garilsurl%/gala/segment/list</parameter>
@@ -70,6 +72,8 @@
         <parameter key="info.message_get.url">%gala.url%/api/messages/{id}.json</parameter>
         <parameter key="info.message_update.url">%gala.url%/api/messages/{id}/update.json</parameter>
         <parameter key="info.message_delete.url">%gala.url%/api/messages/{id}/delete.json</parameter>
+        <parameter key="info.theme_list.url">%gala.url%/api/theme/list.json</parameter>
+        <parameter key="info.theme.url">%gala.url%/api/themes/{id}.json</parameter>
         <!-- -->
     </parameters>
     <services>
@@ -92,6 +96,12 @@
             <call method="setMessageDeleteUrl">
                 <argument type="string">%info.message_delete.url%</argument>>
             </call>
+            <call method="setThemeListUrl">
+                <argument type="string">%info.theme_list.url%</argument>>
+            </call>
+            <call method="setThemeUrl">
+                <argument type="string">%info.theme.url%</argument>>
+            </call>
         </service>
         <service id="galaxy.container.aware" abstract="true" class="%galaxy.container.aware.class%" >
             <call method="setContainer">
@@ -107,6 +117,12 @@
             </call>
             <call method="setrelUrl">
                 <argument type="string" >/images/</argument>
+            </call>
+            <call method="setWidth">
+                <argument type="string" >%image.resize.width%</argument>
+            </call>
+            <call method="setHeight">
+                <argument type="string" >%image.resize.height%</argument>
             </call>
         </service>
     </services>

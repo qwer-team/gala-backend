@@ -3,6 +3,9 @@
 {% block body %}
 <div class="container" style="margin-top: 20px;">
     <form action="{{ path('create_message') }}" method="post" {{ form_enctype(form) }}>
+        {% if is_granted('ROLE_CONTENT') %}
+            {{ form_row(form.moderatorAccepted, { 'attr': {'disabled': 'true', 'checked' : 'checked'} }) }}
+        {% endif %}
 {{form_rest(form)}}
             <br />
             <button type="submit" class="btn btn-primary">Создать</button>
