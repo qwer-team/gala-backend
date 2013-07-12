@@ -13,6 +13,24 @@ class InfoService
     private $messageDeleteUrl;
     private $themeListUrl;
     private $themeUrl;
+    private $templateUrl;
+    private $templateUpdateUrl;
+    private $messageLastIdUrl;
+
+    public function setMessageLastIdUrl($messageLastIdUrl)
+    {
+        $this->messageLastIdUrl = $messageLastIdUrl;
+    }
+
+    public function setTemplateUrl($templateUrl)
+    {
+        $this->templateUrl = $templateUrl;
+    }
+
+    public function setTemplateUpdateUrl($templateUpdateUrl)
+    {
+        $this->templateUpdateUrl = $templateUpdateUrl;
+    }
 
     public function setThemeUrl($themeUrl)
     {
@@ -64,6 +82,12 @@ class InfoService
         return $response;
     }
 
+    public function getMessageLastId()
+    {
+        $response = json_decode($this->makeRequest($this->messageLastIdUrl));
+        return $response;
+    }
+
     public function getTheme($id)
     {
         $url = str_replace("{id}", $id, $this->themeUrl);
@@ -103,7 +127,6 @@ class InfoService
     public function createMessage($data)
     {
         $response = json_decode($this->makeRequest($this->messageCreateUrl, $data));
-        print_r($response);
         return $response;
     }
 
@@ -111,6 +134,18 @@ class InfoService
     {
         $url = str_replace("{id}", $id, $this->messageUpdateUrl);
         $response = json_decode($this->makeRequest($url, $data));
+        return $response;
+    }
+
+    public function getTemplate()
+    {
+        $response = json_decode($this->makeRequest($this->templateUrl));
+        return $response;
+    }
+
+    public function updateTemplate($data)
+    {
+        $response = json_decode($this->makeRequest($this->templateUpdateUrl, $data));
         return $response;
     }
 

@@ -40,31 +40,12 @@ class MessageController extends Controller
      */
     public function newAction()
     {
-        $form = $this->getMessageForm();
+        $infoService = $this->get("info.service");
+        $template = (array) $infoService->getTemplate();
+        $form = $this->getMessageForm(null, $template);
         return array(
             "form" => $form->createView(),
         );
-    }
-
-    private function getMessageForm($message = null)
-    {
-        $infoService = $this->get("info.service");
-        $form = new MessageType();
-        
-        $themes = $infoService->getThemesList();
-        foreach ($themes as $theme) {
-            $themesArr[$theme->id] = $theme->title;
-        }
-        $form->setThemes($themesArr);
-        $data = array("answers" => array(
-                array("answer" => ""),
-                array("answer" => ""),
-                array("answer" => ""),
-                array("answer" => ""),
-                array("answer" => ""),),
-        );
-        
-        return $this->createForm($form, $message === null ? $data : $message);
     }
 
     /**
@@ -73,22 +54,13 @@ class MessageController extends Controller
     public function createAction(Request $request)
     {
         $infoService = $this->get("info.service");
-        $isRoleContent = $this->get('security.context')->isGranted('ROLE_CONTENT');
         $form = $this->getMessageForm();
         $form->bind($request);
         if ($form->isValid()) {
             $data = $form->getData();
-            if ($isRoleContent) {
-                $data['moderatorAccepted'] = true;
-            }
-            $storage = $this->get("storage");
-            $img = $data['imgfile'];
-            if (!is_null($img)) {
-                $path = $storage->saveImage($img);
-                $data['img'] = $path;
-                unset($data['imgfile']);
-            }
-            $resp = $infoService->createMessage($data);
+            $postData = $this->dataProcessing($data);
+            $resp = $infoService->createMessage($postData);
+            $infoService->updateTemplate($postData);
             $id = $resp->message->id;
             $url = $this->generateUrl('show_message', array('id' => $id));
             return $this->redirect($url);
@@ -122,30 +94,16 @@ class MessageController extends Controller
     public function updateAction($id, Request $request)
     {
         $infoService = $this->get("info.service");
-        $isRoleContent = $this->get('security.context')->isGranted('ROLE_CONTENT');
+        $messageLastId = $infoService->getMessageLastId();
         $form = $this->getMessageForm();
         $form->bindRequest($request);
         if ($form->isValid()) {
             $data = $form->getData();
-            if ($isRoleContent) {
-                $data['moderatorAccepted'] = true;
+            $postData = $this->dataProcessing($data, $id);
+            $infoService->updateMessage($id, $postData);
+            if ($messageLastId == $id) {
+                $infoService->updateTemplate($postData);
             }
-            $storage = $this->get("storage");
-            $img = $data['imgfile'];
-            if (!is_null($img)) {
-                $path = $storage->saveImage($img);
-                $data['img'] = $path;
-                unset($data['imgfile']);
-            } else {
-                $message = $infoService->getMessage($id);
-                $data['img'] = array_key_exists("img",$message) ? $message['img'] : '';
-            }
-            if($data['imageDelete'] && array_key_exists("img",$message)){
-                $storage->deleteImage($message['img']);
-                $data['img'] = Null;
-                $data['imageDelete'] = false;
-            }
-            $res = $infoService->updateMessage($id, $data);
             return $this->redirect($this->generateUrl('show_message', array('id' => $id)));
         } else {
             echo $form->getErrorsAsString();
@@ -160,6 +118,52 @@ class MessageController extends Controller
         $infoService = $this->get("info.service");
         $infoService->deleteMessage($id);
         return $this->redirect($this->generateUrl('messages_list'));
+    }
+
+    private function dataProcessing($data, $id = null)
+    {
+        $infoService = $this->get("info.service");
+        $isRoleContent = $this->get('security.context')->isGranted('ROLE_CONTENT');
+        $storage = $this->get("storage");
+        if ($isRoleContent) {
+            $data['moderatorAccepted'] = true;
+        }
+        $img = $data['imgfile'];
+        if (!is_null($img)) {
+            $path = $storage->saveImage($img);
+            $data['img'] = $path;
+            unset($data['imgfile']);
+        } elseif ($data['imageDelete'] && array_key_exists("img", $message)) {
+            $storage->deleteImage($message['img']);
+            $data['img'] = Null;
+            $data['imageDelete'] = false;
+        } elseif ($id !== null) {
+            $message = $infoService->getMessage($id);
+            $data['img'] = array_key_exists("img", $message) ? $message['img'] : '';
+        }
+        return $data;
+    }
+
+    private function getMessageForm($message = null, $template = array())
+    {
+        $infoService = $this->get("info.service");
+        $form = new MessageType();
+
+        $themes = $infoService->getThemesList();
+        foreach ($themes as $theme) {
+            $themesArr[$theme->id] = $theme->title;
+        }
+        $form->setThemes($themesArr);
+        $data = array("answers" => array(
+                array("answer" => ""),
+                array("answer" => ""),
+                array("answer" => ""),
+                array("answer" => ""),
+                array("answer" => ""),),
+        );
+        $data += $template;
+
+        return $this->createForm($form, $message === null ? $data : $message);
     }
 
 }

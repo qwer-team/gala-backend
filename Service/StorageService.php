@@ -11,6 +11,8 @@ class StorageService
 
     private $folder;
     private $relUrl;
+    private $minWidth;
+    private $minHeight;
     private $width;
     private $height;
 
@@ -22,6 +24,16 @@ class StorageService
     public function setHeight($height)
     {
         $this->height = $height;
+    }
+
+    public function setMinWidth($minWidth)
+    {
+        $this->minWidth = $minWidth;
+    }
+
+    public function setMinHeight($minHeight)
+    {
+        $this->minHeight = $minHeight;
     }
 
     public function save(UploadedFile $file)
@@ -51,11 +63,11 @@ class StorageService
         $pathResize = $this->folder . 'resize_' . $fileName;
         $originalImgSize = $imagine->open($path)
                 ->getSize();
-        if ($originalImgSize->getHeight() < $this->height && $originalImgSize->getWidth() < $this->width) {
+        if ($originalImgSize->getHeight() < $this->minHeight && $originalImgSize->getWidth() < $this->minWidth) {
             unlink($path);
             return Null;
         }
-        $size = new Box(100, 100);
+        $size = new Box($this->width, $this->height);
         $imagine->open($path)
                 ->thumbnail($size, \Imagine\Imagick\Image::THUMBNAIL_INSET)
                 ->save($pathResize);
