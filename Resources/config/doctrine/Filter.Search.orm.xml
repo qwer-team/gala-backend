@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Galaxy\BackendBundle\Entity\Filter\Search">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="messageId" type="integer" column="messageId"/>
+    <field name="userId" type="integer" column="userId"/>
+    <field name="theme" type="string" column="theme" length="255"/>
+    <field name="title" type="string" column="title" length="255"/>
+    <field name="visible" type="boolean" column="visible"/>
+    <field name="moderatorAccepted" type="boolean" column="moderatorAccepted"/>
+    <field name="age" type="integer" column="age"/>
+    <field name="text" type="text" column="text"/>
+  </entity>
+</doctrine-mapping>

@@ -21,6 +21,15 @@ class GameRemoteService extends ContainerAware
         $response = json_decode($this->makeRequest($url, $data));
         return $response;
     }
+    
+    public function increaseUserCountMessages($id)
+    {
+        $rawUrl = $this->container->getParameter("game.user_info.increase_message.url");
+        $url = str_replace("{id}", $id, $rawUrl);
+
+        $response = json_decode($this->makeRequest($url));
+        return $response;
+    }
 
 
     private function makeRequest($url, $data = null)

@@ -15,6 +15,9 @@
     <route id="create_message" pattern="/message/create">
         <default key="_controller">GalaxyBackendBundle:Info\Message:create</default>
     </route>
+    <route id="search_message" pattern="/message/search" methods="POST">
+        <default key="_controller">GalaxyBackendBundle:Info\Message:updateSearch</default>
+    </route>
     <route id="show_message" pattern="/message/show/{id}">
         <default key="_controller">GalaxyBackendBundle:Info\Message:show</default>
     </route>

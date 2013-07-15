@@ -7,12 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Galaxy\BackendBundle\Form\Info\MessageType;
+use Galaxy\BackendBundle\Entity\Filter\Search;
+use Galaxy\BackendBundle\Form\Filter\SearchType;
 
-/**
- * Description of MessageController
- *
- * @author root
- */
 class MessageController extends Controller
 {
 
@@ -22,11 +19,21 @@ class MessageController extends Controller
     public function messageAction($page, $length)
     {
         $messageService = $this->get("info.service");
-        $messages = $messageService->getMessagesList($page, $length);
-        $count = $messageService->getMessagesCount();
+        $themes = $messageService->getThemesList();
+        $search = $this->getSearch();
+        foreach ($themes as $theme) {
+            $themesArr[$theme->id] = $theme->title;
+        }
+        $searchForm = new SearchType();
+        $searchForm->setThemes($themesArr);
+        $form = $this->createForm($searchForm, $search);
+        $data = $search->serialize();
+        $messages = $messageService->getMessagesList($page, $length, $data);
+        $count = $messageService->getMessagesCount($data);
         $pagesCount = ceil($count / $length);
 
         return array(
+            "form" => $form->createView(),
             "messages" => $messages,
             'count' => $count,
             'pagesCnt' => $pagesCount,
@@ -34,6 +41,40 @@ class MessageController extends Controller
             'length' => $length,
         );
     }
+
+    public function updateSearchAction(Request $request)
+    {
+        $messageService = $this->get("info.service");
+        $themes = $messageService->getThemesList();
+        $search = $this->getSearch();
+        foreach ($themes as $theme) {
+            $themesArr[$theme->id] = $theme->title;
+        }
+        $searchForm = new SearchType();
+        $searchForm->setThemes($themesArr);
+        $form = $this->createForm($searchForm, $search);
+        $form->bind($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+            $request->getSession()->set('search', $data);
+        }
+
+        return $this->redirect($this->generateUrl('messages_list'));
+    }
+
+    private function getSearch()
+    {
+        $session = $this->getRequest()->getSession();
+        if (!$session->has("search")) {
+            $search = new Search();
+            $session->set("search", $search);
+        } else {
+            $search = $session->get("search");
+        }
+        return $search;
+    }
+
+    
 
     /**
      * @Template()
@@ -54,11 +95,15 @@ class MessageController extends Controller
     public function createAction(Request $request)
     {
         $infoService = $this->get("info.service");
+        $isRoleContent = $this->get('security.context')->isGranted('ROLE_CONTENT');
         $form = $this->getMessageForm();
         $form->bind($request);
         if ($form->isValid()) {
             $data = $form->getData();
-            $postData = $this->dataProcessing($data);
+            if ($isRoleContent) {
+                $data['moderatorAccepted'] = true;
+            }
+            $postData = $this->dataImageProcessing($data);
             $resp = $infoService->createMessage($postData);
             $infoService->updateTemplate($postData);
             $id = $resp->message->id;
@@ -94,12 +139,16 @@ class MessageController extends Controller
     public function updateAction($id, Request $request)
     {
         $infoService = $this->get("info.service");
+        $gameService = $this->get("game.remote_service");
         $messageLastId = $infoService->getMessageLastId();
         $form = $this->getMessageForm();
         $form->bindRequest($request);
         if ($form->isValid()) {
             $data = $form->getData();
-            $postData = $this->dataProcessing($data, $id);
+            if ($data['moderatorAccepted'] == true) {
+                $gameService->increaseUserCountMessages($data['userId']);
+            }
+            $postData = $this->dataImageProcessing($data, $id);
             $infoService->updateMessage($id, $postData);
             if ($messageLastId == $id) {
                 $infoService->updateTemplate($postData);
@@ -120,15 +169,12 @@ class MessageController extends Controller
         return $this->redirect($this->generateUrl('messages_list'));
     }
 
-    private function dataProcessing($data, $id = null)
+    private function dataImageProcessing($data, $id = null)
     {
         $infoService = $this->get("info.service");
-        $isRoleContent = $this->get('security.context')->isGranted('ROLE_CONTENT');
         $storage = $this->get("storage");
-        if ($isRoleContent) {
-            $data['moderatorAccepted'] = true;
-        }
         $img = $data['imgfile'];
+        $message = $infoService->getMessage($id);
         if (!is_null($img)) {
             $path = $storage->saveImage($img);
             $data['img'] = $path;

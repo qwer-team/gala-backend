@@ -72,13 +72,13 @@ class InfoService
         $this->messageDeleteUrl = $messageDeleteUrl;
     }
 
-    public function getMessagesList($page, $length)
+    public function getMessagesList($page, $length, $data)
     {
         $find = array("{page}", "{length}");
         $replace = array($page, $length);
-
         $url = str_replace($find, $replace, $this->messagesListUrl);
-        $response = json_decode($this->makeRequest($url));
+        //echo $this->makeRequest($url, $data);
+        $response = json_decode($this->makeRequest($url, $data));
         return $response;
     }
 
@@ -102,9 +102,9 @@ class InfoService
         return $response;
     }
 
-    public function getMessagesCount()
+    public function getMessagesCount($data)
     {
-        $response = json_decode($this->makeRequest($this->messagesCountUrl));
+        $response = json_decode($this->makeRequest($this->messagesCountUrl, $data));
         return $response;
     }
 
