@@ -7,9 +7,9 @@
     <field name="messageId" type="integer" column="messageId"/>
     <field name="userId" type="integer" column="userId"/>
     <field name="theme" type="string" column="theme" length="255"/>
-    <field name="title" type="string" column="title" length="255"/>
-    <field name="visible" type="boolean" column="visible"/>
-    <field name="moderatorAccepted" type="boolean" column="moderatorAccepted"/>
+    <field name="title" type="integer" column="title" length="255" nullable="true"/>
+    <field name="visible" type="integer" column="visible" nullable="true"/>
+    <field name="moderatorAccepted" type="integer" column="moderatorAccepted"/>
     <field name="age" type="integer" column="age"/>
     <field name="text" type="text" column="text"/>
   </entity>

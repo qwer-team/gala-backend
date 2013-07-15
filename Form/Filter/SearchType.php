@@ -31,11 +31,19 @@ class SearchType extends AbstractType
                 ->add('title', 'text', array(
                     'required' => false,
                 ))
-                ->add('visible', 'checkbox', array(
+                ->add('visible', 'choice', array(
                     'required' => false,
+                    'choices' => array(
+                        '0' => 'Невидим',
+                        '1' => 'Видим',
+                    )
                 ))
-                ->add('moderatorAccepted', 'checkbox', array(
+                ->add('moderatorAccepted', 'choice', array(
                     'required' => false,
+                    'choices' => array(
+                        '0' => 'Не принято',
+                        '1' => 'Принято',
+                    )
                 ))
                ->add('age', 'choice', array(
                    'required' => false,

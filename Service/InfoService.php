@@ -77,7 +77,7 @@ class InfoService
         $find = array("{page}", "{length}");
         $replace = array($page, $length);
         $url = str_replace($find, $replace, $this->messagesListUrl);
-        //echo $this->makeRequest($url, $data);
+       // echo $this->makeRequest($url, $data);
         $response = json_decode($this->makeRequest($url, $data));
         return $response;
     }

@@ -34,14 +34,10 @@ class Search
      */
     private $title;
 
-    /**
-     * @var boolean
-     */
+    
     private $visible;
 
-    /**
-     * @var boolean
-     */
+    
     private $moderatorAccepted;
 
     /**
