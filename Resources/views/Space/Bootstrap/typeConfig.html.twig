@@ -29,11 +29,8 @@
     {% if tag == 'message'%}
         {{ form_widget(form.onCost) }}{{ form_label(form.cost) }}{{ form_widget(form.cost) }}
         <br />
-        {{ form_widget(form.onBet) }}{{ form_label(form.bet) }}{{ form_widget(form.bet) }}{{ form_widget(form.betType) }}
+        {{ form_label(form.bet) }}{{ form_widget(form.bet) }}{{ form_widget(form.betType) }}
         <br />
-        {{ form_widget(form.onReturn) }}{{ form_label(form.returnValue) }}{{ form_widget(form.returnValue) }}{{ form_widget(form.returnInPercent) }}
-        <br />
-        {{ form_widget(form.onNextStep) }}{{ form_label(form.nextStepValue) }}{{ form_widget(form.nextStepValue) }}{{ form_widget(form.nextStepInPercent) }}
     {% endif %}
     {% if tag == 'black'%}
         {{form_row(form.hours, {label: 'Часы'})}}
