@@ -16,7 +16,7 @@ class MenuControl
 
     public function addChild($title, $href, $url = null, $params = array())
     {
-        $menu = $this->menu[count($this->menu) - 1];
+        $menu = end($this->menu);
         $child = new MenuItem($title, $href, $url, $params);
         $menu->setChild($child);
     }
@@ -24,10 +24,33 @@ class MenuControl
     public function addGrandchildren($title, $href, $url = null, $param = array())
     {
         $Grandchildren = new MenuItem($title, $href, $url, $param);
-        $menu = $this->menu[count($this->menu) - 1];
-        $child = $menu->getChild();
-        $child = $child[count($child) - 1];
+        $menu = end($this->menu);
+        $children = $menu->getChildren();
+        $child = end($children);
         $child->setChild($Grandchildren);
+    }
+
+    private function checkActive($menu, $params)
+    {
+        $active = false;
+        $childParams = $menu->getParam();
+        if (count($params) > 0) {
+            foreach ($params as $key => $param) {
+                if (array_key_exists($key, $childParams) &&
+                        $param == $childParams[$key]) {
+                    $active = true;
+                } elseif (/*preg_match("/^(\s*|\d+)$/", $param)*/$param == "" && $key == "id") {
+                    $active = true;
+                }
+            }
+        } else {
+            $active = true;
+        }
+        if ($active) {
+            $menu->setActive('active');
+        }
+
+        return $active;
     }
 
     public function getAllMenu($route, $params)
@@ -35,47 +58,16 @@ class MenuControl
         foreach ($this->menu as $menu) {
             if ($menu->getHref() == $route) {
                 $menu->setActive('active');
-            } elseif ($menu->getChild()) {
-                foreach ($menu->getChild() as $child) {
+            } elseif ($menu->getChildren()) {
+                foreach ($menu->getChildren() as $child) {
                     if ($child->getHref() == $route) {
-                        $active = false;
-                        $childParams = $child->getParam();
-                        if (count($params) > 0) {
-                            foreach ($params as $key => $param) {
-                                if (array_key_exists($key, $childParams) &&
-                                        $param == $childParams[$key]) {
-                                    $active = true;
-                                }
-                            }
-                        } else {
-                            $active = true;
-                        }
-                        if ($active) {
-                            $child->setActive('active');
-                            $menu->setActive('active');
+                        if ($this->checkActive($child, $params)) {
                             break;
                         }
-                    } elseif ($child->getChild()) {
-                        foreach ($child->getChild() as $grandchildren) {
+                    } elseif ($child->getChildren()) {
+                        foreach ($child->getChildren() as $grandchildren) {
                             if ($grandchildren->getHref() == $route) {
-                                $active = false;
-                                $childParams = $grandchildren->getParam();
-                                if (count($params) > 0) {
-                                    foreach ($params as $key => $param) {
-                                        if (array_key_exists($key, $childParams) &&
-                                                $param == $childParams[$key]) {
-                                            $active = true;
-                                        }elseif(preg_match("/^(\s*|\d+)$/", $param) && $key == "id"){
-                                            $active = true;
-                                        }
-                                    }
-                                } else {
-                                    $active = true;
-                                }
-                                if ($active) {
-                                    $grandchildren->setActive('active');
-                                    $child->setActive('active');
-                                    $menu->setActive('active');
+                                if ($this->checkActive($child, $params)) {
                                     break;
                                 }
                             }

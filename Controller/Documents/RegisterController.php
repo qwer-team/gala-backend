@@ -42,5 +42,27 @@ class RegisterController extends Controller
         }
         return $this->redirect($this->generateUrl('show_register', array('id' => $id)));
     }
+    
+    /**
+     * @Template()
+     */
+    public function showRateAction(Request $request){
+        $documentsService = $this->get("documents.remote_service");
+        $rate = $documentsService->getRate();
+        
+        return array("rate" => $rate);
+    }
+    
+    /**
+     * @Template("GalaxyBackendBundle:Documents/Register:showRate.html.twig")
+     */
+    public function updateRateAction(Request $request){
+        $documentsService = $this->get("documents.remote_service");
+        
+        $value = $request->request->get("value");
+        $rate = $documentsService->updateRate($value);
+        
+        return array("rate" => $rate);
+    }
 
 }

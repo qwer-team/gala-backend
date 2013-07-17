@@ -8,9 +8,10 @@ class MenuItem
     private $title;
     private $href;
     private $url;
-    private $child = array();
+    private $children = array();
     private $active;
     private $param = array();
+    private $parent;
 
     function __construct($title, $href, $url, $param = array())
     {
@@ -20,14 +21,15 @@ class MenuItem
         $this->param = $param;
     }
 
-    public function getChild()
+    public function getChildren()
     {
-        return $this->child;
+        return $this->children;
     }
 
     public function setChild(MenuItem $child)
     {
-        $this->child[] = $child;
+        $this->children[] = $child;
+        $child->setParent($this);
     }
 
     public function getTitle()
@@ -68,6 +70,9 @@ class MenuItem
     public function setActive($active)
     {
         $this->active = $active;
+        if($this->parent){
+            $this->parent->setActive(true);
+        }
     }
 
     public function getParam()
@@ -82,7 +87,12 @@ class MenuItem
 
     public function isVisible()
     {
-        return !is_null($this->url) || count($this->child);
+        return !is_null($this->url) || count($this->children);
+    }
+    
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
     }
 
 }

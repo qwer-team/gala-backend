@@ -26,7 +26,7 @@
     <div class="tab-content">
         {% for menu in allMenu if menu.isVisible()%}
             <div class="tab-pane {% if menu.active %}active{% endif %}" id="{{menu.href}}">
-                {% if  menu.child %}
+                {% if  menu.children %}
                     <div class="navbar-inner">
                         <div class="container">
                             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -36,7 +36,7 @@
                             </button>
                             <div class="nav-collapse collapse">
                                 <ul class="nav nav-tabs" id="myTab2">
-                                    {% for child in menu.child %}
+                                    {% for child in menu.children %}
                                         {% if child.isVisible()%}
                                         {% if child.url %}
                                             <li {% if child.active %}class="active"{% endif %}><a href="{{ path(child.href, child.param) }}">{{child.title}}</a></li>
@@ -50,9 +50,9 @@
                         </div>
                     </div>
                     <div class="tab-content">
-                        {% for child in menu.child if child.url == false %}
+                        {% for child in menu.children if child.url == false %}
                             <div class="tab-pane {% if child.active %}active{% endif %}" id="{{child.href}}">
-                            {% if  child.child %}
+                            {% if  child.children %}
                                 <div class="navbar-inner">
                                     <div class="container">
                                         <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -62,7 +62,7 @@
                                         </button>
                                         <div class="nav-collapse collapse">
                                             <ul class="nav nav-tabs" id="myTab3">
-                                                {% for grandchildren in child.child %}
+                                                {% for grandchildren in child.children %}
                                                     {% if grandchildren.isVisible()%}
                                                     {% if grandchildren.url %}
                                                         <li {% if grandchildren.active %}class="active"{% endif %}><a href="{{ path(grandchildren.href, grandchildren.param) }}">{{grandchildren.title}}</a></li>
@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                                 <div class="tab-content">
-                                    {% for grandchildren in child.child if grandchildren.url == false%}
+                                    {% for grandchildren in child.children if grandchildren.url == false%}
                                         <div class="tab-pane {% if grandchildren.active %}active{% endif %}" id="{{grandchildren.href}}">{{grandchildren.title}}</div>
                                     {% endfor %}
                                 </div>

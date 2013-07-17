@@ -13,6 +13,7 @@
         <!-- Документы -->
         <parameter key="registersurl">gala.my/registers</parameter>
 	<parameter key="documentsurl">gala.my/documents</parameter>
+        <parameter key="documents.rate_url">gala.my/api</parameter>
         <!-- -->
 	<!-- Game -->
         <parameter key="flippersurl">gala.my/flippers</parameter>

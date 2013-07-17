@@ -55,6 +55,7 @@ class DefaultController extends Controller
             $menu->addChild('Активный', 'show_register', true, array("id" => 1));
             $menu->addChild('Безопасный', 'show_register', true, array("id" => 2));
             $menu->addChild('Депозитный', 'show_register', true, array("id" => 3));
+            $menu->addChild('Курс', 'show_rate', true);
         $menu->addMenu('Страхование', 'noroute24');
         $menu->addMenu('Администрирование', 'noroute25');
         $menu->addMenu('Документы', 'noroute26');
