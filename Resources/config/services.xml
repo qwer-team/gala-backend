@@ -59,6 +59,9 @@
         <parameter key="documents.document_update.url">%documentsurl%/{id}/update.json</parameter>
         <parameter key="documents.document_approve.url">%documentsurl%/{id}/approve.json</parameter>
         <parameter key="documents.document_return.url">%documentsurl%/{id}/return.json</parameter>
+        <parameter key="documents.rate_url">http://demo10.qwer.com.ua/api</parameter>
+        <parameter key="documents.get_rate.url">%documents.rate_url%/rate.json</parameter>
+        <parameter key="documents.update_rate.url">%documents.rate_url%/rate/update.json</parameter>
         <!-- -->
         <!-- Game -->
         <parameter key="game.remote_service.class">Galaxy\BackendBundle\Service\GameRemoteService</parameter>

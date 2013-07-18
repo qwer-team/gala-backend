@@ -37,8 +37,9 @@ class DocumentsRemoteService extends ContainerAware
         $response = json_decode($this->makeRequest($url));
         return $response;
     }
-    
-    public function getDocument($id){
+
+    public function getDocument($id)
+    {
         $rawUrl = $this->container->getParameter("documents.document_show.url");
         $url = str_replace("{id}", $id, $rawUrl);
 
@@ -50,43 +51,63 @@ class DocumentsRemoteService extends ContainerAware
     {
         $rawUrl = $this->container->getParameter("documents.document_count.url");
         $find = array("{type}");
-        $replace = array( $type);
+        $replace = array($type);
         $url = str_replace($find, $replace, $rawUrl);
-        
+
         $response = json_decode($this->makeRequest($url));
         return $response->count;
     }
-    
-    public function createDocument($type, $data){
+
+    public function createDocument($type, $data)
+    {
         $rawUrl = $this->container->getParameter("documents.document_create.url");
         $url = str_replace("{type}", $type, $rawUrl);
 
         $response = json_decode($this->makeRequest($url, $data));
         return $response;
     }
-    
+
     public function updateDocument($id, $data)
     {
         $rawUrl = $this->container->getParameter("documents.document_update.url");
         $url = str_replace("{id}", $id, $rawUrl);
-        
+
         $response = json_decode($this->makeRequest($url, $data));
         return $response;
     }
-    
-    public function approveDocument($id){
+
+    public function approveDocument($id)
+    {
         $rawUrl = $this->container->getParameter("documents.document_approve.url");
         $url = str_replace("{id}", $id, $rawUrl);
 
         $response = json_decode($this->makeRequest($url));
         return $response;
     }
-    
-    public function returnDocument($id){
+
+    public function returnDocument($id)
+    {
         $rawUrl = $this->container->getParameter("documents.document_return.url");
         $url = str_replace("{id}", $id, $rawUrl);
 
         $response = json_decode($this->makeRequest($url));
+        return $response;
+    }
+
+    public function getRate()
+    {
+        $url = $this->container->getParameter("documents.get_rate.url");
+
+        $response = json_decode($this->makeRequest($url), true);
+        return $response;
+    }
+
+    public function updateRate($value)
+    {
+        $url = $this->container->getParameter("documents.update_rate.url");
+
+        $data = array("value" => $value);
+        $response = json_decode($this->makeRequest($url, $data), true);
         return $response;
     }
 
