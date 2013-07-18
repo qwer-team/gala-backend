@@ -71,7 +71,7 @@ class MenuItem
     {
         $this->active = $active;
         if($this->parent){
-            $this->parent->setActive(true);
+            $this->parent->setActive($active);
         }
     }
 

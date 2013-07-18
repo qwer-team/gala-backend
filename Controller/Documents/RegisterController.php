@@ -60,9 +60,9 @@ class RegisterController extends Controller
         $documentsService = $this->get("documents.remote_service");
         
         $value = $request->request->get("value");
-        $rate = $documentsService->updateRate($value);
+        $documentsService->updateRate($value);
         
-        return array("rate" => $rate);
+        return $this->redirect($this->generateUrl('show_rate'));
     }
 
 }
