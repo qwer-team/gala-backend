@@ -5,8 +5,8 @@
     <h3>id {{message.id}}</h3>
     Картинка :{% if "img" in message|keys %}<img src="{{message.img}}"/><br>{% endif %}
     <form action="{{ path('update_message', {'id': message.id}) }}" method="post" {{ form_enctype(form) }}>
-        {% if  message.moderatorAccepted %}
-            {{ form_row(form.moderatorAccepted, { 'attr': {'disabled': 'true'} }) }}
+        {% if  message.moderatorAccepted is defined%}
+            {{ form_row(form.moderatorAccepted, { 'attr': {'disabled': message.moderatorAccepted} }) }}
         {% endif %}
 {{form_rest(form)}}
             <br>

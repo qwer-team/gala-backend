@@ -30,6 +30,25 @@
         {{ form_row(form.points) }}
         {{ form_row(form.cost) }}
         {{ form_row(form.notificationZeroBalance) }}
+
+        {% elseif register['id'] == 4 %}
+        
+        {{ form_row(form.title) }}
+        {{ form_row(form.pointsTypeName) }}
+        {{ form_row(form.start) }}
+        {{ form_row(form.accountHint) }}
+
+        {% elseif register['id'] == 5 %}
+        
+        {{ form_row(form.title) }}
+        {{ form_row(form.pointsTypeName) }}
+        {{ form_row(form.start) }}
+        {{ form_row(form.accountHint) }}
+        {{ form_row(form.pointsTypeHint) }}
+        {{ form_row(form.textPaymentService) }}
+        {{ form_row(form.points) }}
+        {{ form_row(form.cost) }}
+        {{ form_row(form.notificationZeroBalance) }}
 {% endif %}
         <br />
 <button class="btn btn-primary" type="submit">Сохранить</button>

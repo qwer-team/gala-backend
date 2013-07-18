@@ -28,7 +28,7 @@ class MessageController extends Controller
         $searchForm->setThemes($themesArr);
         $form = $this->createForm($searchForm, $search);
         $data = $search->serialize();
-        $messages = $messageService->getMessagesList($page, $length, $data);
+        $messages = (array)$messageService->getMessagesList($page, $length, $data);
         $count = $messageService->getMessagesCount($data);
         $pagesCount = ceil($count / $length);
 
@@ -123,8 +123,8 @@ class MessageController extends Controller
     public function showAction($id)
     {
         $infoService = $this->get("info.service");
-        $message = (array) $infoService->getMessage($id);
-        $message['theme'] = $message['theme']['id'];
+        $message = $infoService->getMessage($id);
+        $message['theme'] = array_key_exists("theme", $message) ? $message['theme']['id'] : '' ;
         $message['imageDelete'] = false;
         $form = $this->getMessageForm($message);
         return array(
@@ -140,13 +140,16 @@ class MessageController extends Controller
     {
         $infoService = $this->get("info.service");
         $gameService = $this->get("game.remote_service");
+        $message = $infoService->getMessage($id);
         $messageLastId = $infoService->getMessageLastId();
         $form = $this->getMessageForm();
         $form->bindRequest($request);
         if ($form->isValid()) {
             $data = $form->getData();
-            if ($data['moderatorAccepted'] == true) {
+            if ($data['moderatorAccepted'] == true && $message["moderatorAccepted"] != true) {
                 $gameService->increaseUserCountMessages($data['userId']);
+            } elseif ($message["moderatorAccepted"] == true) {
+                $data['moderatorAccepted'] = true;
             }
             $postData = $this->dataImageProcessing($data, $id);
             $infoService->updateMessage($id, $postData);
@@ -184,7 +187,6 @@ class MessageController extends Controller
             $data['img'] = Null;
             $data['imageDelete'] = false;
         } elseif ($id !== null) {
-            $message = $infoService->getMessage($id);
             $data['img'] = array_key_exists("img", $message) ? $message['img'] : '';
         }
         return $data;
