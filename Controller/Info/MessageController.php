@@ -132,6 +132,19 @@ class MessageController extends Controller
             "form" => $form->createView(),
         );
     }
+    
+    /**
+     * @Template()
+     */
+    public function previewAction($id)
+    {
+        $infoService = $this->get("info.service");
+        $message = $infoService->getMessage($id);
+        return array(
+            "message" => $message,
+            
+        );
+    }
 
     /**
      * @Template("GalaxyBackendBundle:Info/Message:show.html.twig")

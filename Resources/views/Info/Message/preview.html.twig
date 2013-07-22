@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -35,29 +36,13 @@
     {% endblock %}
 
   </head>
-<body data-spy="scroll" data-target=".bs-docs-sidebar">
-      
-    {% block menu %}
-       {% render controller("GalaxyBackendBundle:Default:menu", {'route': app.request.get('_route'), 'params': app.request.get('_route_params')})  %}
-    
-    {% endblock %}
+{% block body %}
+<div class="container" style="margin-top: 20px;">
+    <h3>id {{message.id}}</h3>
+    {% if "img" in message|keys %}<img src="{{message.img}}"/><br>{% endif %}
+    {{ message.text|raw }}
+<br />
 
-
-    
-  <div class="container">
-
-     
-            {% block body %} {% endblock %}
-  </div>
-        <!-- Footer
-    ================================================== -->
-   {% block footer %}
-        <footer class="footer">
-          <div class="container">
-            <p class="pull-right"><a href="#">Back to top</a></p>        
-            {% render controller("GalaxyBackendBundle:Default:footer") %}
-          </div>
-        </footer> 
-    {% endblock %}
-  </body>
+</div>
+{% endblock body %}
 </html>
