@@ -3,9 +3,99 @@
 
 {% block body %}
 <form method="post" action="{{path('flipper_update', {'id': flipper['id']})}}" {{ form_enctype(form) }}>
-    {{form_rest(form)}}
+    {{form_row(form.title)}}
+    {{form_row(form.maxJump)}}
+    {{form_row(form.costJump)}}
+    {% if flipper.id == 1 %}
+        {{form_row(form.impossibleJumpHint)}}
+        {{form_row(form.paymentFromDeposit)}}
+    {% elseif flipper.id == 2 %}
+        {{form_row(form.journalDuration)}}
+        {{form_row(form.rentCost)}}
+        {{form_row(form.rentDuration)}}
+        {{form_row(form.activeAccLess)}}
+        {{form_row(form.activeAccHint)}}
+        {{form_row(form.countRentMess)}}
+        {{form_row(form.radarCost)}}
+        {{form_row(form.radarSpec)}}
+        {{form_row(form.nextPointDistance)}}
+        {{form_row(form.firstLeftBorder)}}
+        {{form_row(form.secondLeftBorder)}}
+        {{form_row(form.firstRightBorder)}}
+        {{form_row(form.secondRightBorder)}}
+        {{form_row(form.distanceHint)}}
+        {{form_row(form.secondZoneDuration1)}}
+        {{form_row(form.secondZoneCost1)}}
+        {{form_row(form.secondZoneSpec1)}}
+        {{form_row(form.secondZoneDuration2)}}
+        {{form_row(form.secondZoneCost2)}}
+        {{form_row(form.secondZoneSpec2)}}
+        {{form_row(form.secondZoneDuration3)}}
+        {{form_row(form.secondZoneCost3)}}
+        {{form_row(form.secondZoneSpec3)}}
+        {{form_row(form.secondZoneDuration4)}}
+        {{form_row(form.secondZoneCost4)}}
+        {{form_row(form.secondZoneSpec4)}}
+    {% elseif flipper.id == 3 %}
+        {{form_row(form.journalDuration)}}
+        {{form_row(form.rentCost)}}
+        {{form_row(form.rentDuration)}}
+        {{form_row(form.countRentMess)}}
+        {{form_row(form.activeAccLess)}}
+        {{form_row(form.activeAccHint)}}
+        {{form_row(form.countRentMess)}}
+        {{form_row(form.radarCost)}}
+        {{form_row(form.radarSpec)}}
+        {{form_row(form.nextPointDistance)}}
+        {{form_row(form.firstLeftBorder)}}
+        {{form_row(form.secondLeftBorder)}}
+        {{form_row(form.firstRightBorder)}}
+        {{form_row(form.secondRightBorder)}}
+        {{form_row(form.distanceHint)}}
+        {{form_row(form.searchZoneCost)}}
+        {{form_row(form.searchZoneSpec)}}
+        
+        {{form_row(form.leftBorderSearchX)}}
+        {{form_row(form.rightBorderSearchX)}}
+        {{form_row(form.deltaSearchX)}}
+        {{form_row(form.leftBorderSearchY)}}
+        {{form_row(form.rightBorderSearchY)}}
+        {{form_row(form.deltaSearchY)}}
+        {{form_row(form.leftBorderSearchZ)}}
+        {{form_row(form.rightBorderSearchZ)}}
+        {{form_row(form.deltaSearchZ)}}
+        {{form_row(form.incLeftSearchRadius)}}
+        {{form_row(form. incRightSearchRadius)}}
+        
+        {{form_row(form.firstZoneDuration1)}}
+        {{form_row(form.firstZoneCost1)}}
+        {{form_row(form.firstZoneSpec1)}}
+        {{form_row(form.firstZoneDuration2)}}
+        {{form_row(form.firstZoneCost2)}}
+        {{form_row(form.firstZoneSpec2)}}
+        {{form_row(form.firstZoneDuration3)}}
+        {{form_row(form.firstZoneCost3)}}
+        {{form_row(form.firstZoneSpec3)}}
+        {{form_row(form.firstZoneDuration4)}}
+        {{form_row(form.firstZoneCost4)}}
+        {{form_row(form.firstZoneSpec4)}}
+        
+        {{form_row(form.secondZoneDuration1)}}
+        {{form_row(form.secondZoneCost1)}}
+        {{form_row(form.secondZoneSpec1)}}
+        {{form_row(form.secondZoneDuration2)}}
+        {{form_row(form.secondZoneCost2)}}
+        {{form_row(form.secondZoneSpec2)}}
+        {{form_row(form.secondZoneDuration3)}}
+        {{form_row(form.secondZoneCost3)}}
+        {{form_row(form.secondZoneSpec3)}}
+        {{form_row(form.secondZoneDuration4)}}
+        {{form_row(form.secondZoneCost4)}}
+        {{form_row(form.secondZoneSpec4)}}
+    {% endif %}
 
         <br />
 <button class="btn btn-primary" type="submit">Сохранить</button>
 </form>
 {% endblock body %}
+            
