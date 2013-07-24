@@ -73,6 +73,17 @@ class DefaultController extends Controller
         return $this->render('GalaxyBackendBundle:Default:menu.html.twig', array('allMenu' => $allMenu));
     }
     
+    public function contentAction($route, $params)
+    {
+        $menu = new MenuControl();
+        $menu->addMenu('Сообщения', 'noroute1');
+            $menu->addChild('Список', 'messages_list', true);
+               
+        $allMenu = $menu->getAllMenu($route, $params);
+        return $this->render('GalaxyBackendBundle:Default:menu.html.twig', array('allMenu' => $allMenu));
+    }
+
+
     public function footerAction()
     {
         return $this->render('GalaxyBackendBundle:Default:footer.html.twig');
