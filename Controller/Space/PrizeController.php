@@ -92,5 +92,12 @@ class PrizeController extends Controller
         $url = $this->generateUrl("prize_list");
         return $this->redirect($url);
     }
+    
+    /**
+     * @Template()
+     */
+    public function loadingAction(){
+        return array();
+    }
 
 }
