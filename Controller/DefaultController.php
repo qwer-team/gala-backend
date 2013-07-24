@@ -48,15 +48,20 @@ class DefaultController extends Controller
                 $menu->addGrandchildren('-Период для всех', 'type_config', true, array('tag' => 'minus_all_period'));
         $menu->addMenu('Флиперы', 'noroute17');
             $menu->addChild('Первый', 'flipper_show', true, array("id" => 1));
-            $menu->addChild('Второй', 'noroute20');
-            $menu->addChild('Третий', 'noroute21');
+            $menu->addChild('Второй', 'flipper_show', true, array("id" => 2));
+            $menu->addChild('Третий', 'flipper_show', true, array("id" => 3));
             $menu->addChild('Четвертый', 'noroute22');
             $menu->addChild('Пятый', 'noroute23');
         $menu->addMenu('Счета', 'noroute18');
             $menu->addChild('Активный', 'show_register', true, array("id" => 1));
             $menu->addChild('Безопасный', 'show_register', true, array("id" => 2));
             $menu->addChild('Депозитный', 'show_register', true, array("id" => 3));
+
+            $menu->addChild('Транзитный активный', 'show_register', true, array("id" => 4));
+            $menu->addChild('Транзитный безопасный', 'show_register', true, array("id" => 5));
+
             $menu->addChild('Курс', 'show_rate', true);
+
         $menu->addMenu('Страхование', 'noroute24');
         $menu->addMenu('Администрирование', 'noroute25');
         $menu->addMenu('Документы', 'noroute26');

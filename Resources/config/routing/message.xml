@@ -21,6 +21,9 @@
     <route id="show_message" pattern="/message/show/{id}">
         <default key="_controller">GalaxyBackendBundle:Info\Message:show</default>
     </route>
+    <route id="preview_message" pattern="/message/preview/{id}">
+        <default key="_controller">GalaxyBackendBundle:Info\Message:preview</default>
+    </route>
     <route id="update_message" pattern="/message/update/{id}" methods="POST">
         <default key="_controller">GalaxyBackendBundle:Info\Message:update</default>
     </route>

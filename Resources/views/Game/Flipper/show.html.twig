@@ -3,9 +3,143 @@
 
 {% block body %}
 <form method="post" action="{{path('flipper_update', {'id': flipper['id']})}}" {{ form_enctype(form) }}>
-    {{form_rest(form)}}
+    {{form_row(form.title)}}
+    {{form_row(form.maxJump)}}
+    {{form_row(form.costJump)}}
+    {% if flipper.id == 1 %}
+        {{form_row(form.impossibleJumpHint)}}
+        {{form_row(form.paymentFromDeposit)}}
+    {% elseif flipper.id == 2 %}
+        {{form_row(form.journalDuration)}}
+        {{form_row(form.rentCost)}}
+        {{form_row(form.rentDuration)}}
+        {{form_row(form.activeAccLess)}}
+        {{form_row(form.activeAccHint)}}
+        {{form_row(form.countRentMess)}}
+        {{form_row(form.radarCost)}}
+        {{form_row(form.radarSpec)}}
+        {{form_row(form.nextPointDistance)}}
+        {{form_row(form.firstLeftBorder)}}
+        {{form_row(form.secondLeftBorder)}}
+        {{form_row(form.firstRightBorder)}}
+        {{form_row(form.secondRightBorder)}}
+        {{form_row(form.distanceHint)}}
+        <p>Вторая автоматическая зона перемещения</p>
+        <table>
+            <tr>
+                <td>{{form_row(form.secondZoneDuration1)}}</td>
+                <td>{{form_row(form.secondZoneCost1)}}</td>
+                <td>{{form_row(form.secondZoneSpec1)}}</td>
+            </tr>
+            <tr>
+                <td>{{form_row(form.secondZoneDuration2)}}</td>
+                <td>{{form_row(form.secondZoneCost2)}}</td>
+                <td>{{form_row(form.secondZoneSpec2)}}</td>
+            </tr>
+            <tr>
+                <td>{{form_row(form.secondZoneDuration3)}}</td>
+                <td>{{form_row(form.secondZoneCost3)}}</td>
+                <td>{{form_row(form.secondZoneSpec3)}}</td>
+            </tr>
+            <tr>
+                <td>{{form_row(form.secondZoneDuration4)}}</td>
+                <td>{{form_row(form.secondZoneCost4)}}</td>
+                <td>{{form_row(form.secondZoneSpec4)}}</td>
+            </tr>
+        </table>
+    {% elseif flipper.id == 3 %}
+        {{form_row(form.journalDuration)}}
+        {{form_row(form.rentCost)}}
+        {{form_row(form.rentDuration)}}
+        {{form_row(form.countRentMess)}}
+        {{form_row(form.activeAccLess)}}
+        {{form_row(form.activeAccHint)}}
+        {{form_row(form.countRentMess)}}
+        {{form_row(form.radarCost)}}
+        {{form_row(form.radarSpec)}}
+        {{form_row(form.nextPointDistance)}}
+        {{form_row(form.firstLeftBorder)}}
+        {{form_row(form.secondLeftBorder)}}
+        {{form_row(form.firstRightBorder)}}
+        {{form_row(form.secondRightBorder)}}
+        {{form_row(form.distanceHint)}}
+        {{form_row(form.searchZoneCost)}}
+        {{form_row(form.searchZoneSpec)}}
+        <p><strong>Окрестность точки в зоне поиска</strong></p>
+        <table>
+            <tr>
+                <td>{{form_row(form.leftBorderSearchX)}}</td>
+                <td>{{form_row(form.rightBorderSearchX)}}</td>
+                <td>{{form_row(form.deltaSearchX)}}</td>
+            </tr>
+            <tr>
+                <td>{{form_row(form.leftBorderSearchY)}}</td>
+                <td>{{form_row(form.rightBorderSearchY)}}</td>
+                <td>{{form_row(form.deltaSearchY)}}</td>
+            </tr>
+            <tr>
+                <td>{{form_row(form.leftBorderSearchZ)}}</td>
+                <td>{{form_row(form.rightBorderSearchZ)}}</td>
+                <td>{{form_row(form.deltaSearchZ)}}</td>
+            </tr>
+            <tr>
+                <td> {{form_row(form.incLeftSearchRadius)}}</td>
+                <td>{{form_row(form. incRightSearchRadius)}}</td>
+                
+            </tr>
+        </table>
+       
+        
+        <p><strong>Первая автоматическая зона перемещения</strong></p>
+        <table>
+            <tr>
+                <td>{{form_row(form.firstZoneDuration1)}}</td>
+                <td>{{form_row(form.firstZoneCost1)}}</td>
+                <td>{{form_row(form.firstZoneSpec1)}}</td>
+            </tr>
+            <tr>
+                <td>{{form_row(form.firstZoneDuration2)}}</td>
+                <td>{{form_row(form.firstZoneCost2)}}</td>
+                <td>{{form_row(form.firstZoneSpec2)}}</td>
+            </tr>
+            <tr>
+                <td>{{form_row(form.firstZoneDuration3)}}</td>
+                <td>{{form_row(form.firstZoneCost3)}}</td>
+                <td>{{form_row(form.firstZoneSpec3)}}</td>
+            </tr>
+            <tr>
+                <td>{{form_row(form.firstZoneDuration4)}}</td>
+                <td>{{form_row(form.firstZoneCost4)}}</td>
+                <td>{{form_row(form.firstZoneSpec4)}}</td>
+            </tr>
+        </table>
+        <p><strong>Вторая автоматическая зона перемещения</strong></p>
+        <table>
+            <tr>
+                <td>{{form_row(form.secondZoneDuration1)}}</td>
+                <td>{{form_row(form.secondZoneCost1)}}</td>
+                <td>{{form_row(form.secondZoneSpec1)}}</td>
+            </tr>
+            <tr>
+                <td>{{form_row(form.secondZoneDuration2)}}</td>
+                <td>{{form_row(form.secondZoneCost2)}}</td>
+                <td>{{form_row(form.secondZoneSpec2)}}</td>
+            </tr>
+            <tr>
+                <td>{{form_row(form.secondZoneDuration3)}}</td>
+                <td>{{form_row(form.secondZoneCost3)}}</td>
+                <td>{{form_row(form.secondZoneSpec3)}}</td>
+            </tr>
+            <tr>
+                <td>{{form_row(form.secondZoneDuration4)}}</td>
+                <td>{{form_row(form.secondZoneCost4)}}</td>
+                <td>{{form_row(form.secondZoneSpec4)}}</td>
+            </tr>
+        </table>
+    {% endif %}
 
         <br />
 <button class="btn btn-primary" type="submit">Сохранить</button>
 </form>
 {% endblock body %}
+            

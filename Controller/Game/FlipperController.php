@@ -30,14 +30,11 @@ class FlipperController extends Controller
      */
     public function updateAction(Request $request, $id){
         $gameService = $this->get("game.remote_service");
-        $flipper = (array)$gameService->getFlipper($id);
-        $form = $this->createForm( new FlipperType(), $flipper);
+        $form = $this->createForm( new FlipperType());
         $form->bindRequest($request);
-        
         if($form->isValid()){
             $data = $form->getData();
-            unset($data['id']);
-            $response = $gameService->updateFlipper($id, $data);
+            $gameService->updateFlipper($id, $data);
         }
         return $this->redirect($this->generateUrl('flipper_show', array('id' => $id)));
     }

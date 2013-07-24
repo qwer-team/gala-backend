@@ -27,9 +27,11 @@
         {{form_row(form.message2, {label: 'Тип 2'})}}
     {% endif%}
     {% if tag == 'message'%}
-        {{ form_widget(form.onCost) }}{{ form_label(form.cost) }}{{ form_widget(form.cost) }}
+        {{ form_row(form.messActive) }}
+        {{ form_row(form.messCost) }}
         <br />
-        {{ form_label(form.bet) }}{{ form_widget(form.bet) }}{{ form_widget(form.betType) }}
+        {{ form_row(form.messCountCost) }}
+        {{ form_row(form.messCountDepActive) }}
         <br />
     {% endif %}
     {% if tag == 'black'%}

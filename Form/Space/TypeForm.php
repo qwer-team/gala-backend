@@ -15,18 +15,14 @@ class TypeForm extends AbstractType
             ->add('message1', 'textarea', array('required' => false, 'label'=> 'Сообщение'))
             ->add('message2', 'textarea', array('required' => false))
             ->add('message3', 'textarea', array('required' => false))
-            ->add('onCost', 'checkbox', array('required' => false))
-            ->add('cost', 'integer', array('required' => false))
+            ->add('messActive', 'checkbox', array('required' => false))
+            ->add('messCost', 'integer', array('required' => false))
             ->add('onBet', 'checkbox', 
                 array('required' => false)
             )
             ->add('bet', 'integer', array('required' => false))
-            ->add('betType', 'choice', 
-                array(
-                    'choices' => array(1 => 'Игровых очков', 2 => 'Спец игровых очков')
-                    )
-            )
-            ->add('bet', 'integer', array('required' => false))
+            ->add('messCountDepActive', 'checkbox', array('required' => false))
+            ->add('messCountCost', 'integer', array('required' => false))
             ->add('onReturn', 'checkbox', array('required' => false))
             ->add('returnValue', 'integer', array('required' => false))
             ->add('returnInPercent', 'checkbox', array('required' => false))

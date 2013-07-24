@@ -27,3 +27,59 @@ Account: Аккаунт
 Add: Добавить
 Edit: Изменить
 Delete: Удалить
+Messactive: Вкл. установку сообщений пользователями
+Messcost: Стоимость установки соообщения
+Messcountdepactive: Увеличение счетчка за Спец. очки
+Messcountcost: Стоимость счетчика сообщения
+Journalduration: Длительность журнала
+Rentduration: Длительность аренды
+Rentcost: Стоимость аренды
+Countrentmess: Количество сообщенй для начала аренды
+Activeaccless: Активный счет меньше
+Activeacchint: Уведомление если активный счет меньше
+Messagebuyhint: Уведомление о покупке сообщений или установке
+Radarcost: Стоимость радара
+Radarspec: Радар за спец. очки
+Nextpointdistance: Показывать до ближайших точек более
+Firstleftborder: Граница слева дельта 1
+Secondleftborder: Граница слева дельта 2
+Firstrightborder: Граница справа дельта 1
+Secondrightborder: Граница справа дельта 2
+Distancehint: Уведомление о пределах расстояния
+Searchzonecost: Стоимость зоны поиска
+Searchzonespec: Поиск за спец. очки
+Leftbordersearchx: Левая граница Х
+Rightbordersearchx: Правая граница Х
+Deltasearchx: Дельта Х
+Leftbordersearchy: Левая граница Y
+Rightbordersearchy: Правая граница Y
+Deltasearchy: Дельта Y
+Leftbordersearchz: Левая граница Z
+Rightbordersearchz: Правая граница Z
+Deltasearchz: Дельта Z
+Incleftsearchradius: Уввеличение левой границы радиуса
+Incrightsearchradius: Уввеличение правой границы радиуса
+#Firstzoneduration1: 
+#Firstzonecost1:
+#Firstzonespec1:
+#Fir#Stzoneduration2:
+#Fir#Stzoneco#St2:
+#Fir#Stzone#Spec2:
+#Fir#Stzoneduration3:
+#Fir#Stzoneco#St3:
+#Fir#Stzone#Spec3:
+#Fir#Stzoneduration4:
+#Fir#Stzoneco#St4:
+#Fir#Stzone#Spec4:
+#Secondzoneduration1:
+#Secondzoneco#St1:
+#Secondzone#Spec1:
+#Secondzoneduration2:
+#Secondzoneco#St2:
+#Secondzone#Spec2:
+#Secondzoneduration3:
+#Secondzoneco#St3:
+#Secondzone#Spec3:
+#Secondzoneduration4:
+#Secondzoneco#St4:
+#Secondzone#Spec4:

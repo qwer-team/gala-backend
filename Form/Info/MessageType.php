@@ -165,9 +165,11 @@ class MessageType extends AbstractType
                     'required' => false,
                 ))
                 ->add('theme', 'choice', array(
+                    'required' => false,
                     'choices' => $this->themes,
                 ))
                 ->add('age', 'choice', array(
+                    'required' => false,
                     'choices' => array(
                         '12' => 'до 12',
                         '16' => 'до 16',

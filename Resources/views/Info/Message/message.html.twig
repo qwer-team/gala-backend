@@ -21,8 +21,8 @@
         {% for message in messages%}
                 <tr>
                     <td>{{message.id}}</td>
-                    <td>{{message.theme.title}}</td>
-                    <td>{{message.title}}</td>
+                    <td>{% if message.theme is defined  %}{{message.theme.title}}{% endif %}</td>
+                    <td>{% if message.title is defined %}{{message.title}}{% endif %}</td>
                     <td>{{message.text|raw}}</td>
                     <td>{{message.visible}}</td>
                     <td>

@@ -4,8 +4,9 @@
 <div class="container" style="margin-top: 20px;">
     <h3>id {{message.id}}</h3>
     Картинка :{% if "img" in message|keys %}<img src="{{message.img}}"/><br>{% endif %}
+    <a href="{{ path('preview_message', {'id': message.id}) }}" class="control control-9 iframe cboxElement" style="margin-left: 70%"><button type="button" class="btn btn-primary">Preview</button></a>
     <form action="{{ path('update_message', {'id': message.id}) }}" method="post" {{ form_enctype(form) }}>
-        {% if  message.moderatorAccepted %}
+        {% if  message.moderatorAccepted%}
             {{ form_row(form.moderatorAccepted, { 'attr': {'disabled': 'true'} }) }}
         {% endif %}
 {{form_rest(form)}}
