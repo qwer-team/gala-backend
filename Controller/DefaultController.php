@@ -31,6 +31,7 @@ class DefaultController extends Controller
                 $menu->addGrandchildren('Список призов', 'prize_list', true);
                 $menu->addGrandchildren('Ручная загрузка', 'element_load_list', true);
                 $menu->addGrandchildren('Изменение координат', 'element_change_coords', true);
+                $menu->addGrandchildren('Загрузка', 'prize_loading', true);
             $menu->addChild('Точки', 'noroute7');
                 $menu->addGrandchildren('Черные', 'type_config', true, array('tag' => 'black'));
                 $menu->addGrandchildren('Ловушка', 'type_config', true, array('tag' => 'trap'));
