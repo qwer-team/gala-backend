@@ -35,8 +35,7 @@ class SearchType extends AbstractType
                     'required' => false,
                     'choices' => array(
                         '0' => 'Невидим',
-                        '1' => 'Видим',
-                    )
+                        '1' => 'Видим',),
                 ))
                 ->add('moderatorAccepted', 'choice', array(
                     'required' => false,
