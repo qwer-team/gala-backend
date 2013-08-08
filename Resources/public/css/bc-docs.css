@@ -1,3 +1,32 @@
 .masthead h1 {
     font-size: 100px;
 }
+
+.menuPrize {
+    vertical-align: middle !important;
+    text-align: center;
+}
+.menuPrizeIcon {
+    text-align: center !important;
+}
+
+.myStyle {
+    margin: 5px 5px 5px 0;
+}
+
+#inp {
+    width: 90px;
+}
+#flipInp {
+    width: 50px;
+}
+.lbl {
+    width:130px;
+    float: left;
+}
+#txtArea {
+    width: 360px;
+}
+.backing {
+    margin-left: 10px;
+}

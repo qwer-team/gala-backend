@@ -3,33 +3,52 @@
 {% block body %} 
 
 <div style="float: left; width: 200px">
-    <a href="{{path('prize_create')}}">
-        <button class="btn btn-success">add</button>
-    </a>
-    <ul>
-    {% for id, prize in prizes %}
-            <li>
-                <a href="{{path("prize_list", {id: id})}}">{{ prize['name'] }}</a>
-                <form action="{{path("prize_delete", {id: id})}}">
-                    <button type=submit class="btn btn-danger btn-small">delete</button>
-                </form>
-            </li>
-    {% endfor %}
-        </ul>
+    <div>
         <a href="{{path('prize_create')}}">
-            <button class="btn btn-success">add</button>
+            <button style="width: 62%" class="btn btn-success"><i class="icon-plus"></i>Добавить</button>
         </a>
     </div>
-    <div style="float:left; width: 800px;">
-        Картинка 1:<img src="{{main['img1']}}"/><br>
-        Картинка 2:<img src="{{main['img2']}}"/>
+    <table class="table table-bordered table-hover table-striped myStyle">
+    {% for id, prize in prizes %}
+            <tr>
+                <td class="menuPrize"><a href="{{path("prize_list", {id: id})}}"><span class="backing">{{ prize['name'] }}</span></a></td>
+                <td class="menuPrizeIcon"><form style="margin-bottom:2px;" action="{{path("prize_delete", {id: id})}}">
+                    <button type=submit class="btn btn-danger btn-small"><i class="icon-remove"></i></button>
+                </form></td>
+            </tr>
+    {% endfor %}
+    </table>
+        <div>
+            <a href="{{path('prize_create')}}">
+                <button style="width: 62%" class="btn btn-success"><i class="icon-plus"></i>Добавить</button>
+            </a>
+        </div>        
+    </div>
+    <div style="float:left; width: 1080px; margin-left: 20px;">
+        
         <form method="POST" action="{{path('prize_update', {id: main['id']})}}"  {{ form_enctype(prizeForm) }}>
-        {{ form_rest(prizeForm)}}
+            <div>
+                <div style="float:left; width: 260px">
+                    <div><div class="lbl">Название</div> {{ form_widget(prizeForm.name) }}</div>
+                    <div><div class="lbl">Флиппер</div> {{ form_widget(prizeForm.flipper) }} </div>
+                    <div><div class="lbl">SMS код</div> {{ form_widget(prizeForm.sms) }}</div>
+                    <div><div class="lbl">Коэф. штрафа (%)</div>{{ form_widget(prizeForm.penalty) }}</div>
+                </div>
+                <div style="float:left; width:390px">     
+                    <div> Текст уведомления о полном наборе элементов группы<br/> {{ form_widget(prizeForm.message1) }}</div>
+                    <div> Уведомления на электронную почту пользователя<br/> {{ form_widget(prizeForm.message2) }} </div>
+                </div>
+                <div>
+                    <img src="{{main['img1']}}"/>
+                    <img src="{{main['img2']}}"/>
+                </div>
+           </div>
                 <br />
+                <div style="clear: left;"></div>
                 <button class="btn btn-primary" type="submit">save</button>
             </form>
             <a href="{{path('element_create', {prizeId: main['id']})}}">
-                <button class="btn btn-success">add</button>
+                <button class="btn btn-success">Добавить</button>
             </a>
             <table class="table table-bordered table-hover table-striped">
                 <thead><tr>
@@ -64,5 +83,6 @@
                 </tr>
         {% endfor %}
             </table>
+        
         </div>
 {% endblock %}
