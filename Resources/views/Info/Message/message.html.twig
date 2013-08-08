@@ -1,44 +1,66 @@
 {% extends 'GalaxyBackendBundle::contentLayout.html.twig' %}
 
 {% block body %} 
-     <div style="float:left; width: 800px;margin-top: 30px">
+     <div style="float:left; width: 900px;margin-top: 30px">
          <form action="{{ path('search_message') }}" method="post" {{ form_enctype(form) }}>
-                 {{form_rest(form)}}
-             <br>
-            <button type="submit" class="btn btn-primary">Поиск</button>
+                 <div style = "float:left;">{{ form_widget(form.messageId) }}</div>
+                 {{ form_widget(form.userId) }}
+                 {{ form_widget(form.title)}}
+                 {{ form_widget(form.text) }}
+                 {{ form_widget(form.visible) }}
+                 {{ form_widget(form.moderatorAccepted) }}
+                 {{ form_widget(form.theme) }}
+                 {{ form_widget(form.age) }}
+                 
+            <button id="button" type="submit" class="btn btn-primary">Поиск</button>
              </form>
          </div>
     <div style="float:left; width: 800px;">
-            <table class="table table-bordered table-hover table-striped">
+            <table class="table table-bordered table-hover table-striped" style="margin-top: 20px;">
                 <thead><tr>
                         <td>id</td>
-                        <td>Тема</td>
-                        <td>Назване</td>
-                        <td>Текст</td>
-                        <td>visible</td>
-                        <td>actions</td>
+                        <td class="td">Тема</td>
+                        <td class="td">Назване</td>
+                        <td class="tdText">Текст</td>
+                        <td class="tdVisible">Видимость</td>
+                        <td>&nbsp;</td>
                     </tr></thead>
+                <a href="{{ path('new_message') }}">
+                    <button class="btn btn-success"><i class="icon-plus"></i>
+                        <span style="margin-left: 5px;">Добавить</span>
+                    </button></a><br>
         {% for message in messages%}
-                <tr>
+                    
+            {% if message.visible == '1' %}
+                {% set color = '#5BB75B' %}
+            {% elseif message.visible == '' %}
+                {% set color = '#fff' %}
+            {% else %}
+            {% endif %}
+                    
+                <tr style="background: {{color}}">
                     <td>{{message.id}}</td>
                     <td>{% if message.theme is defined  %}{{message.theme.title}}{% endif %}</td>
                     <td>{% if message.title is defined %}{{message.title}}{% endif %}</td>
                     <td>{{message.text|raw}}</td>
-                    <td>{{message.visible}}</td>
+                    <td class="tdVisible">{{message.visible}}</td>
                     <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('show_message', {id: message.id}) }}" target="_blank">Изменить</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('delete_message', {id: message.id}) }}">Удалить</a>
-                            </li>
-                        </ul>
+                        <div class="btn-group">
+                            <a href="{{ path('show_message', {id: message.id}) }}" class='btn' target="_blank">
+                                <i class="icon-edit"></i>
+                            </a>
+                            <a class="btn btn-danger" data-toggle="modal" href="{{ path('delete_message', {id: message.id}) }}">
+                                <i class="icon-remove"></i>
+                            </a>
+                        </div>
                     </td>
                 </tr>
         {% endfor %}
             </table>
-             <a href="{{ path('new_message') }}"><button class="btn btn-primary">Создать</button></a><br>
+             <a href="{{ path('new_message') }}">
+                 <button class="btn btn-success"><i class="icon-plus"></i>
+                     <span style="margin-left: 5px;">Добавить</span>
+                 </button></a><br>
 {% if pagesCnt > 1 %}
 <div class="pagination">
   <ul>

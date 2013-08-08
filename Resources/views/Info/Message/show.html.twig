@@ -9,15 +9,165 @@
         {% if  message.moderatorAccepted%}
             {{ form_row(form.moderatorAccepted, { 'attr': {'disabled': 'true'} }) }}
         {% endif %}
-{{form_rest(form)}}
+    id сообщения {{ form_widget(form.messageId) }}
+            Название {{ form_widget(form.title) }}<br/>
+            Тема контента {{ form_widget(form.theme) }}<br/>
+            Опубликовать сообщение {{ form_widget(form.visible) }}
+            Проверено модератором {{ form_widget(form.moderatorAccepted) }}
+
+                <div id="textarea">
+                    {{ form_widget(form.text) }}
+                </div>
+                <div id="imgfile">Изображение {{ form_widget(form.imgfile) }}</div>
+                <div id="imgfile">Удалить картинку {{form_widget(form.imageDelete)}}</div>
+            <div style="clear:left;"></div>
+            <div>
+                Количество прыжков до вывода вопроса {{ form_widget(form.jumpsToQuestion) }}
+                Возраст {{ form_widget(form.age) }}
+                <div>
+                    Вопрос сообщения {{ form_widget(form.question) }}
+                    Время ожидания ответа{{ form_widget(form.seconds) }} сек.
+                </div>
+                {{ form_widget(form.answers) }}
+                Правильный ответ {{ form_widget(form.rightAnswer) }}
+            </div>
+            
+            <div>
+                <h1>Поощрения</h1>
+                <div>
+                    {{ form_widget(form.incPointsActv) }} Вкл.
+                    Количество добавляемых игровых очков {{ form_widget(form.incPoints) }}
+                    {{ form_widget(form.incPointsProc) }} в %
+                    <div>
+                        Уведомление о событии<br/>
+                        {{ form_widget(form.incPointsMess) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_widget(form.incOwnElemActv) }} Вкл.
+                    Увеличения минимальной принадлежности приза
+                    {{ form_widget(form.incOwnElem) }} Самый мин из всех минимальных
+                    <div>
+                        Уведомление о событии<br/>
+                        {{ form_widget(form.incOwnElemMess) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_widget(form.incDurationMinElemActv) }} Вкл.
+                    Увеличения длительности всех элементов призов
+                    {{ form_widget(form.incDurationMinElem) }} Всем минимальным
+                    <div>
+                        Уведомление о событии<br/>
+                        {{ form_widget(form.incDurationMinElemMess) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_widget(form.incFlipAmountActv) }} Вкл.
+                    Предоставления флиппера следующего уровня на
+                    {{ form_widget(form.incFlipAmount) }} перемещений
+                    <div>
+                        Уведомление о событии<br/>
+                        {{ form_widget(form.incFlipAmountMess) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_widget(form.superjumpAmountActv) }} Вкл.
+                    Супер прыжок в количестве
+                    {{ form_widget(form.superjumpAmount) }}
+                    <div>
+                        Уведомление о событии<br/>
+                        {{ form_widget(form.superjumpAmountMess) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_widget(form.incDurationAllElemActv) }} Вкл.
+                    Увеличения длительности всех элеиентов призов на
+                    {{ form_widget(form.incDurationAllElem) }} Вообще всем
+                    <div>
+                        Уведомление о событии<br/>
+                        {{ form_widget(form.incDurationAllElemMess) }}
+                    </div>
+                </div>
+                <h1>Санкции</h1>
+                <div>
+                    {{ form_widget(form.decPointsActv) }} Вкл.
+                    Количество убавляемых игровых очков {{ form_widget(form.decPoints) }}
+                    {{ form_widget(form.decPointsProc) }} в %
+                    <div>
+                        Уведомление о событии<br/>
+                        {{ form_widget(form.decPointsMess) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_widget(form.decFlipAmountActv) }} Вкл.
+                    Предоставления флиппера уровня ниже на
+                    {{ form_widget(form.decFlipAmount) }}
+                    <div>
+                        Уведомление о событии<br/>
+                        {{ form_widget(form.decFlipAmountMess) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_widget(form.superjumpCancelActv) }} Вкл.
+                    Аннулирование счетчика суперпрыжков
+                    <div>
+                        Уведомление о событии<br/>
+                        {{ form_widget(form.superjumpCancelMess) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_widget(form.activeCancelActv) }} Вкл.
+                    Аннулирование активного счета
+                    <div>
+                        Уведомление о событии<br/>
+                        {{ form_widget(form.activeCancelMess) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_widget(form.firstFlipperActv) }} Вкл.
+                    Предоставление флиппера первого уровня
+                    <div>
+                        Уведомление о событии<br/>
+                        {{ form_widget(form.firstFlipperMess) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_widget(form.blackPointActv) }} Вкл.
+                    Попадание в Черную точку
+                    <div>
+                        Уведомление о событии<br/>
+                        {{ form_widget(form.blackPointMess) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_widget(form.delElemGroupActv) }} Вкл.
+                    Удаление максимально полной группы элементов приза
+                    <div>
+                        Уведомление о событии<br/>
+                        {{ form_widget(form.delElemGroupMess) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_widget(form.decDurationAllElemActv) }} Вкл.
+                    Уменьшения длительности элементов призов для всех на
+                    {{ form_widget(form.decDurationAllElem) }}
+                    <div>
+                        Уведомление о событии<br/>
+                        {{ form_widget(form.decDurationAllElemMess) }}
+                    </div>
+                </div>
+             </div>
             <br>
             <button type="submit" class="btn btn-primary">Изменить</button>
-<br />
-</form>
+            <br />
+        </form>
+    </div>
 
-<br />
+    <br />
 <a href="{{ path('messages_list')}}">
     <button class="btn" type="button">Вернутся к списку</button>
 </a>
-</div>
+
+                
 {% endblock body %}
+                
