@@ -51,16 +51,7 @@ class SearchType extends AbstractType
                     'required' => false,
                     'choices' => array(
                         '0' => 'Невидим',
-                        '1' => 'Видим',
-                    ),
-                    'empty_value' => 'Видимость',
-                    'empty_data'  => null,
-                    'attr' => array(
-                        'id' => 'visible',
-                        'class' => 'default',
-                        'title' => 'visible',
-                        'value' => ''
-                    )
+                        '1' => 'Видим',),
                 ))
                 ->add('moderatorAccepted', 'choice', array(
                     'required' => false,

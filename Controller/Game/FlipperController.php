@@ -18,7 +18,6 @@ class FlipperController extends Controller
         $gameService = $this->get("game.remote_service");
         $flipper = (array)$gameService->getFlipper($id);
         $form = $this->createForm( new FlipperType(), $flipper);
-        
         return array(
             "flipper" => $flipper,
             "form" => $form->createView(),
