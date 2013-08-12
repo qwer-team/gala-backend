@@ -7,7 +7,8 @@
     text-align: center;
 }
 .menuPrizeIcon {
-    text-align: center !important;
+/*    text-align: center !important;*/
+    width: 80px;
 }
 
 .myStyle {
@@ -15,7 +16,7 @@
 }
 
 #inp {
-    width: 90px;
+    width: 115px;
 }
 #flipInp {
     width: 50px;
@@ -24,9 +25,21 @@
     width:130px;
     float: left;
 }
+.lblElPrice {
+    width:90px;
+    float: left;
+}
+.lblElPriceClmn2 {
+    width:130px;
+    float: left;
+}
 #txtArea {
     width: 360px;
 }
 .backing {
     margin-left: 10px;
+}
+.tdImg {
+    width: 125px;
+    text-align: center !important;
 }

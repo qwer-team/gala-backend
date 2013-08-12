@@ -2,13 +2,31 @@
 
 {% block body %}
     <form method="POST" action="{{path('element_update', {id: element['id']})}}"  {{ form_enctype(form) }}>
-        {{ form_rest(form)}}
-        <br />
-        <button class="btn btn-primary" type="submit">edit</button>
+       {# {{ form_rest(form)}} #}
+        <div>
+            <div style="float:left; width:280px">
+                <div><div class="lblElPrice">Название</div> {{ form_widget(form.name) }}</div>
+                <div><div class="lblElPrice">Акаунт</div> {{ form_widget(form.account) }}</div>
+                <div><div class="lblElPrice">Блокировать</div> {{ form_widget(form.blocked) }}</div>
+                <div>Вариант изменения координат {{ form_widget(form.movingVariant) }} </div>
+            </div>
+            <div style="float:left; width:340px">
+                <div>Видимость для радара {{ form_widget(form.visible) }}</div>
+                <div>Действителен прыжков {{ form_widget(form.available) }}</div>
+                <div>Стоимость {{ form_widget(form.price) }}</div>
+            </div>
+            <div style="float:left; width:340px">
+                <div>{{ form_widget(form.imgfile1) }}</div>
+                <div>{{ form_widget(form.imgfile2) }}</div>
+                {{ form_rest(form)}}
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
     </form>
+    <div style="clear: left;"></div>
     <ul class="record_actions">
-        <li>
-            <a href="{{ path('prize_list', {id: element['prizeId']}) }}">
+        <li style="list-style:none;">
+            <a class="btn btn-warning" href="{{ path('prize_list', {id: element['prizeId']}) }}">
                 {% trans%}Back to the prize{%endtrans%}
             </a>
         </li>

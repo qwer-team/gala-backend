@@ -12,15 +12,34 @@ class PrizeElementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('name', 'text')
-                ->add('available', 'integer')
-                ->add('visible', 'integer')
-                ->add('price', 'number')
+                ->add('name', 'text', array(
+                    'attr' => array(
+                        'id' => 'inp'
+                    )
+                ))
+                ->add('available', 'integer', array(
+                    'attr' => array(
+                        'id' => 'flipInp'
+                    )
+                ))
+                ->add('visible', 'integer', array(
+                    'attr' => array(
+                        'id' => 'flipInp'
+                    )
+                ))
+                ->add('price', 'number', array(
+                    'attr' => array(
+                        'id' => 'flipInp'
+                    )
+                ))
                 ->add('account', 'choice', array(
                     'choices' => array(
                         '1' => 'Активный',
                         '3' => 'Депозитный',
                     ),
+                    'attr' => array(
+                        'id' => 'inp'
+                    )
                 ))
                 ->add('movingVariant',  'choice', array(
                     'choices' => array(

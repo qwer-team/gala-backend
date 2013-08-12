@@ -34,11 +34,10 @@ class PrizeElementController extends Controller
         $element = $service->getPrizeElement($id);
 
         $form = $this->createForm(new PrizeElementType, $element);
-
         $form->bind($request);
         if ($form->isValid()) {
             $data = $form->getData();
-
+            
             $storage = $this->get("storage");
             for ($i = 1; $i <= 2; $i++) {
                 $img = $data['imgfile' . $i];
@@ -48,7 +47,10 @@ class PrizeElementController extends Controller
                     unset($data['imgfile' . $i]);
                 }
             }
+            
             $service->updatePrizeElement($id, $data);
+        }else {
+            echo $form->getErrorsAsString();
         }
 
         $url = $this->generateUrl("element_edit", array("id" => $id));
