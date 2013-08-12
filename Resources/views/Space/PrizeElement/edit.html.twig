@@ -15,13 +15,16 @@
                 <div>Действителен прыжков {{ form_widget(form.available) }}</div>
                 <div>Стоимость {{ form_widget(form.price) }}</div>
             </div>
-            <div style="float:left; width:340px">
+            <div style="float:left; width:316px">
                 <div>{{ form_widget(form.imgfile1) }}</div>
                 <div>{{ form_widget(form.imgfile2) }}</div>
                 {{ form_rest(form)}}
             </div>
+            <div>    
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>    
         </div>
-        <button class="btn btn-primary" type="submit">Save</button>
+        
     </form>
     <div style="clear: left;"></div>
     <ul class="record_actions">
