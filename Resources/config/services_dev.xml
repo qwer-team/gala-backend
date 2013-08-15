@@ -18,6 +18,7 @@
 	<!-- Game -->
         <parameter key="flippersurl">gala.my/flippers</parameter>
         <!-- -->
+        
     </parameters>
     
 </container>
