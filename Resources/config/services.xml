@@ -5,14 +5,13 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="gala.url">http://demo11.qwer.com.ua</parameter>
-        <!-- -->
-	<!-- Game -->
-        <parameter key="flippersurl">gala.my/flippers</parameter>
-        <!-- -->
-	<!-- Game -->
-        <parameter key="flippersurl">gala.my/flippers</parameter>
+        <parameter key="flippersurl">http://demo11.qwer.com.ua/flippers</parameter>
         <parameter key="garilsurl">http://localhost:8080</parameter>
+        <parameter key="registersurl">http://demo11.qwer.com.ua/registers</parameter>
+        <parameter key="documentsurl">http://demo11.qwer.com.ua/documents</parameter>
+        <parameter key="documents.rate_url">http://demo11.qwer.com.ua/api</parameter>
+        <parameter key="gala.url">http://demo11.qwer.com.ua</parameter>
+        
         <parameter key="galaxy.container.aware.class">Galaxy\BackendBundle\Listener\ContainerAware</parameter>
         <parameter key="remote.service.class">Galaxy\BackendBundle\Service\RemoteService</parameter>
         
@@ -55,10 +54,8 @@
         <parameter key="remove.subelement.url">%garilsurl%/gala/subelement/remove/</parameter>
         <!-- Документы -->
         <parameter key="document.remote_service.class">Galaxy\BackendBundle\Service\DocumentsRemoteService</parameter>
-        <parameter key="registersurl">http://demo11.qwer.com.ua/registers</parameter>
         <parameter key="documents.show_register.url">%registersurl%/{id}.json</parameter>
         <parameter key="documents.update_register.url">%registersurl%/{id}/update.json</parameter>
-        <parameter key="documentsurl">http://demo11.qwer.com.ua/documents</parameter>
         <parameter key="documents.document_list.url">%documentsurl%/{page}/lengths/{length}/types/{type}.json</parameter>
         <parameter key="documents.document_count.url">%documentsurl%/{type}/count.json</parameter>
         <parameter key="documents.document_create.url">%documentsurl%/{type}/create.json</parameter>
@@ -66,13 +63,11 @@
         <parameter key="documents.document_update.url">%documentsurl%/{id}/update.json</parameter>
         <parameter key="documents.document_approve.url">%documentsurl%/{id}/approve.json</parameter>
         <parameter key="documents.document_return.url">%documentsurl%/{id}/return.json</parameter>
-        <parameter key="documents.rate_url">http://demo11.qwer.com.ua/api</parameter>
         <parameter key="documents.get_rate.url">%documents.rate_url%/rate.json</parameter>
         <parameter key="documents.update_rate.url">%documents.rate_url%/rate/update.json</parameter>
         <!-- -->
         <!-- Game -->
         <parameter key="game.remote_service.class">Galaxy\BackendBundle\Service\GameRemoteService</parameter>
-        <parameter key="flippersurl">http://demo11.qwer.com.ua/flippers</parameter>
         <parameter key="games.flipper_show.url">%flippersurl%/{id}.json</parameter>
         <parameter key="games.flipper_update.url">%flippersurl%/{id}/update.json</parameter>
         <parameter key="game.user_info.increase_message.url">%gala.url%/increases/{id}/messages.json</parameter>
