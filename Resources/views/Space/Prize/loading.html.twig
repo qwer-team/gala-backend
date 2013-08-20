@@ -6,6 +6,11 @@
 #space-loading { display: block; width:100%; height:100%; }
   </style>
 <div id="wrap">
+ {% if app.environment == 'prod'  %}
+<iframe class="iframe" id="space-loading" style="width: 100%; height: 100%; border: none;" src="http://193.178.146.164:8080/gala/prizeSegment/index"></iframe>
+{% else %}
 <iframe class="iframe" id="space-loading" style="width: 100%; height: 100%; border: none;" src="http://localhost:8080/gala/prizeSegment/index"></iframe>
+{% endif %}
+
 </div>
 {% endblock %}
