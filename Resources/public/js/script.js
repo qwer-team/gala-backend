@@ -92,7 +92,7 @@ function validateInput(event){
     
 }
 
-var points = 10000000;//00;
+var points = 1000000000;//00;
 var length = "length";
 var percent = "percent";
                 
