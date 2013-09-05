@@ -70,7 +70,7 @@ class BootstrapController extends Controller
     {
         $segment = $this->container->get('remote.service');
         $allSegments = $segment->getSegments();
-
+        $points = $this->container->getParameter('points.in.space');
         $segmentsForm = array();
 
         foreach ($allSegments as $oneSegment) {
@@ -79,6 +79,7 @@ class BootstrapController extends Controller
         }
 
         return array(
+            'points' => $points,
             'segments_form' => $segmentsForm,
             'allSegments' => $allSegments);
     }

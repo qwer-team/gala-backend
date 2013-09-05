@@ -69,7 +69,7 @@ class PrizeSegmentController extends Controller
     {
         $segment = $this->container->get('remote.service');
         $allSegments = $segment->getPrizeSegments();
-
+        $points = $this->container->getParameter('points.in.space');
         $segmentsForm = array();
 
         foreach ($allSegments as $oneSegment) {
@@ -79,6 +79,7 @@ class PrizeSegmentController extends Controller
         
         
         return array(
+            'points' => $points,
             'segments_form' => $segmentsForm,
             'allSegments' => $allSegments,
             );

@@ -9,7 +9,7 @@
         <import resource="services.xml"/>
     </imports>    
     <parameters>
-        <parameter key="points.in.space">10000000</parameter>
+        <parameter key="points.in.space">1000000000</parameter>
 	<parameter key="gala.url">gala.my</parameter>
         <!-- Документы -->
         <parameter key="registersurl">gala.my/registers</parameter>
