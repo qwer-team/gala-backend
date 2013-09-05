@@ -42,6 +42,20 @@ $( document ).ready(function() {
             onSegmentPercent($(this));
         }
     });
+    
+    $('form.segments_form').on('change', 'input[name="length"]', function(event){
+        validateInput(event);
+        if(!event.isDefaultPrevented()){
+            onSegmentLength($(this));
+        }
+    });
+    
+    $('form.segments_form').on('change', 'input[name="percent"]', function(event){
+        validateInput(event);
+        if(!event.isDefaultPrevented()){
+            onSegmentPercent($(this));
+        }
+    });
                 
     $('.load-segment-info').on('click',function(){
         var segment = $(this).parents('.accordion-group');
