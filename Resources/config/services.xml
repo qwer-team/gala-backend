@@ -15,7 +15,7 @@
         <parameter key="galaxy.container.aware.class">Galaxy\BackendBundle\Listener\ContainerAware</parameter>
         <parameter key="remote.service.class">Galaxy\BackendBundle\Service\RemoteService</parameter>
         
-        <parameter key="points.in.space">10000000</parameter>
+        <parameter key="points.in.space">1000000000</parameter>
         <parameter key="image.resize.height">100</parameter>
         <parameter key="image.resize.width">100</parameter>
         <parameter key="image.resize.min.width">30</parameter>
