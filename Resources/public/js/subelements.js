@@ -13,6 +13,32 @@ $( document ).ready(function() {
         }
         
     });
+    $(".accordion-group").on("keyup", ".subelements-form input[name='percent']", function(event){
+        validateInput(event);
+        if(!event.isDefaultPrevented()){
+            onSubelementPercent($(this));
+        }
+    });
+    $(".accordion-group").on("keyup", ".subelements-form input[name='prizeCount']", function(event){
+        validateInput(event);
+        if(!event.isDefaultPrevented()){
+            onSubelementPoints($(this));
+        }
+        
+    });
+    $(".accordion-group").on("change", ".subelements-form input[name='percent']", function(event){
+        validateInput(event);
+        if(!event.isDefaultPrevented()){
+            onSubelementPercent($(this));
+        }
+    });
+    $(".accordion-group").on("change", ".subelements-form input[name='prizeCount']", function(event){
+        validateInput(event);
+        if(!event.isDefaultPrevented()){
+            onSubelementPoints($(this));
+        }
+        
+    });
     $(".accordion-group").on("change", ".subelements-form select[name='prize']", function(){
         getPrizeElements($(this));
     });

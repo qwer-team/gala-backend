@@ -8,12 +8,24 @@ $( document ).ready(function() {
     $(".accordion-group").on("click", ".remove-subtype",function(){
         removeSubtype($(this))
     });
+    $(".accordion-group").on("keyup,keydown,change", ".subtypes-form input[name='percent']", function(){
+        onSubtypePercent($(this));
+    });
+    $(".accordion-group").on("keyup,keydown,change", ".subtypes-form input[name='pointsCount']", function(){
+        onSubtypePoints($(this));
+    });
+    /*$(".accordion-group").on("kaydown", ".subtypes-form input[name='percent']", function(){
+        onSubtypePercent($(this));
+    });
+    $(".accordion-group").on("keydown", ".subtypes-form input[name='pointsCount']", function(){
+        onSubtypePoints($(this));
+    });
     $(".accordion-group").on("change", ".subtypes-form input[name='percent']", function(){
         onSubtypePercent($(this));
     });
     $(".accordion-group").on("change", ".subtypes-form input[name='pointsCount']", function(){
         onSubtypePoints($(this));
-    });
+    });*/
 });
 
 function onSubtypePercent(obj){

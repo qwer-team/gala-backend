@@ -42,7 +42,19 @@ $( document ).ready(function() {
             onSegmentPercent($(this));
         }
     });
+    $('form.segments_form').on('keydown', 'input[name="length"]', function(event){
+        validateInput(event);
+        if(!event.isDefaultPrevented()){
+            onSegmentLength($(this));
+        }
+    });
     
+    $('form.segments_form').on('keydown', 'input[name="percent"]', function(event){
+        validateInput(event);
+        if(!event.isDefaultPrevented()){
+            onSegmentPercent($(this));
+        }
+    });
     $('form.segments_form').on('change', 'input[name="length"]', function(event){
         validateInput(event);
         if(!event.isDefaultPrevented()){
@@ -122,6 +134,7 @@ function segmentsTotal(){
     $('form.segments_form input[name="percent"]').each(function(){
         totalPercent += parseFloat($(this).val()); 
     });
+    var arr = totalPercent.toString().split('.');
     $('.totalPercent').val(totalPercent+'%');
     
     var remove, add;
@@ -143,7 +156,7 @@ function onSegmentLength(obj){
     var form = obj.parents('.segments_form');
     var percent = form.find('input[name="percent"]');
     var value = (( obj.val() / points ) * 100)
-    console.log(points);
+    var arr = value.toString().split('.');
     percent.val(value.toFixed(2));
     segmentsTotal();
 }
@@ -151,7 +164,6 @@ function onSegmentPercent(obj){
     var form = obj.parents('form');
     var lenInp = form.find('input[name="length"]');
     var value = Math.round( points / 100 * obj.val());
-    console.log(points);
     lenInp.val(value.toFixed(0));
     segmentsTotal();
 }
