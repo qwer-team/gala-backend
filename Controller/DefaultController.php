@@ -46,6 +46,7 @@ class DefaultController extends Controller
                 $menu->addGrandchildren('-Период приза', 'type_config', true, array('tag' => 'minus_prize_period'));
                 $menu->addGrandchildren('+Период для всех', 'type_config', true, array('tag' => 'plus_all_period'));
                 $menu->addGrandchildren('-Период для всех', 'type_config', true, array('tag' => 'minus_all_period'));
+                $menu->addGrandchildren('Точка очки', 'type_config', true, array('tag' => 'points'));
         $menu->addMenu('Флиперы', 'noroute17');
             $menu->addChild('Первый', 'flipper_show', true, array("id" => 1));
             $menu->addChild('Второй', 'flipper_show', true, array("id" => 2));
