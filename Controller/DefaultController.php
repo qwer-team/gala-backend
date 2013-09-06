@@ -57,12 +57,9 @@ class DefaultController extends Controller
             $menu->addChild('Активный', 'show_register', true, array("id" => 1));
             $menu->addChild('Безопасный', 'show_register', true, array("id" => 2));
             $menu->addChild('Депозитный', 'show_register', true, array("id" => 3));
-
             $menu->addChild('Транзитный активный', 'show_register', true, array("id" => 4));
             $menu->addChild('Транзитный безопасный', 'show_register', true, array("id" => 5));
-
             $menu->addChild('Курс', 'show_rate', true);
-
         $menu->addMenu('Страхование', 'noroute24');
         $menu->addMenu('Администрирование', 'noroute25');
         $menu->addMenu('Документы', 'noroute26');
@@ -78,6 +75,7 @@ class DefaultController extends Controller
     public function contentAction($route, $params)
     {
         $menu = new MenuControl();
+        $menu->addMenu('Стартовая','start_page',true);
         $menu->addMenu('Сообщения', 'noroute1');
             $menu->addChild('Список', 'messages_list', true);
                
