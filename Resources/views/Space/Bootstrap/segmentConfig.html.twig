@@ -6,7 +6,7 @@
     <input type="text" id="allPointsPercent" name="allPointsPercent"  class="span2" disabled="" value="{{ count / segmentLength }}">
     </div>
     {% for type in types %}
-    {% if type.id != 15 %}
+    {% if type.tag != "nihil" %}
         <h2>{{type.name}}</h2>
         <ul class="subtypes unstyled">
             {% for subtype in type.subtypes %}
