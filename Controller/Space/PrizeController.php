@@ -97,7 +97,10 @@ class PrizeController extends Controller
      * @Template()
      */
     public function loadingAction(){
-        return array();
+        $grailsServer = $this->container->getParameter("grails.server");
+        return array(
+            "grailsServer" => $grailsServer,
+        );
     }
 
 }

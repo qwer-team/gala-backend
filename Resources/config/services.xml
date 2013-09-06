@@ -11,6 +11,7 @@
         <parameter key="documentsurl">http://demo11.qwer.com.ua/documents</parameter>
         <parameter key="documents.rate_url">http://demo11.qwer.com.ua/api</parameter>
         <parameter key="gala.url">http://demo11.qwer.com.ua</parameter>
+        <parameter key="grails.server">http://193.178.146.164:8080</parameter>
         
         <parameter key="galaxy.container.aware.class">Galaxy\BackendBundle\Listener\ContainerAware</parameter>
         <parameter key="remote.service.class">Galaxy\BackendBundle\Service\RemoteService</parameter>
