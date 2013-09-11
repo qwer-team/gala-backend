@@ -32,6 +32,8 @@ class DefaultController extends Controller
                 $menu->addGrandchildren('Ручная загрузка', 'element_load_list', true);
                 $menu->addGrandchildren('Изменение координат', 'element_change_coords', true);
                 $menu->addGrandchildren('Загрузка', 'prize_loading', true);
+                $menu->addGrandchildren('Редактирование елемента', 'element_edit', false);
+                $menu->addGrandchildren('Создание елемента', 'element_create', false);
             $menu->addChild('Точки', 'noroute7');
                 $menu->addGrandchildren('Черные', 'type_config', true, array('tag' => 'black'));
                 $menu->addGrandchildren('Ловушка', 'type_config', true, array('tag' => 'trap'));
@@ -65,6 +67,7 @@ class DefaultController extends Controller
         $menu->addMenu('Документы', 'noroute26');
             $menu->addChild('Зачисление средств', 'document_list', true, array("type" => 'fundsTransfer'));
             $menu->addChild('Списание средств', 'document_list', true, array("type" => 'servicesDebit'));
+            $menu->addChild('Редактирование документа', 'show_document', false);
         $menu->addMenu('Отчеты', 'noroute26');
         
         

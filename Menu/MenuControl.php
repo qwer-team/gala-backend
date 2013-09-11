@@ -39,7 +39,7 @@ class MenuControl
                 if (array_key_exists($key, $childParams) &&
                         $param == $childParams[$key]) {
                     $active = true;
-                } elseif ((preg_match("/^(\s*|\d+)$/", $param) && ($key == "id" || $key="page")) || ($param == "" && ($key == "id" || $key="page"))) {
+                } elseif ((preg_match("/^(\s*|\d+)$/", $param) && ($key == "id" || $key="page")) && count($childParams) == 0) {
                     $active = true;
                 }
             }

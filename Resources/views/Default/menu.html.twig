@@ -76,18 +76,14 @@
                                     </div>
                                 </div>
                                 <div class="tab-content">
-                                    {% for grandchildren in child.children if grandchildren.url == false%}
-                                        <div class="tab-pane {% if grandchildren.active %}active{% endif %}" id="{{grandchildren.href}}">{{grandchildren.title}}</div>
-                                    {% endfor %}
+                                    {#% for grandchildren in child.children if grandchildren.url == false%}
+                                        <div class="tab-pane {#% if grandchildren.active %}active{% endif %}" id="{{grandchildren.href}}">{{grandchildren.title}}</div>
+                                    {% endfor %#}
                                 </div>
-                            {% else %}
-                                {{child.title}}
                             {% endif %}
                             </div>
                         {% endfor %}
                     </div> 
-                {% else %}
-                    {{menu.title}}
                 {% endif %}
             </div>
         {% endfor %}
