@@ -8,35 +8,74 @@
     {% for type in types %}
     {% if type.tag != "nihil" %}
         <h2>{{type.name}}</h2>
+        {% if type.subtypes|length > 0  %}
         <ul class="subtypes unstyled">
+            <table class="table table-bordered table-hover table-striped" style="margin-top: 20px;">
+                 <thead>
+                     <tr>
+                        <td>Кол-во</td>
+                        <td>%(в отрезке)</td>
+                        <td>{{ type.parameter }}</td>
+                        <td>Блокировать</td>
+                        <td>Возобновлять</td>
+                        <td>Действия</td>
+                    </tr>
+                 </thead>
             {% for subtype in type.subtypes %}
-            <li>
-                <form class="form-inline">
-                {{ form_row(subtype.pointsCount)}}
-                {{ form_row(subtype.block)}}
-                {{ form_row(subtype.restore)}}
-                {{ form_row(subtype.percent)}}
-                {{ form_row(subtype.parameter)}}
-                {{ form_row(subtype.id)}}
-                {{ form_row(subtype.typeId)}}
-                <button type="button" class="update-subtype btn btn-primary btn-small">Изменить</button>
-                <button type="button" class="remove-subtype btn btn-danger btn-small">Удалить</button>
-                    </form>
-            </li>
+               <form class="form-inline">
+                 <tbody>
+                    <tr>
+                        <td>{{ form_widget(subtype.pointsCount)}}</td>
+                        <td>{{ form_widget(subtype.percent)}}</td>
+                        <td>{{ form_widget(subtype.parameter)}}</td>
+                        <td>{{ form_widget(subtype.block)}}</td>
+                        <td>{{ form_widget(subtype.restore)}}</td>
+                        <td><button type="button" class="btn-group update-subtype">
+                                <i class="icon-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger remove-subtype">
+                                <i class="icon-remove"></i>
+                            </button></td>
+                            {{ form_widget(subtype.id)}}
+                            {{ form_widget(subtype.typeId)}}
+                    </tr>
+                </tbody>
+              </form>
             {% endfor %}
+            </table>
+                {% endif %}
             {% for form in type.form %}
-            <li>
-                <form class="form-inline">
-                {{ form_row(form.pointsCount)}}
-                {{ form_row(form.block)}}
-                {{ form_row(form.restore)}}
-                {{ form_row(form.percent)}}
-                {{ form_row(form.parameter)}}
-                {{ form_row(form.id)}}
-                {{ form_row(form.typeId)}}
-                <button type="button" class="add-subtype btn btn-primary btn-small">Добавить</button>
-                </form>
-            </li>
+           
+                
+                <table class="table table-bordered table-hover table-striped" style="margin-top: 20px;">
+                    <form class="form-inline">
+                    <thead>
+                        <tr>
+                            <td>Кол-во</td>
+                            <td>%(в отрезке)</td>
+                            <td>{{ type.parameter }}</td>
+                            <td>Блокировать</td>
+                            <td>Возобновлять</td>
+                            <td>Действия</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ form_widget(form.pointsCount)}}</td>
+                            <td>{{ form_widget(form.percent)}}</td>
+                            <td>{{ form_widget(form.parameter)}}</td>
+                            <td>{{ form_widget(form.block)}}</td>
+                            <td>{{ form_widget(form.restore)}}</td>
+                            <td><button type="button" class="btn btn-success add-subtype"><i class="icon-plus"></i>
+                            </button></td>
+                            {{ form_widget(form.id)}}
+                            {{ form_widget(form.typeId)}}
+                        </tr>
+                    </tbody>
+                    </form>
+                </table>
+                
+           
             {% endfor %}
         </ul>
     {% endif %}

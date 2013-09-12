@@ -14,7 +14,7 @@ $( document ).ready(function() {
     $(".accordion-group").on("keyup", ".subtypes-form input[name='pointsCount']", function(){
         onSubtypePoints($(this));
     });
-    $(".accordion-group").on("kaydown", ".subtypes-form input[name='percent']", function(){
+    $(".accordion-group").on("keydown", ".subtypes-form input[name='percent']", function(){
         onSubtypePercent($(this));
     });
     $(".accordion-group").on("keydown", ".subtypes-form input[name='pointsCount']", function(){
@@ -32,17 +32,16 @@ function onSubtypePercent(obj){
     var segment = obj.parents('.accordion-group');
     var pointsCount = parseInt(segment.find("input[name='length']").val());
     var value = Math.round( ( pointsCount/100 ) * obj.val());
-    var pointInput = obj.parent().find('input[name="pointsCount"]');
+    var pointInput = obj.parent().parent().find('input[name="pointsCount"]');
     checkSegmentPointcount(segment);
     pointInput.val(value);
-    
 }
 
 function onSubtypePoints(obj){
     var segment = obj.parents('.accordion-group');
     var pointsCount = parseInt(segment.find("input[name='length']").val());
     var value = (( obj.val() / pointsCount ) * 100)
-    var percentInput = obj.parent().find('input[name="percent"]');
+    var percentInput = obj.parent().parent().find('input[name="percent"]');
     checkSegmentPointcount(segment);
     percentInput.val(value);
 }
@@ -67,7 +66,7 @@ function checkSegmentPointcount(segment){
 }
 
 function saveSubtype(routing, obj){
-    var parent = obj.parent();
+    var parent = obj.parent().parent();
     var subtypeId = parent.find("input[name='id']").val();
     var points = parent.find("input[name='pointsCount']").val();
     var block = parent.find("input[name='block']").is(':checked')? 1:undefined;
@@ -104,7 +103,7 @@ function saveSubtype(routing, obj){
 }
 
 function removeSubtype(obj){
-    var parent = obj.parent();
+    var parent = obj.parent().parent();
     var subtypeId = parent.find("input[name='id']").val();
     var href = Routing.generate('remove_subtype', {
         id: subtypeId
