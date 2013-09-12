@@ -106,7 +106,7 @@ class RemoteService extends ContainerAware
     public function updateSubtype($id, $data)
     {
         $url = $this->container->getParameter("update.subtype.url");
-        $response = $this->makeRequest($url . $id, $data);
+        $response = $this->makeRequest($url . $data["id"], $data);
         $result = json_decode($response);
         return $result;
     }
