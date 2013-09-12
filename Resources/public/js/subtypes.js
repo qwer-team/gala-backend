@@ -8,13 +8,13 @@ $( document ).ready(function() {
     $(".accordion-group").on("click", ".remove-subtype",function(){
         removeSubtype($(this))
     });
-    $(".accordion-group").on("keyup,keydown,change", ".subtypes-form input[name='percent']", function(){
+    $(".accordion-group").on("keyup", ".subtypes-form input[name='percent']", function(){
         onSubtypePercent($(this));
     });
-    $(".accordion-group").on("keyup,keydown,change", ".subtypes-form input[name='pointsCount']", function(){
+    $(".accordion-group").on("keyup", ".subtypes-form input[name='pointsCount']", function(){
         onSubtypePoints($(this));
     });
-    /*$(".accordion-group").on("kaydown", ".subtypes-form input[name='percent']", function(){
+    $(".accordion-group").on("kaydown", ".subtypes-form input[name='percent']", function(){
         onSubtypePercent($(this));
     });
     $(".accordion-group").on("keydown", ".subtypes-form input[name='pointsCount']", function(){
@@ -25,7 +25,7 @@ $( document ).ready(function() {
     });
     $(".accordion-group").on("change", ".subtypes-form input[name='pointsCount']", function(){
         onSubtypePoints($(this));
-    });*/
+    });
 });
 
 function onSubtypePercent(obj){
@@ -70,8 +70,8 @@ function saveSubtype(routing, obj){
     var parent = obj.parent();
     var subtypeId = parent.find("input[name='id']").val();
     var points = parent.find("input[name='pointsCount']").val();
-    var block = parent.find("input[name='block']").is(':checked')?1:undefined;
-    var restore = parent.find("input[name='restore']").is(':checked')?1:undefined;
+    var block = parent.find("input[name='block']").is(':checked')? 1:undefined;
+    var restore = parent.find("input[name='restore']").is(':checked')? 1:undefined;
     var typeId = parent.find("input[name='typeId']").val();
     var parameter = parent.find("input[name='parameter']").val();
     

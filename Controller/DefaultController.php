@@ -16,7 +16,6 @@ class DefaultController extends Controller
     {
         $menu = new MenuControl();
         $menu->addMenu('Главная','galaxy_back_end_homepage');
-        $menu->addMenu('Стартовая','start_page',true);
         $menu->addMenu('Общие настройки','noroute1');
         $menu->addMenu('Пространство', 'noroute2');
             $menu->addChild('Начальная загрузка', 'noroute3');
@@ -78,7 +77,6 @@ class DefaultController extends Controller
     public function contentAction($route, $params)
     {
         $menu = new MenuControl();
-        $menu->addMenu('Стартовая','start_page',true);
         $menu->addMenu('Сообщения', 'noroute1');
             $menu->addChild('Список', 'messages_list', true);
                
