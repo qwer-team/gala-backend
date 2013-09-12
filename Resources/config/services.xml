@@ -89,6 +89,9 @@
         <!-- -->
     </parameters>
     <services>
+        <service id="galaxy.checkbox.type" class="Galaxy\BackendBundle\Form\CheckboxType">
+            <tag name="form.type" alias="gcheckbox" />
+        </service>
         <service id="info.service" class="%ingo.message_service.class%">
             <call method="setMessagesListUrl">
                 <argument type="string">%info.messages_list.url%</argument>>
