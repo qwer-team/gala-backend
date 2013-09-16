@@ -15,7 +15,9 @@
                      <tr>
                         <td>Кол-во</td>
                         <td>%(в отрезке)</td>
-                        <td>{{ type.parameter }}</td>
+                        {% if type.parameter != ""  %}
+                            <td>{{ type.parameter }}</td>
+                        {% endif %}
                         <td>Блокировать</td>
                         <td>Возобновлять</td>
                         <td>Действия</td>
@@ -27,7 +29,9 @@
                     <tr>
                         <td>{{ form_widget(subtype.pointsCount)}}</td>
                         <td>{{ form_widget(subtype.percent)}}</td>
-                        <td>{{ form_widget(subtype.parameter)}}</td>
+                        {% if type.parameter != ""  %}
+                            <td>{{ form_widget(subtype.parameter)}}</td>
+                        {% endif %}
                         <td>{{ form_widget(subtype.block)}}</td>
                         <td>{{ form_widget(subtype.restore)}}</td>
                         <td><button type="button" class="btn-group update-subtype">
@@ -53,7 +57,9 @@
                         <tr>
                             <td>Кол-во</td>
                             <td>%(в отрезке)</td>
-                            <td>{{ type.parameter }}</td>
+                            {% if type.parameter != ""  %}
+                                <td>{{ type.parameter }}</td>
+                            {% endif %}
                             <td>Блокировать</td>
                             <td>Возобновлять</td>
                             <td>Действия</td>
@@ -63,7 +69,9 @@
                         <tr>
                             <td>{{ form_widget(form.pointsCount)}}</td>
                             <td>{{ form_widget(form.percent)}}</td>
-                            <td>{{ form_widget(form.parameter)}}</td>
+                            {% if type.parameter != ""  %}
+                                <td>{{ form_widget(form.parameter)}}</td>
+                            {% endif %}
                             <td>{{ form_widget(form.block)}}</td>
                             <td>{{ form_widget(form.restore)}}</td>
                             <td><button type="button" class="btn btn-success add-subtype"><i class="icon-plus"></i>

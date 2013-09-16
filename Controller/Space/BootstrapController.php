@@ -200,6 +200,10 @@ class BootstrapController extends Controller {
     public function typeConfigAction($tag, Request $request) {
         $typeService = $this->container->get('remote.service');
         $type = $typeService->getType($tag);
+        $imgType = '';
+        if (isset($type['image'])) {
+            $imgType = $this->getImgType($type);
+        }
         $form = $this->createForm(new TypeForm(), $type);
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
@@ -210,8 +214,15 @@ class BootstrapController extends Controller {
         }
         return array(
             'tag' => $tag,
+            'type' => $type,
+            'imgType' => $imgType,
             'form' => $form->createView(),
         );
+    }
+
+    private function getImgType($type) {
+        $arr = explode(".", $type["image"]);
+        return $arr[count($arr) - 1];
     }
 
     /**
