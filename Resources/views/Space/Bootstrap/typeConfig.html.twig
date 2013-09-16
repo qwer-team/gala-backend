@@ -36,7 +36,7 @@
         <br />
         {% if imgType == "swf" %}
         <object type="application/x-shockwave-flash" id="myContent" name="myContent" style="margin-left: 25%; visibility: visible;" data="/bundles/galaxybackend/{{ type.image }}" width="290" height="150"><param name="menu" value="false"></object>
-        {% elseif type.image is defined %}
+        {% elseif type.image != '' %}
         <img src="/bundles/galaxybackend/{{ type.image }}">
         {% endif %}
         <div style="display:none;">{{form_rest(form)}}</div>
