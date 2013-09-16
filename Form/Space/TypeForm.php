@@ -31,6 +31,7 @@ class TypeForm extends AbstractType
             ->add('nextStepInPercent', 'checkbox', array('required' => false))
             ->add('hours', 'integer', array('required' => false))
             ->add('minutes', 'integer', array('required' => false))
+            ->add('image', 'text', array('required' => false))
             ->add('tag', 'hidden')
             ->add('id', 'hidden')
          ;
