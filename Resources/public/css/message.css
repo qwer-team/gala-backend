@@ -1,0 +1,77 @@
+/* 
+    Document   : message
+    Created on : 25.07.2013, 16:41:42
+    Author     : itcompany
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#messageId { 
+    width: 50px;
+}
+
+#userId {
+    margin-left: 5px;
+    width: 50px;
+}
+
+#theme {
+    margin-left: 5px;
+    width: 158px;
+}
+
+#text {
+    margin-left: 5px;
+    width: 438px;
+}
+
+#visible {
+    width: 110px;
+}
+
+#moderator {
+    margin-left: 5px;
+    width: 100px;
+}
+
+#age {
+    margin-left: 5px;
+    width: 100px;
+}
+
+#title {
+    margin-left: 5px;
+    width: 200px;
+}
+
+#button {
+    margin-top: -11px;
+    margin-left: 255px;
+}
+
+.td {
+    width: 170px;
+}
+
+.tdText {
+    width: 250px;
+}
+
+.tdVisible {
+    width: 20px;
+}
+
+#textarea {
+    width: 600px;
+    float:left;
+    
+}
+
+#imgfile {
+    margin-left: 635px;
+    
+}
+
+.width {
+    width: 600px;
+}
