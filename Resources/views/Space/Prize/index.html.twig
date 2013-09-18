@@ -31,7 +31,7 @@
             </a>
         </div>        
     </div>
-    <div style="float:left; width: 780px; margin-left: 20px;">
+    <div style="width: 780px; margin-left: 5px; float: left; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">
 
         <form method="POST" action="{{path('prize_update', {id: main['id']})}}"  {{ form_enctype(prizeForm) }}>
                 <div style="float:left; width: 280px;">
@@ -40,20 +40,20 @@
                     <div><div class="lbl">SMS код</div> {{ form_widget(prizeForm.sms) }}</div>
                     <div><div class="lbl">Коэф. штрафа (%)</div>{{ form_widget(prizeForm.penalty) }}</div>
                 </div>
-                <div style="float:left; width:400px;">     
+                <div style="float:left; width:350px;">     
                     <div> Текст уведомления о полном наборе элементов группы<br/> {{ form_widget(prizeForm.message1) }}</div>
                     <div> Уведомления на электронную почту пользователя<br/> {{ form_widget(prizeForm.message2) }} </div>
                 </div>
                 <div>
-                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-large btn-primary" type="submit">Сохранить</button>
                 </div>
                 <div style="float:left; width:480px;">
                     <div style="float:left; width:240px">
-                        <img src="{{main['img1']}}"/><br/>
+                        <img src="{% if main['img1'] != '' %}{{main['img1']}}{% else %}/bundles/galaxybackend/img/no_photo.png{% endif %}"/><br/>
                         {{ form_widget(prizeForm.imgfile1) }}
                     </div>
                     <div style="float:left; width:240px;">
-                        <img src="{{main['img2']}}"/>
+                         <img src="{% if main['img2'] != '' %}{{main['img2']}}{% else %}/bundles/galaxybackend/img/no_photo.png{% endif %}"/><br/>
                         {{ form_widget(prizeForm.imgfile2) }}
                     </div>
                 </div>
