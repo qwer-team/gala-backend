@@ -49,11 +49,11 @@
                 </div>
                 <div style="float:left; width:480px;">
                     <div style="float:left; width:240px">
-                        <img src="{{main['img1']}}"/><br/>
+                        <img src="{% if main['img1'] != '' %}{{main['img1']}}{% else %}/bundles/galaxybackend/img/no_photo.png{% endif %}"/><br/>
                         {{ form_widget(prizeForm.imgfile1) }}
                     </div>
                     <div style="float:left; width:240px;">
-                        <img src="{{main['img2']}}"/>
+                         <img src="{% if main['img2'] != '' %}{{main['img2']}}{% else %}/bundles/galaxybackend/img/no_photo.png{% endif %}"/><br/>
                         {{ form_widget(prizeForm.imgfile2) }}
                     </div>
                 </div>
