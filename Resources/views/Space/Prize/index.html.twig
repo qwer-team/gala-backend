@@ -50,12 +50,12 @@
                 <div style="float:left; width:510px;">
                     <div style="float:left; width:240px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; margin-right: 6px; padding: 5px;">
                         <b>Маленькое фото <span style="font-size: 10px;">(до 110px Х до 75px)</span></b>
-                        <img src="{% if main['img1'] != '' %}{{main['img1']}}{% else %}/bundles/galaxybackend/img/no_photo.png{% endif %}"/><br/>
+                        <img src="{% if main['img1'] != '' %}{{main['img1']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
                         {{ form_widget(prizeForm.imgfile1) }}
                     </div>
                     <div style="float:left; width:240px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">
                         <b>Большое фото</b>
-                        <img src="{% if main['img2'] != '' %}{{main['img2']}}{% else %}/bundles/galaxybackend/img/no_photo.png{% endif %}"/><br/>
+                        <img src="{% if main['img2'] != '' %}{{main['img2']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
 
                         {{ form_widget(prizeForm.imgfile2) }}
                     </div>
@@ -90,7 +90,7 @@
                 <td style="padding: 4px; text-align: center;">{{element.available}}</td>
                 <td style="padding: 4px; text-align: center;">{{element.visible}}</td>
                 <td style="padding: 4px; text-align: center;">{{element.price}}</td>
-                <td style="padding: 4px; text-align: center;">{{element.account}}</td>
+                <td style="padding: 4px; text-align: center;">{% if element.account == 1%}Акт.{% else %}Деп.{% endif %}</td>
                 <td class="tdImg"><img width="80px" src="http://gala.my{{ element.img2 }}"></td>
                 <!--<td class="tdImg"><img width="80px" src="http://gala.my{{ element.img2 }}"></td>-->
                 <td style="padding: 4px; text-align: center;">{{element.blocked}}</td>

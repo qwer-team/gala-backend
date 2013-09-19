@@ -31,9 +31,11 @@
             <div style="float:left; width:800px;">
                 <div style="float:left; width:240px;border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; margin-right: 6px; padding: 5px;">
                         <b>Маленькое фото <span style="font-size: 10px;">(до 90px Х до 50px)</span></b>
+                        <img src="{% if element['img1'] != '' %}{{element['img1']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
                         {{ form_widget(form.imgfile1) }}</div>
                 <div style="float:left; width:240px;border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">
                         <b>Большое фото</b><br/>
+                        <img src="{% if element['img2'] != '' %}{{element['img2']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
                         {{ form_widget(form.imgfile2) }}</div>
                 {{ form_rest(form)}}
             </div>
