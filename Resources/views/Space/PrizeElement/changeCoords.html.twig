@@ -7,30 +7,35 @@
    }
 </style>
 <table class="table table-bordered table-striped table-hover">
-    <thead>
+    <thead style="background-color: #f6f7f8; background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);">
         <tr>
-            <td>prize</td>
-            <td>element</td>
-            <td>a</td>
-            <td>b</td>
-            <td>c</td>
-            <td>delta</td>
-            <td>a</td>
-            <td>b</td>
-            <td>c</td>
-            <td>delta</td>
-            <td>a</td>
-            <td>b</td>
-            <td>c</td>
-            <td>delta</td>
-            <td>actions</td>
+            <td style="padding: 4px; text-align: center;" rowspan="2">Приз</td>
+            <td style="padding: 4px; text-align: center;" rowspan="2">Элемент</td>
+            <td style="padding: 4px; text-align: center;" colspan="4">Вариант 1</td>
+            <td style="padding: 4px; text-align: center;" colspan="4">Вариант 2</td>
+            <td style="padding: 4px; text-align: center;" colspan="4">Вариант 3</td>
+            <td style="padding: 4px; text-align: center; width:38px" rowspan="2"> </td>
+        </tr>
+        <tr>
+            <td style="padding: 4px; text-align: center; width:38px">a</td>
+            <td style="padding: 4px; text-align: center; width:38px">b</td>
+            <td style="padding: 4px; text-align: center; width:38px">c</td>
+            <td style="padding: 4px; text-align: center; width:38px">delta</td>
+            <td style="padding: 4px; text-align: center; width:38px">a</td>
+            <td style="padding: 4px; text-align: center; width:38px">b</td>
+            <td style="padding: 4px; text-align: center; width:38px">c</td>
+            <td style="padding: 4px; text-align: center; width:38px">delta</td>
+            <td style="padding: 4px; text-align: center; width:38px">a</td>
+            <td style="padding: 4px; text-align: center; width:38px">b</td>
+            <td style="padding: 4px; text-align: center; width:38px">c</td>
+            <td style="padding: 4px; text-align: center; width:38px">delta</td>
         </tr>
     </thead>
     {% for element in elements %}
         {%set formId = 'element' ~ element['element']['id'] %} 
         <tr>
-            <td>{{element['prize']}}</td>
-            <td>{{element['element']['name']}}</td>
+            <td style="padding: 4px; text-align: center;">{{element['prize']}}</td>
+            <td style="padding: 4px; text-align: center;">{{element['element']['name']}}</td>
             <td>
                 {{form_widget(element['form']['a1'], {attr:{form: formId} })}}
             </td>
@@ -73,7 +78,7 @@
                         {{form_rest(element['form'])}}
                     </form>
                 </div>
-                <button type="submit" class="btn btn-primary" form="{{formId}}">save</button>
+                <button title="Сохранить" type="submit" class="btn btn-primary" form="{{formId}}"><i class="icon-hdd"></i><!--Сохранить--></button>
             </td>
         </tr>
     {% endfor%}

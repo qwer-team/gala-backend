@@ -6,13 +6,13 @@
     </script>
 <table class="table table-bordered table-hover table-striped" id="loadPrize">
     <thead>
-        <tr>
-            <td>Prize</td>
-            <td>Element</td>
-            <td>x</td>
-            <td>y</td>
-            <td>z</td>
-            <td>actions</td>
+        <tr style="background-color: #f6f7f8; background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);">
+            <td style="padding: 4px; text-align: center;"><b>Приз</b></td>
+            <td style="padding: 4px; text-align: center;"><b>Элемент</b></td>
+            <td style="padding: 4px; text-align: center;"><b>x</b></td>
+            <td style="padding: 4px; text-align: center;"><b>y</b></td>
+            <td style="padding: 4px; text-align: center;"><b>z</b></td>
+            <td style="padding: 4px; text-align: center;"><b>Действия</b></td>
         </tr>
     </thead>
     {%for subelement in forms%}
@@ -40,7 +40,7 @@
                         {{form_rest(subelement.form)}}
                     </form>
              </div>
-            <button type="submit" class="btn btn-primary" form="{{formId}}">save</button>
+            <button title="Сохранить" type="submit" class="btn btn-small btn-primary" form="{{formId}}"><i class="icon-hdd"></i><!--Сохранить--></button>
         </td>
     </tr>
     {% endfor %}
@@ -79,7 +79,7 @@
                         {{form_rest(newForm)}}
                     </form>
              </div>
-            <button type="submit" class="btn btn-success" form="{{formId}}">add</button>
+            <button type="submit" class="btn btn-success" form="{{formId}}"><!--<i class="icon-plus"></i>-->Добавить</button>
         </td>
     </tr>
 </table>
