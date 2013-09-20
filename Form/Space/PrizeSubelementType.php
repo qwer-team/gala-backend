@@ -19,7 +19,7 @@ class PrizeSubelementType extends AbstractType
             ))
             ->add('restore', 'checkbox', array(
                 'required' => false,
-                'attr' => array('style' => 'width:30px'),
+                'attr' => array('style' => 'width:30px;margin-left:30px'),
                 )) 
             ->add('elementId', 'hidden')
             ->add('id', 'hidden')

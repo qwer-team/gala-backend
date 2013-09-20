@@ -14,7 +14,7 @@ class PrizeElementType extends AbstractType
         $builder
                 ->add('name', 'text', array(
                     'attr' => array(
-                        'id' => 'inp'
+                        'style' => 'width:350px'
                     )
                 ))
                 ->add('available', 'integer', array(
@@ -47,10 +47,9 @@ class PrizeElementType extends AbstractType
                         '2' => '2',
                         '3' => '3',
                     ),
-                    'expanded' => true,
-                    'multiple' => false,
-                    'required' => false,
-                    'label' => false,
+                    'attr' => array(
+                        'style' => 'width:50px'
+                    )
                 ))
                 ->add('imgfile1', 'file', array("required" => false))
                 ->add('imgfile2', 'file', array("required" => false))

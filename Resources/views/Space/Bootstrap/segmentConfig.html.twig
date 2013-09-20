@@ -4,23 +4,24 @@
     <div class="controls controls-row">
     <input type="text" id="allPointsCount" name="allPointsCount"  class="span2" disabled="" value="{{ count }}">
     <input type="text" id="allPointsPercent" name="allPointsPercent"  class="span2" disabled="" value="{{ count / segmentLength }}">
+    <label style="float: right; width: 240px; padding-right: 410px;" class="control-label">Общее кол-во точек и % в отрезке</label>
     </div>
     {% for type in types %}
     {% if type.tag != "nihil" %}
-        <h2>{{type.name}}</h2>
+        <h2 style="font-size: 24px;">{{type.name}}</h2>
         {% if type.subtypes|length > 0  %}
         <ul class="subtypes unstyled">
-            <table class="table table-bordered table-hover table-striped" style="margin-top: 20px;">
+            <table class="table table-bordered table-hover table-striped" style="margin-bottom: 0px; border-radius: 4px 4px 4px 4px;">
                  <thead>
-                     <tr>
-                        <td>Кол-во</td>
-                        <td>%(в отрезке)</td>
+                     <tr style="background-color: #f6f7f8; background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);">
+                        <td style="padding: 4px; text-align: center; width: 216px;"><b>Кол-во</b></td>
+                        <td style="padding: 4px; text-align: center; width: 216px;"><b>%(в отрезке)</b></td>
                         {% if type.parameter != ""  %}
-                            <td>{{ type.parameter }}</td>
+                        <td style="padding: 4px; text-align: center;"><b>{{ type.parameter }}</b></td>
                         {% endif %}
-                        <td>Блокировать</td>
-                        <td>Возобновлять</td>
-                        <td>Действия</td>
+                        <td style="padding: 4px; text-align: center; width: 92px;"><b>Блокировать</b></td>
+                        <td style="padding: 4px; text-align: center; width: 101px;"><b>Возобновлять</b></td>
+                        <td style="padding: 4px 0; text-align: center; width: 94px;"><b>Действия</b></td>
                     </tr>
                  </thead>
             {% for subtype in type.subtypes %}
@@ -32,12 +33,12 @@
                         {% if type.parameter != ""  %}
                             <td>{{ form_widget(subtype.parameter)}}</td>
                         {% endif %}
-                        <td>{{ form_widget(subtype.block)}}</td>
-                        <td>{{ form_widget(subtype.restore)}}</td>
-                        <td><button type="button" class="btn-group update-subtype">
-                                <i class="icon-edit"></i>
+                        <td style="width: 92px;">{{ form_widget(subtype.block)}}</td>
+                        <td style="width: 101px;">{{ form_widget(subtype.restore)}}</td>
+                        <td style="width: 94px;"><button title="Сохранить" type="button" class="btn btn-primary update-subtype">
+                                <i class="icon-hdd"></i>
                             </button>
-                            <button type="button" class="btn btn-danger remove-subtype">
+                            <button title="Удалить" type="button" class="btn btn-danger remove-subtype">
                                 <i class="icon-remove"></i>
                             </button></td>
                             {{ form_widget(subtype.id)}}
@@ -46,14 +47,12 @@
                 </tbody>
               </form>
             {% endfor %}
-            </table>
-                {% endif %}
+                 {% endif %}
             {% for form in type.form %}
-           
                 
-                <table class="table table-bordered table-hover table-striped" style="margin-top: 20px;">
                     <form class="form-inline">
-                    <thead>
+                         <table class="table table-bordered table-hover table-striped" style="margin-bottom: 0px; border-radius: 4px 4px 4px 4px;">
+                    <!--<thead>
                         <tr>
                             <td>Кол-во</td>
                             <td>%(в отрезке)</td>
@@ -64,27 +63,30 @@
                             <td>Возобновлять</td>
                             <td>Действия</td>
                         </tr>
-                    </thead>
+                    </thead>-->
                     <tbody>
                         <tr>
-                            <td>{{ form_widget(form.pointsCount)}}</td>
-                            <td>{{ form_widget(form.percent)}}</td>
+                            <td style="width: 216px; padding-right: 3px;">{{ form_widget(form.pointsCount)}}</td>
+                            <td style="width: 216px; padding-right: 3px;">{{ form_widget(form.percent)}}</td>
                             {% if type.parameter != ""  %}
-                                <td>{{ form_widget(form.parameter)}}</td>
+                                <td style="width: 216px;">{{ form_widget(form.parameter)}}</td>
                             {% endif %}
-                            <td>{{ form_widget(form.block)}}</td>
-                            <td>{{ form_widget(form.restore)}}</td>
-                            <td><button type="button" class="btn btn-success add-subtype"><i class="icon-plus"></i>
+                            <td style="width: 99px;">{{ form_widget(form.block)}}</td>
+                            <td style="width: 108px;">{{ form_widget(form.restore)}}</td>
+                            <td style="width: 94px;"><button title="Добавить" style="width: 94px;" type="button" class="btn btn-success add-subtype"><i class="icon-plus"></i>
                             </button></td>
                             {{ form_widget(form.id)}}
                             {{ form_widget(form.typeId)}}
                         </tr>
                     </tbody>
+                    </table>
                     </form>
-                </table>
+               
                 
            
             {% endfor %}
+            </table>
+                
         </ul>
     {% endif %}
     {% endfor %}

@@ -4,34 +4,45 @@
     <form method="POST" action="{{path('element_update', {id: element['id']})}}"  {{ form_enctype(form) }}>
        {# {{ form_rest(form)}} #}
         <div>
-            <div style="float:left; width:280px">
-                <div><div class="lblElPrice">Название</div> {{ form_widget(form.name) }}</div>
-                <div><div class="lblElPrice">Акаунт</div> {{ form_widget(form.account) }}</div>
-                <div><div class="lblElPrice">Блокировать</div> {{ form_widget(form.blocked) }}</div>
-                <div>Вариант изменения координат {{ form_widget(form.movingVariant) }} </div>
+            <div>
+                 <div style="margin-bottom: 10px;"><div style="width: 75px;" class="lblElPrice">Название</div> {{ form_widget(form.name) }}
+                      <div style="float: right;">    
+                      <button style="padding: 11px;" class="btn btn-large btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button>
+                      <ul style="margin: 10px 0 0 0;" class="record_actions">
+                          <li style="list-style:none;">
+                             <a title="Вернуться к списку призов" style="padding: 4px 8px;" class="btn btn-warning" href="{{ path('prize_list', {id: element['prizeId']}) }}">
+                                 {% trans%}<i class="icon-list-alt"></i>Список призов{%endtrans%}
+                             </a>
+                          </li>
+                      </ul>
+                      </div> 
+                 </div>
+                 <div style="float: left; width: 800px;">
+                      <div style="float: left;">Стоимость {{ form_widget(form.price) }} {{ form_widget(form.account) }} </div>
+                      <div style="float: left; margin: 0 0 0 30px;">Блокировать {{ form_widget(form.blocked) }}</div>
+                      <div style="float: left; margin: 0 0 0 30px;">Вариант изменения координат {{ form_widget(form.movingVariant) }}</div>
+                 </div>
             </div>
-            <div style="float:left; width:340px">
-                <div>Видимость для радара {{ form_widget(form.visible) }}</div>
-                <div>Действителен прыжков {{ form_widget(form.available) }}</div>
-                <div>Стоимость {{ form_widget(form.price) }}</div>
+            <div style="float:left; width:800px; margin-bottom: 10px;">
+                <div style="float: left;">Видимость для радара {{ form_widget(form.visible) }}</div>
+                <div style="float: left; margin: 0 0 0 30px;">Действителен прыжков {{ form_widget(form.available) }}</div>
+                
             </div>
-            <div style="float:left; width:316px">
-                <div>{{ form_widget(form.imgfile1) }}</div>
-                <div>{{ form_widget(form.imgfile2) }}</div>
+            <div style="float:left; width:800px;">
+                <div style="float:left; width:240px;border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; margin-right: 6px; padding: 5px;">
+                        <b>Маленькое фото <span style="font-size: 10px;">(до 90px Х до 50px)</span></b>
+                        <img src="{% if element['img1'] != '' %}{{element['img1']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
+                        {{ form_widget(form.imgfile1) }}</div>
+                <div style="float:left; width:240px;border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">
+                        <b>Большое фото</b><br/>
+                        <img src="{% if element['img2'] != '' %}{{element['img2']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
+                        {{ form_widget(form.imgfile2) }}</div>
                 {{ form_rest(form)}}
             </div>
-            <div>    
-                <button class="btn btn-primary" type="submit">Save</button>
-            </div>    
+               
         </div>
         
     </form>
     <div style="clear: left;"></div>
-    <ul class="record_actions">
-        <li style="list-style:none;">
-            <a class="btn btn-warning" href="{{ path('prize_list', {id: element['prizeId']}) }}">
-                {% trans%}Back to the prize{%endtrans%}
-            </a>
-        </li>
-        </ul>
+    
 {% endblock %}

@@ -3,11 +3,11 @@
 {% block body %} 
 
 <div style="float: left; width: 200px">
-    <div>
+    <!--<div>
         <a href="{{path('prize_create')}}">
             <button style="width: 62%" class="btn btn-success"><i class="icon-plus"></i>Добавить</button>
         </a>
-    </div>
+    </div>-->
     <table class="table table-bordered table-hover table-striped myStyle">
     {% for id, prize in prizes %}
             <tr>
@@ -15,10 +15,10 @@
                 <td class="menuPrizeIcon">
                     <div class="btn-group">
                         <div style="float:left;">
-                            <a href="{{path("prize_list", {id: id})}}"><button class="btn btn-small"><i class="icon-edit"></i></button></a>
+                            <a href="{{path("prize_list", {id: id})}}"><button title="Редактировать" class="btn btn-small"><i class="icon-edit"></i></button></a>
                         </div>
                         <form style="margin-bottom:2px;" action="{{path("prize_delete", {id: id})}}">
-                            <button type=submit class="btn btn-danger btn-small"><i class="icon-remove"></i></button>
+                            <button title="Удалить" type=submit class="btn btn-danger btn-small"><i class="icon-remove"></i></button>
                         </form>
                     </div>
                 </td>
@@ -27,77 +27,80 @@
         </table>
         <div>
             <a href="{{path('prize_create')}}">
-                <button style="width: 62%" class="btn btn-success"><i class="icon-plus"></i>Добавить</button>
+                <button title="Добавить приз" style="width: 62%" class="btn btn-success"><i class="icon-plus"></i>Добавить</button>
             </a>
         </div>        
     </div>
-    <div style="width: 780px; margin-left: 5px; float: left; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">
+    <div style="width: 750px; margin-left: 5px; float: left; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
 
         <form method="POST" action="{{path('prize_update', {id: main['id']})}}"  {{ form_enctype(prizeForm) }}>
-                <div style="float:left; width: 280px;">
-                    <div><div class="lbl">Название</div> {{ form_widget(prizeForm.name) }}</div>
-                    <div><div class="lbl">Флиппер</div> {{ form_widget(prizeForm.flipper) }} </div>
-                    <div><div class="lbl">SMS код</div> {{ form_widget(prizeForm.sms) }}</div>
-                    <div><div class="lbl">Коэф. штрафа (%)</div>{{ form_widget(prizeForm.penalty) }}</div>
+                <div style="float:left; width: 265px;">
+                    <div style="margin-bottom: 5px;"><div style="width: 115px;" class="lbl">Название</div> {{ form_widget(prizeForm.name) }}</div>
+                    <div style="margin-bottom: 5px;"><div style="width: 115px;" class="lbl">Флиппер</div> {{ form_widget(prizeForm.flipper) }} </div>
+                    <div style="margin-bottom: 5px;"><div style="width: 115px;" class="lbl">SMS код</div> {{ form_widget(prizeForm.sms) }}</div>
+                    <div style="margin-bottom: 5px;"><div style="width: 115px;" class="lbl">Коэф.<br/>штрафа (%)</div>{{ form_widget(prizeForm.penalty) }}</div>
                 </div>
                 <div style="float:left; width:350px;">     
-                    <div> Текст уведомления о полном наборе элементов группы<br/> {{ form_widget(prizeForm.message1) }}</div>
-                    <div> Уведомления на электронную почту пользователя<br/> {{ form_widget(prizeForm.message2) }} </div>
+                    <div style="margin-bottom: 5px;"> Текст уведомления о полном наборе элементов группы<br/> {{ form_widget(prizeForm.message1) }}</div>
+                    <div style="margin-bottom: 5px;"> Уведомления на электронную почту пользователя<br/> {{ form_widget(prizeForm.message2) }} </div>
                 </div>
                 <div>
-                    <button class="btn btn-large btn-primary" type="submit">Сохранить</button>
+                    <button style="padding: 11px;" class="btn btn-large btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button>
                 </div>
-                <div style="float:left; width:480px;">
-                    <div style="float:left; width:240px">
-                        <img src="{% if main['img1'] != '' %}{{main['img1']}}{% else %}/bundles/galaxybackend/img/no_photo.png{% endif %}"/><br/>
+                <div style="float:left; width:510px;">
+                    <div style="float:left; width:240px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; margin-right: 6px; padding: 5px;">
+                        <b>Маленькое фото <span style="font-size: 10px;">(до 110px Х до 75px)</span></b>
+                        <img src="{% if main['img1'] != '' %}{{main['img1']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
                         {{ form_widget(prizeForm.imgfile1) }}
                     </div>
-                    <div style="float:left; width:240px;">
-                         <img src="{% if main['img2'] != '' %}{{main['img2']}}{% else %}/bundles/galaxybackend/img/no_photo.png{% endif %}"/><br/>
+                    <div style="float:left; width:240px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">
+                        <b>Большое фото</b>
+                        <img src="{% if main['img2'] != '' %}{{main['img2']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
+
                         {{ form_widget(prizeForm.imgfile2) }}
                     </div>
                 </div>
-            
             {{ form_rest(prizeForm)}}
-            
         </form>
         <div style="clear: left;"></div>
-        <a href="{{path('element_create', {prizeId: main['id']})}}">
+        <div style="margin: 20px 0px 0px;">
+        <!--<a href="{{path('element_create', {prizeId: main['id']})}}">
             <button class="btn btn-success"><i class="icon-plus"></i>Добавить</button>
-        </a>
+        </a>-->
+        <span style="font-size: 18px; color: #333333;"><b>Элементы приза</b></span>
         <table class="table table-bordered table-hover table-striped" style="margin-top:10px; margin-bottom: 10px;">
             <thead>
-                <tr>
-                    <td>id</td>
-                    <td>name</td>
-                    <td>available</td>
-                    <td>visible</td>
-                    <td>price</td>
-                    <td>account</td>
-                    <td>img1</td>
-                    <td>img2</td>
-                    <td>blocked</td>
-                    <td>actions</td>
+                <tr style="background-color: #f6f7f8; background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);">
+                    <td style="padding: 4px; text-align: center;"><b>id</b></td>
+                    <td style="padding: 4px; text-align: center;"><b>Название</b></td>
+                    <td style="padding: 4px; width: 80px; text-align: center;"><b>Действит.<br/>прыжков</b></td>
+                    <td style="padding: 4px; width: 90px; text-align: center;"><b>Видимость<br/>для радара</b></td>
+                    <td style="padding: 4px; text-align: center;"><b>Цена</b></td>
+                    <td style="padding: 4px; width: 35px; text-align: center;"><b>Счет</b></td>
+                    <td style="padding: 4px; width: 84px; text-align: center;"><b>Картинка</b></td>
+                    <!--<td><b>img2</b></td>-->
+                    <td style="padding: 4px; width: 73px; text-align: center;"><b>Блокировка</b></td>
+                    <td style="padding: 4px; width: 73px;"><b>Действия</b></td>
                 </tr>
             </thead>
         {% for element in main.elements%}
             <tr>
-                <td>{{element.id}}</td>
-                <td>{{element.name}}</td>
-                <td>{{element.available}}</td>
-                <td>{{element.visible}}</td>
-                <td>{{element.price}}</td>
-                <td>{{element.account}}</td>
+                <td style="padding: 4px; text-align: center;">{{element.id}}</td>
+                <td style="padding: 4px; text-align: center;">{{element.name}}</td>
+                <td style="padding: 4px; text-align: center;">{{element.available}}</td>
+                <td style="padding: 4px; text-align: center;">{{element.visible}}</td>
+                <td style="padding: 4px; text-align: center;">{{element.price}}</td>
+                <td style="padding: 4px; text-align: center;">{% if element.account == 1%}Акт.{% else %}Деп.{% endif %}</td>
                 <td class="tdImg"><img width="80px" src="http://gala.my{{ element.img2 }}"></td>
-                <td class="tdImg"><img width="80px" src="http://gala.my{{ element.img2 }}"></td>
-                <td>{{element.blocked}}</td>
+                <!--<td class="tdImg"><img width="80px" src="http://gala.my{{ element.img2 }}"></td>-->
+                <td style="padding: 4px; text-align: center;">{{element.blocked}}</td>
                 <td>
                     <div class="btn-group">
                         <div style="float:left;">
-                            <a href="{{path('element_edit', {id: element.id})}}"><button style="width:90%;" class="btn btn-small"><i class="icon-edit"></i></button></a>
+                            <a href="{{path('element_edit', {id: element.id})}}"><button title="Редактировать" style="width:90%;" class="btn btn-small"><i class="icon-edit"></i></button></a>
                         </div>
-                        <form action="{{path('element_delete', {prizeId: main['id'], id: element.id})}}">
-                            <button style="width:85%; margin-left: -6px;" class="btn btn-danger btn-small" type="submit"><i class="icon-remove"></i></button>
+                        <form style="margin-bottom: 0px;" action="{{path('element_delete', {prizeId: main['id'], id: element.id})}}">
+                            <button title="Удалить" style="width:85%; margin-left: -6px;" class="btn btn-danger btn-small" type="submit"><i class="icon-remove"></i></button>
                         </form>
                     </div>
                 </td>
@@ -105,8 +108,8 @@
         {% endfor %}
         </table>
         <a href="{{path('element_create', {prizeId: main['id']})}}">
-            <button class="btn btn-success"><i class="icon-plus"></i>Добавить</button>
+            <button title="Добавить элемент приза" class="btn btn-success"><i class="icon-plus"></i>Добавить</button>
         </a>
-
+     </div>
     </div>
 {% endblock %}

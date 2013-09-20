@@ -6,19 +6,22 @@
 
 <div class="form-horizontal">
     <div class="control-group">
-        <label class="control-label" >Общее кол-во точек</label>
-        <div class="controls" id="totalPoints" value="{{ points }}">
+        
+        <div style="float: left; margin-left: 0px; width: 1000px;" class="controls" id="totalPoints" value="{{ points }}">
             <input type="text" class="totalPoints" value="" disabled='disabled'>
+            <input type="text" class="totalPercent" value="" disabled="disabled">
+            <span class="help-inline"></span>
+            <label style="float: right; width: 239px; padding-right: 308px;" class="control-label" >Всего кол-во и % призов в отрезках</label>
         </div>
     </div>
 
-    <div class="control-group success">
+    <!--<div class="control-group success">
         <label class="control-label" for="inputSuccess">Общий процент</label>
         <div class="controls">
             <input type="text" class="totalPercent" value="" disabled="disabled">
             <span class="help-inline"></span>
         </div>
-    </div>
+    </div>-->
 </div>
 <div style="display: none" id="hiddenMassageSuccess">
         <div class="alert alert-success">
@@ -38,12 +41,13 @@
     <div class="span12" >
         <div class="accordion-group" data-id="{{segment.id}}" style="padding: 8px;">
             <div class="accordion-heading">
-                <a class="accordion-toggle load-prize-segment-info" data-toggle="collapse" data-parent="#accordion2" href="#segment_{{segment.id}}">segment № {{loop.index}}</a>
+                
                     <form class="form-search segments_form ajaxForm" action="{{ path('update_prize_segment_length', { 'id': segment.id }) }}" method="post">                          
                         <div class="controls controls-row">
                             {{ form_widget( segments_form[segment.id].length ) }}
                             {{ form_widget( segments_form[segment.id].percent) }}                        
-                            <a class="btn" id="sendAjaxForm">Сохранить</a>
+                            <a style="margin-left: 20px;" class="btn btn-primary" id="sendAjaxForm"><i class="icon-hdd"></i>Сохранить</a>
+                            <a title="Подробнее" style="float:right; margin-right:276px;" class="accordion-toggle load-prize-segment-info" data-toggle="collapse" data-parent="#accordion2" href="#segment_{{segment.id}}"> Кол-во призов и % в отрезке № {{loop.index}}</a>
                         </div>
                         {{ form_rest(segments_form[segment.id] ) }}
                     </form>
