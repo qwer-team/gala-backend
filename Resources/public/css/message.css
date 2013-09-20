@@ -8,10 +8,12 @@
 
 #messageId { 
     width: 50px;
+    margin-bottom: 10px;
 }
 
 #userId {
-    margin-left: 5px;
+    margin-left: 10px;
+     margin-bottom: 10px;
     width: 50px;
 }
 
@@ -21,7 +23,8 @@
 }
 
 #text {
-    margin-left: 5px;
+    margin-left: 10px;
+    margin-bottom: 10px;
     width: 438px;
 }
 
@@ -40,13 +43,14 @@
 }
 
 #title {
-    margin-left: 5px;
+    margin-left: 10px;
+    margin-bottom: 10px;
     width: 200px;
 }
 
 #button {
     margin-top: -11px;
-    margin-left: 255px;
+    /*margin-left: 255px;*/
 }
 
 .td {

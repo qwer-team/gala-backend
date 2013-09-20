@@ -4,37 +4,44 @@
     var prizes = {{ prizes|json_encode|raw  }};
     </script>
     <div class='subelements-form'>
-        <div class="controls controls-row">
+        <div style="margin-bottom: 20px;" class="controls controls-row">
             <input type="text" id="allPointsCount" name="allPointsCount"  class="span2" disabled="" value="{{ count }}">
             <input type="text" id="allPointsPercent" name="allPointsPercent"  class="span2" disabled="" value="{{ count / segmentLength }}">
+            <label style="float: right; width: 240px; padding-right: 410px;" class="control-label">Общее кол-во и % призов в отрезке</label>
         </div>
 
         <ul class="subtypes unstyled">
-            <div class="controls controls-row">
+            <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;" class="controls controls-row">
+                <div style="width: 186px; margin-bottom: 10px; text-align: center; font-size: 18px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 4px 6px; float: left;"><b>Приз</b></div>
+                <div style="width: 186px; margin-bottom: 10px; margin-left: 20px; text-align: center; font-size: 18px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 4px 6px; float: left;"><b>Элементы приза</b></div>
+                <div style="width: 126px; margin-bottom: 10px; margin-left: 20px; text-align: center; font-size: 18px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 4px 6px; float: left;"><b>Количество</b></div>
+                <div style="width: 126px; margin-bottom: 10px; margin-left: 20px; text-align: center; font-size: 18px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 4px 6px; float: left;"><b>%</b></div>
+                <div style="width: 40px; margin-bottom: 10px; margin-left: 20px; text-align: center; font-size: 18px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 4px 6px; float: left;"><b>Воз.</b></div>
+                <div style="width: 90px; margin-bottom: 10px; margin-left: 20px; text-align: center; font-size: 18px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 4px 6px; float: left;"><b>Действие</b></div>
             {% for item in forms %}
                     <li>
                         <form class="form-inline">
-                            <input type="text"  name="prize" required="required" class="span2" value="{{item.prize}}" disabled="">
-                            <input type="text"  name="element" required="required" class="span2" value="{{item.element}}" disabled="">
+                            <input style="width: 200px;" type="text"  name="prize" required="required" class="span2" value="{{item.prize}}" disabled="">
+                            <input style="width: 200px;" type="text"  name="element" required="required" class="span2" value="{{item.element}}" disabled="">
 
                 {{ form_widget(item.form.prizeCount)}}
                 {{ form_widget(item.form.percent)}}
                 {{ form_widget(item.form.restore)}}
                 {{ form_row(item.form.id)}}
                 {{ form_row(item.form.elementId)}}
-                            <button type="button" class="update-subelement btn btn-primary btn-small">Изменить</button>
-                            <button type="button" class="remove-subelement btn btn-danger btn-small">Удалить</button>
+                            <button style="margin-left: 37px; width: 49px;" title="Изменить" type="button" class="update-subelement btn btn-small"><i class="icon-edit"></i></button>
+                            <button style="width: 49px;" title="Удалить" type="button" class="remove-subelement btn btn-danger btn-small"><i class="icon-remove"></i></button>
                         </form>
                     </li>
                {% endfor %}
                     <li>
                         <form class="form-out">
-                            <select size="1" required="true" class="span2" name="prize">
+                            <select style="width: 200px;" size="1" required="true" class="span2" name="prize">
                         {% for prize in entities %}
                                     <option value="{{ prize.id }}">{{ prize.name }}</option>
                         {% endfor %}
                                 </select>
-                                <select size="1" required="true" class="span2" name="element">
+                                <select style="width: 200px;" size="1" required="true" class="span2" name="element">
                        {% for element in prizes|first %}
                                         <option value="{{ element.id }}">{{ element.name }}</option>
                        {% endfor %}
@@ -44,7 +51,7 @@
                  {{ form_widget(form.restore)}}
                 {{ form_row(form.id)}}
                 {{ form_row(form.elementId)}}
-                                    <button type="button" class="add-subelement btn btn-primary btn-small">Добавить</button>
+                                    <button style="margin-left: 37px; width: 102px;" title="Добавить" type="button" class="add-subelement btn btn-success"><i class="icon-plus"></i></button>
                                 </form>
                             </li>
                         </div>
