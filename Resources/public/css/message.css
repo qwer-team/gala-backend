@@ -9,22 +9,25 @@
 #messageId { 
     width: 50px;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 #userId {
-    margin-left: 10px;
-     margin-bottom: 10px;
+    margin-left: 16px;
+    margin-bottom: 10px;
+    margin-top: 10px;
     width: 50px;
 }
 
 #theme {
-    margin-left: 5px;
-    width: 158px;
+    margin-left: 19px;
+    width: 220px;
 }
 
 #text {
-    margin-left: 10px;
+    margin-left: 16px;
     margin-bottom: 10px;
+    margin-top: 10px;
     width: 438px;
 }
 
@@ -33,23 +36,24 @@
 }
 
 #moderator {
-    margin-left: 5px;
-    width: 100px;
+    margin-left: 19px;
+    width: 220px;
 }
 
 #age {
-    margin-left: 5px;
-    width: 100px;
+    margin-left: 19px;
+    width: 120px;
 }
 
 #title {
-    margin-left: 10px;
+    margin-left: 16px;
     margin-bottom: 10px;
+    margin-top: 10px;
     width: 200px;
 }
 
 #button {
-    margin-top: -11px;
+    margin-top: 20px;
     /*margin-left: 255px;*/
 }
 
@@ -78,4 +82,10 @@
 
 .width {
     width: 600px;
+}
+#name_mailbox {
+    width: 530px;
+}
+#event_notification {
+    width: 720px;
 }

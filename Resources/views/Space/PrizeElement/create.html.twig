@@ -2,9 +2,26 @@
 
 {% block body %}
     <form method="POST" action="{{path('element_add', {prizeId: prizeId})}}"  {{ form_enctype(form) }}>
-        {{ form_rest(form)}}
-        <br />
-        <button class="btn btn-primary" type="submit">add</button>
+        <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
+            <div style="float: left; width: 900px; margin-bottom: 20px;">
+                <div class="creation_prizes" style="float: left;">{{ form_row(form.name) }}</div>
+                <div class="creation_prizes" style="float: left; margin-left: 20px;">{{ form_row(form.price) }}</div>
+                <div class="creation_prizes" style="float: left; margin-left: 20px;">{{ form_row(form.account) }}</div>
+            </div>
+            <div style="float: left; width: 900px; margin-bottom: 20px;">
+                 <div class="creation_prizes" style="float: left;">{{ form_row(form.available) }}</div>
+                 <div class="creation_prizes" style="float: left; margin-left: 20px;">{{ form_row(form.visible) }}</div>
+                 <div class="creation_prizes" style="float: left; margin-left: 20px;">{{ form_row(form.movingVariant) }}</div>
+                 <div class="creation_prizes" style="float: left; margin-left: 40px;">{{ form_row(form.blocked) }}</div>
+            </div>
+            <div style="float: left; width: 900px; margin-bottom: 20px;">
+                 <div class="creation_prizes" style="float: left; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">{{ form_row(form.imgfile1) }}</div>
+                 <div class="creation_prizes" style="float: left; margin-left: 20px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">{{ form_row(form.imgfile2) }}</div>
+            </div>
+            {{ form_rest(form)}}
+            <br />
+            <button class="btn btn-success" type="submit"><i class="icon-plus"></i>Добавить</button>
+        </div>
     </form>
     
 {% endblock %}

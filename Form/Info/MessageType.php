@@ -251,6 +251,7 @@ class MessageType extends AbstractType
                 ))
                 ->add('theme', 'choice', array(
                     'required' => false,
+                    'empty_value' => 'Тема',
                     'choices' => $this->themes,
                     'attr' => array(
                         'id' => 'theme'
@@ -258,6 +259,7 @@ class MessageType extends AbstractType
                 ))
                 ->add('age', 'choice', array(
                     'required' => false,
+                    'empty_value' => 'Возраст',
                     'choices' => array(
                         '12' => 'до 12',
                         '16' => 'до 16',

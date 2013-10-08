@@ -5,9 +5,9 @@
     </script>
     <div class='subelements-form'>
         <div style="margin-bottom: 20px;" class="controls controls-row">
-            <input type="text" id="allPointsCount" name="allPointsCount"  class="span2" disabled="" value="{{ count }}">
-            <input type="text" id="allPointsPercent" name="allPointsPercent"  class="span2" disabled="" value="{{ count / segmentLength }}">
-            <label style="float: right; width: 240px; padding-right: 410px;" class="control-label">Общее кол-во и % призов в отрезке</label>
+            <input style="width: 211px;" type="text" id="allPointsCount" name="allPointsCount"  class="span2" disabled="" value="{{ count }}">
+            <input style="width: 219px; margin-left: 5px;"type="text" id="allPointsPercent" name="allPointsPercent"  class="span2" disabled="" value="{{ count / segmentLength }}">
+            <label style="float: right; margin-right:227px; font-size: 18px; padding: 6px 0px 0px 0px;" class="control-label">Общее кол-во и % призов в отрезке</label>
         </div>
 
         <ul class="subtypes unstyled">
@@ -29,7 +29,7 @@
                 {{ form_widget(item.form.restore)}}
                 {{ form_row(item.form.id)}}
                 {{ form_row(item.form.elementId)}}
-                            <button style="margin-left: 37px; width: 49px;" title="Изменить" type="button" class="update-subelement btn btn-small"><i class="icon-edit"></i></button>
+                            <button style="margin-left: 33px; width: 49px;" title="Изменить" type="button" class="update-subelement btn btn-small"><i class="icon-edit"></i></button>
                             <button style="width: 49px;" title="Удалить" type="button" class="remove-subelement btn btn-danger btn-small"><i class="icon-remove"></i></button>
                         </form>
                     </li>
@@ -51,7 +51,7 @@
                  {{ form_widget(form.restore)}}
                 {{ form_row(form.id)}}
                 {{ form_row(form.elementId)}}
-                                    <button style="margin-left: 37px; width: 102px;" title="Добавить" type="button" class="add-subelement btn btn-success"><i class="icon-plus"></i></button>
+                                    <button style="margin-left: 33px; width: 102px;" title="Добавить" type="button" class="add-subelement btn btn-success"><i class="icon-plus"></i></button>
                                 </form>
                             </li>
                         </div>
