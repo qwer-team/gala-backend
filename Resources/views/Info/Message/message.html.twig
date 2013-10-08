@@ -2,8 +2,9 @@
 
 {% block body %} 
      <div style="float:left; width: 980px;margin-top: 30px">
-         <div style="width: 850px; float:left;">Поиск</div>
-         <div style="width: 100px; float:right;"><button id="button" type="submit" class="btn btn-large btn-info">Поиск</button></div>
+         <div style="width: 1000px; float:left; font-size: 22px; text-align: center; ">Поиск
+         <div style="border-bottom: 1px solid rgb(224, 224, 224); margin-top: 10px;"></div></div>
+         <div style="width: 100px; float:right;"><button title="Поиск" style="width: 90px;" id="button" type="submit" class="btn btn-large btn-info"><i class="icon-search"></i></button></div>
          <form action="{{ path('search_message') }}" method="post" {{ form_enctype(form) }}>
              
                  <div style = "float:left;">{{ form_widget(form.messageId) }}</div>
@@ -18,15 +19,15 @@
             
              </form>
          </div>
-    <div style="float:left; width: 800px;">
+    <div style="float:left; width: 960px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
             <table class="table table-bordered table-hover table-striped" style="margin-top: 20px;">
-                <thead><tr>
-                        <td>id</td>
-                        <td class="td">Тема</td>
-                        <td class="td">Назване</td>
-                        <td class="tdText">Текст</td>
-                        <td class="tdVisible">Видимость</td>
-                        <td>&nbsp;</td>
+                <thead><tr style="background-color: #f6f7f8; background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);">
+                        <td style="padding: 4px; text-align: center;"><b>id</b></td>
+                        <td style="padding: 4px; text-align: center;" class="td"><b>Тема</b></td>
+                        <td style="padding: 4px; text-align: center;" class="td"><b>Назване</b></td>
+                        <td style="padding: 4px; text-align: center;" class="tdText"><b>Текст</b></td>
+                        <td style="padding: 4px; text-align: center;" class="tdVisible"><b>Видимость</b></td>
+                        <td style="padding: 4px; text-align: center;">&nbsp;</td>
                     </tr></thead>
                 <a href="{{ path('new_message') }}">
                     <button class="btn btn-success"><i class="icon-plus"></i>
@@ -35,24 +36,24 @@
         {% for message in messages%}
                     
             {% if message.visible == '1' %}
-                {% set color = '#5BB75B' %}
+                {% set color = 'background-color: #dff0d8; background-image: linear-gradient(to bottom, #dff0d8, #5BB75B)' %}
             {% elseif message.visible == '' %}
                 {% set color = '#fff' %}
             {% else %}
             {% endif %}
                     
                 <tr style="background: {{color}}">
-                    <td>{{message.id}}</td>
-                    <td>{% if message.theme is defined  %}{{message.theme.title}}{% endif %}</td>
-                    <td>{% if message.title is defined %}{{message.title}}{% endif %}</td>
-                    <td>{{message.text|raw}}</td>
-                    <td class="tdVisible">{{message.visible}}</td>
-                    <td>
+                    <td style="text-align: center;">{{message.id}}</td>
+                    <td style="text-align: center;">{% if message.theme is defined  %}{{message.theme.title}}{% endif %}</td>
+                    <td style="text-align: center;">{% if message.title is defined %}{{message.title}}{% endif %}</td>
+                    <td style="text-align: center;">{{message.text|raw}}</td>
+                    <td style="text-align: center;" class="tdVisible">{% if message.visible == '1' %}<i class="icon-ok"></i>{% endif %}</td>
+                    <td style="width: 87px;">
                         <div class="btn-group">
-                            <a href="{{ path('show_message', {id: message.id}) }}" class='btn' target="_blank">
+                            <a title="Редактировать" href="{{ path('show_message', {id: message.id}) }}" class='btn' target="_blank">
                                 <i class="icon-edit"></i>
                             </a>
-                            <a class="btn btn-danger" data-toggle="modal" href="{{ path('delete_message', {id: message.id}) }}">
+                            <a title="Удалить" class="btn btn-danger" data-toggle="modal" href="{{ path('delete_message', {id: message.id}) }}">
                                 <i class="icon-remove"></i>
                             </a>
                         </div>

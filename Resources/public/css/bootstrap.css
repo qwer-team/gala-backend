@@ -6170,3 +6170,47 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+.ans_to_mes input {
+    width: 930px;
+}
+.postaquest {
+    width: 800px;
+    background-color: #eee;
+    font-size: 18px;
+}
+.name_mailbox {
+    width: 530px;
+}
+#editing_segments_length {
+    width: 211px;
+}
+#editing_segments_percent {
+    width: 219px;
+    margin-left: 5px;
+}
+.creation_prizes label{
+    margin-bottom: 5px;
+    margin-right: 10px;
+    display: inline;
+    padding-left: 0px;
+}
+.flipper_name label{
+    margin-bottom: 5px;
+    margin-right: 10px;
+    display: inline;
+    padding-left: 0px;
+    width: 350px;
+}
+.flipper_name input{
+    width: 350px;
+}
+.not_jump input{
+    width: 440px;
+}
+#neighborhood{
+    margin-right: 35px;
+}
+.flip_btn_save {
+    float: left;
+    
+}

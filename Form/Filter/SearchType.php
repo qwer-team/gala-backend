@@ -49,13 +49,14 @@ class SearchType extends AbstractType
                 ))
                 ->add('visible', 'choice', array(
                     'required' => false,
+                    'empty_value' => 'Невидим/Видим',
                     'choices' => array(
                         '0' => 'Невидим',
                         '1' => 'Видим',),
                 ))
                 ->add('moderatorAccepted', 'choice', array(
                     'required' => false,
-                    'empty_value' => 'Не/Принято',
+                    'empty_value' => 'Не принято/Принято',
                     'choices' => array(
                         '0' => 'Не принято',
                         '1' => 'Принято',

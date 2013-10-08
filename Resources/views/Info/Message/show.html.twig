@@ -1,172 +1,177 @@
 {% extends 'GalaxyBackendBundle::contentLayout.html.twig' %}
 
 {% block body %}
-<div class="container" style="margin-top: 20px;">
-    <h3>id {{message.id}}</h3>
-    Картинка :{% if "img" in message|keys %}<img src="{{message.img}}"/><br>{% endif %}
-    <a href="{{ path('preview_message', {'id': message.id}) }}" class="control control-9 iframe cboxElement" style="margin-left: 70%"><button type="button" class="btn btn-primary">Preview</button></a>
-    <form action="{{ path('update_message', {'id': message.id}) }}" method="post" {{ form_enctype(form) }}>
+<div class="container" style="margin-top: 20px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px 20px 0 20px; width:950px;">
+    <div style="float: left; width: 800px; margin-bottom: 10px;"><span style="font-size: 28px;"><b>id {{message.id}}</b></span> <span style="font-size: 28px; padding-left: 20px;">Название {{ form_widget(form.title, {'attr': {'id': 'name_mailbox'}}) }}</span></div>
+    <div style="float: right; width: 140px;">
+        <button type="submit" class="btn btn-large btn-primary" style="padding: 11px; margin-bottom: 5px;"><i class="icon-hdd"></i>Сохранить</button>
+        <a href="{{ path('preview_message', {'id': message.id}) }}" class="control control-9 iframe cboxElement"><button style="padding: 11px; margin-bottom: 5px; width: 133px;" type="button" class="btn btn-large btn-warning"><i class="icon-eye-open"></i>Просмотр</button></a>
+        <a href="{{ path('messages_list')}}"><button style="width: 133px;" class="btn btn-large btn-inverse" type="button"><i class="icon-list"></i>К списку</button></a>
+    </div>
+    <div style="float: left; margin-bottom: 10px; width: 800px;">Тема контента {{ form_widget(form.theme) }} <span style="padding-left: 20px;">Проверено модератором {{ form_widget(form.moderatorAccepted) }}</span> <span style="padding-left: 20px;">Опубликовать сообщение {{ form_widget(form.visible) }}</span></div>
+    <!--Картинка :{% if "img" in message|keys %}<img src="{{message.img}}"/><br>{% endif %}-->
+    <div style="float: left; margin-bottom: 20px; width: 800px;">Количество прыжков до вывода вопроса {{ form_widget(form.jumpsToQuestion) }} <span style="padding-left: 20px;">Возраст {{ form_widget(form.age) }}</span></div>
+     <div style="float: left; margin-bottom: 20px; width: 240px; height: 250px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">
+         <div id="imgfile" style="margin-left: 0px;"><img src="/bundles/galaxybackend/img/no_photo.png" /> {{ form_widget(form.imgfile) }}</div>
+         <div id="imgfile" style="margin-left: 0px;">Удалить картинку {{form_widget(form.imageDelete)}}</div>
+         <div style="clear:left;"></div>
+     </div>
+    <div style="float: left; margin: 0 20px; width: 240px; height: 250px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">
+         <div id="imgfile" style="margin-left: 0px;"><img src="/bundles/galaxybackend/img/no_photo.png" /> {{ form_widget(form.imgfile) }}</div>
+         <div id="imgfile" style="margin-left: 0px;">Удалить картинку {{form_widget(form.imageDelete)}}</div>
+         <div style="clear:left;"></div>
+     </div>
+    <div style="float: left; margin-bottom: 20px; width: 240px; height: 250px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">
+         <div id="imgfile" style="margin-left: 0px;"><img src="/bundles/galaxybackend/img/no_photo.png" /> {{ form_widget(form.imgfile) }}</div>
+         <div id="imgfile" style="margin-left: 0px;">Удалить картинку {{form_widget(form.imageDelete)}}</div>
+         <div style="clear:left;"></div>
+     </div>
+     <form action="{{ path('update_message', {'id': message.id}) }}" method="post" {{ form_enctype(form) }}>
         {% if  message.moderatorAccepted%}
             {{ form_row(form.moderatorAccepted, { 'attr': {'disabled': 'true'} }) }}
         {% endif %}
-    id сообщения {{ form_widget(form.messageId) }}
-            Название {{ form_widget(form.title) }}<br/>
-            Тема контента {{ form_widget(form.theme) }}<br/>
-            Опубликовать сообщение {{ form_widget(form.visible) }}
-            Проверено модератором {{ form_widget(form.moderatorAccepted) }}
-
-                <div id="textarea">
-                    {{ form_widget(form.text) }}
-                </div>
-                <div id="imgfile">Изображение {{ form_widget(form.imgfile) }}</div>
-                <div id="imgfile">Удалить картинку {{form_widget(form.imageDelete)}}</div>
-            <div style="clear:left;"></div>
-            <div>
-                Количество прыжков до вывода вопроса {{ form_widget(form.jumpsToQuestion) }}
-                Возраст {{ form_widget(form.age) }}
-                <div>
-                    Вопрос сообщения {{ form_widget(form.question) }}
-                    Время ожидания ответа{{ form_widget(form.seconds) }} сек.
-                </div>
-                {{ form_widget(form.answers) }}
-                Правильный ответ {{ form_widget(form.rightAnswer) }}
-            </div>
+    <!--id сообщения {{ form_widget(form.messageId) }}-->
+     <div id="textarea" style="width: 943px; margin-bottom: 20px;">
+         {{ form_widget(form.text) }}
+     </div>
+     <div style="float:left; margin-bottom: 20px;">
+         <div style="margin-bottom: 20px; color:#000;">
+              Вопрос сообщения {{ form_widget(form.question, {'attr': {'class': 'postaquest'}}) }}
+              
+         </div>
+         <div>
+             <div style="margin-bottom: 10px;">
+                <span style="font-size: 28px; padding-left: 35%;"><b>Варианты ответов:</b></span>
+                {% for answer in form.answers %}
+                    
+                    {{ form_widget(answer, {'attr': {'class': 'ans_to_mes'}}) }}
+                {% endfor %}
+             </div>
+                Правильный ответ {{ form_widget(form.rightAnswer) }} <span style="margin-left: 20px;">Время ожидания ответа{{ form_widget(form.seconds) }} сек.</span></div>
+     </div>
             
             <div>
-                <h1>Поощрения</h1>
-                <div>
+                <div style="padding-bottom: 20px;">
+                <span style="font-size: 28px; padding-left: 35%;"><b>Поощрения</b></span>
+                </div>
+                <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 10px; margin-bottom: 5px;">
                     {{ form_widget(form.incPointsActv) }} Вкл.
-                    Количество добавляемых игровых очков {{ form_widget(form.incPoints) }}
+                    <span style="margin: 0 20px;">Количество добавляемых игровых очков {{ form_widget(form.incPoints) }}</span>
                     {{ form_widget(form.incPointsProc) }} в %
                     <div>
-                        Уведомление о событии<br/>
-                        {{ form_widget(form.incPointsMess) }}
+                        Уведомление о событии {{ form_widget(form.incPointsMess, {'attr': {'id': 'event_notification'}}) }}
                     </div>
                 </div>
-                <div>
+                <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 10px; margin-bottom: 5px;">
                     {{ form_widget(form.incOwnElemActv) }} Вкл.
-                    Увеличения минимальной принадлежности приза
-                    {{ form_widget(form.incOwnElem) }} Самый мин из всех минимальных
+                    <span style="margin: 0 0 0 20px;">Увеличения минимальной принадлежности приза
+                    {{ form_widget(form.incOwnElem) }} Самый мин из всех минимальных</span>
                     <div>
-                        Уведомление о событии<br/>
-                        {{ form_widget(form.incOwnElemMess) }}
+                        Уведомление о событии {{ form_widget(form.incOwnElemMess, {'attr': {'id': 'event_notification'}}) }}
                     </div>
                 </div>
-                <div>
+                <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 10px; margin-bottom: 5px;">
                     {{ form_widget(form.incDurationMinElemActv) }} Вкл.
-                    Увеличения длительности всех элементов призов
-                    {{ form_widget(form.incDurationMinElem) }} Всем минимальным
+                    <span style="margin: 0 0 0 20px;">Увеличения длительности всех элементов призов
+                    {{ form_widget(form.incDurationMinElem) }} Всем минимальным</span>
                     <div>
-                        Уведомление о событии<br/>
-                        {{ form_widget(form.incDurationMinElemMess) }}
+                        Уведомление о событии {{ form_widget(form.incDurationMinElemMess, {'attr': {'id': 'event_notification'}}) }}
                     </div>
                 </div>
-                <div>
+                <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 10px; margin-bottom: 5px;">
                     {{ form_widget(form.incFlipAmountActv) }} Вкл.
-                    Предоставления флиппера следующего уровня на
-                    {{ form_widget(form.incFlipAmount) }} перемещений
+                    <span style="margin: 0 0 0 20px;">Предоставления флиппера следующего уровня на
+                    {{ form_widget(form.incFlipAmount) }} перемещений</span>
                     <div>
-                        Уведомление о событии<br/>
-                        {{ form_widget(form.incFlipAmountMess) }}
+                        Уведомление о событии {{ form_widget(form.incFlipAmountMess, {'attr': {'id': 'event_notification'}}) }}
                     </div>
                 </div>
-                <div>
+                <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 10px; margin-bottom: 5px;">
                     {{ form_widget(form.superjumpAmountActv) }} Вкл.
-                    Супер прыжок в количестве
-                    {{ form_widget(form.superjumpAmount) }}
+                    <span style="margin: 0 0 0 20px;">Супер прыжок в количестве
+                    {{ form_widget(form.superjumpAmount) }}</span>
                     <div>
-                        Уведомление о событии<br/>
-                        {{ form_widget(form.superjumpAmountMess) }}
+                        Уведомление о событии {{ form_widget(form.superjumpAmountMess, {'attr': {'id': 'event_notification'}}) }}
                     </div>
                 </div>
-                <div>
+                <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 10px; margin-bottom: 5px;">
                     {{ form_widget(form.incDurationAllElemActv) }} Вкл.
-                    Увеличения длительности всех элеиентов призов на
-                    {{ form_widget(form.incDurationAllElem) }} Вообще всем
+                    <span style="margin: 0 0 0 20px;">Увеличения длительности всех элеиентов призов на
+                    {{ form_widget(form.incDurationAllElem) }} Вообще всем</span>
                     <div>
-                        Уведомление о событии<br/>
-                        {{ form_widget(form.incDurationAllElemMess) }}
+                        Уведомление о событии {{ form_widget(form.incDurationAllElemMess, {'attr': {'id': 'event_notification'}}) }}
                     </div>
                 </div>
-                <h1>Санкции</h1>
-                <div>
+                <div style="padding-bottom: 20px; margin-top: 20px;">
+                <span style="font-size: 28px; padding-left: 35%;"><b>Санкции</b></span>
+                </div>
+                <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 10px; margin-bottom: 5px;">
                     {{ form_widget(form.decPointsActv) }} Вкл.
-                    Количество убавляемых игровых очков {{ form_widget(form.decPoints) }}
+                    <span style="margin: 0 20px;">Количество убавляемых игровых очков {{ form_widget(form.decPoints) }}</span>
                     {{ form_widget(form.decPointsProc) }} в %
                     <div>
-                        Уведомление о событии<br/>
-                        {{ form_widget(form.decPointsMess) }}
+                        Уведомление о событии {{ form_widget(form.decPointsMess, {'attr': {'id': 'event_notification'}}) }}
                     </div>
                 </div>
-                <div>
+                <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 10px; margin-bottom: 5px;">
                     {{ form_widget(form.decFlipAmountActv) }} Вкл.
-                    Предоставления флиппера уровня ниже на
-                    {{ form_widget(form.decFlipAmount) }}
+                    <span style="margin: 0 0 0 20px;">Предоставления флиппера уровня ниже на
+                    {{ form_widget(form.decFlipAmount) }}</span>
                     <div>
-                        Уведомление о событии<br/>
-                        {{ form_widget(form.decFlipAmountMess) }}
+                        Уведомление о событии {{ form_widget(form.decFlipAmountMess, {'attr': {'id': 'event_notification'}}) }}
                     </div>
                 </div>
-                <div>
-                    {{ form_widget(form.superjumpCancelActv) }} Вкл.
-                    Аннулирование счетчика суперпрыжков
+                <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 10px; margin-bottom: 5px;">
+                    {{ form_widget(form.superjumpCancelActv) }} Вкл. Аннулирование счетчика суперпрыжков
                     <div>
-                        Уведомление о событии<br/>
-                        {{ form_widget(form.superjumpCancelMess) }}
+                        Уведомление о событии {{ form_widget(form.superjumpCancelMess, {'attr': {'id': 'event_notification'}}) }}
                     </div>
                 </div>
-                <div>
-                    {{ form_widget(form.activeCancelActv) }} Вкл.
-                    Аннулирование активного счета
+                <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 10px; margin-bottom: 5px;">
+                    {{ form_widget(form.activeCancelActv) }} Вкл. Аннулирование активного счета
                     <div>
-                        Уведомление о событии<br/>
-                        {{ form_widget(form.activeCancelMess) }}
+                        Уведомление о событии {{ form_widget(form.activeCancelMess, {'attr': {'id': 'event_notification'}}) }}
                     </div>
                 </div>
-                <div>
-                    {{ form_widget(form.firstFlipperActv) }} Вкл.
-                    Предоставление флиппера первого уровня
+                <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 10px; margin-bottom: 5px;">
+                    {{ form_widget(form.firstFlipperActv) }} Вкл. Предоставление флиппера первого уровня
                     <div>
-                        Уведомление о событии<br/>
-                        {{ form_widget(form.firstFlipperMess) }}
+                        Уведомление о событии {{ form_widget(form.firstFlipperMess, {'attr': {'id': 'event_notification'}}) }}
                     </div>
                 </div>
-                <div>
-                    {{ form_widget(form.blackPointActv) }} Вкл.
-                    Попадание в Черную точку
+                <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 10px; margin-bottom: 5px;">
+                    {{ form_widget(form.blackPointActv) }} Вкл. Попадание в Черную точку
                     <div>
-                        Уведомление о событии<br/>
-                        {{ form_widget(form.blackPointMess) }}
+                        Уведомление о событии {{ form_widget(form.blackPointMess, {'attr': {'id': 'event_notification'}}) }}
                     </div>
                 </div>
-                <div>
-                    {{ form_widget(form.delElemGroupActv) }} Вкл.
-                    Удаление максимально полной группы элементов приза
+                <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 10px; margin-bottom: 5px;">
+                    {{ form_widget(form.delElemGroupActv) }} Вкл. Удаление максимально полной группы элементов приза
                     <div>
-                        Уведомление о событии<br/>
-                        {{ form_widget(form.delElemGroupMess) }}
+                        Уведомление о событии {{ form_widget(form.delElemGroupMess, {'attr': {'id': 'event_notification'}}) }}
                     </div>
                 </div>
-                <div>
+                <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 10px; margin-bottom: 5px;">
                     {{ form_widget(form.decDurationAllElemActv) }} Вкл.
-                    Уменьшения длительности элементов призов для всех на
-                    {{ form_widget(form.decDurationAllElem) }}
+                    <span style="margin: 0 0 0 20px;">Уменьшения длительности элементов призов для всех на
+                    {{ form_widget(form.decDurationAllElem) }}</span>
                     <div>
-                        Уведомление о событии<br/>
-                        {{ form_widget(form.decDurationAllElemMess) }}
+                        Уведомление о событии {{ form_widget(form.decDurationAllElemMess, {'attr': {'id': 'event_notification'}}) }}
                     </div>
                 </div>
              </div>
-            <br>
-            <button type="submit" class="btn btn-primary">Изменить</button>
-            <br />
+            <div style="float: left; padding-left: 28%;">
+        <button type="submit" class="btn btn-large btn-primary" style="padding: 11px; margin-bottom: 5px;"><i class="icon-hdd"></i>Сохранить</button>
+        <a href="{{ path('preview_message', {'id': message.id}) }}" class="control control-9 iframe cboxElement"><button style="padding: 11px; margin-bottom: 5px; width: 133px;" type="button" class="btn btn-large btn-warning"><i class="icon-eye-open"></i>Просмотр</button></a>
+        <a href="{{ path('messages_list')}}"><button style="padding: 11px; margin-bottom: 5px; width: 133px;" class="btn btn-large btn-inverse" type="button"><i class="icon-list"></i>К списку</button></a>
+    </div>
         </form>
     </div>
-
+<!--
     <br />
 <a href="{{ path('messages_list')}}">
     <button class="btn" type="button">Вернутся к списку</button>
-</a>
+</a>-->
 
                 
 {% endblock body %}

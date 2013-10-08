@@ -2,30 +2,30 @@
 {% extends 'GalaxyBackendBundle::layout.html.twig' %}
 
 {% block body %}
-<form method="post" action="{{path('flipper_update', {'id': flipper['id']})}}" {{ form_enctype(form) }}>
-    {{form_row(form.title)}}
-    {{form_row(form.maxJump)}}
-    {{form_row(form.costJump)}}
-    {% if flipper.id == 1 %}
-        {{form_row(form.impossibleJumpHint)}}
-        {{form_row(form.paymentFromDeposit)}}
-    {% elseif flipper.id == 2 %}
-        {{form_row(form.journalDuration)}}
-        {{form_row(form.rentCost)}}
-        {{form_row(form.rentDuration)}}
-        {{form_row(form.activeAccLess)}}
-        {{form_row(form.activeAccHint)}}
-        {{form_row(form.countRentMess)}}
-        {{form_row(form.radarCost)}}
-        {{form_row(form.radarSpec)}}
-        {{form_row(form.nextPointDistance)}}
-        {{form_row(form.firstLeftBorder)}}
-        {{form_row(form.secondLeftBorder)}}
-        {{form_row(form.firstRightBorder)}}
-        {{form_row(form.secondRightBorder)}}
-        {{form_row(form.distanceHint)}}
-        <p>Вторая автоматическая зона перемещения</p>
-        <table>
+<div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
+  <form method="post" action="{{path('flipper_update', {'id': flipper['id']})}}" {{ form_enctype(form) }}>
+    <div class="flipper_name" style="float: left; width: 950px; margin-bottom: 20px;">{{form_row(form.title)}}</div>
+    <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.maxJump)}}</div>
+    <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.costJump)}}</div>
+    <div class="creation_prizes" style="float: left; width: 1000px; margin-bottom: 20px;">
+        <div class="not_jump" style="float: left; margin-bottom: 20px;">{{form_row(form.impossibleJumpHint)}}{% if flipper.id == 1 %}</div>
+        <div class="creation_prizes" style="float: left; margin-left: 40px; margin-bottom: 30px;">{{form_row(form.paymentFromDeposit)}}{% elseif flipper.id == 2 %}</div>
+        <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.journalDuration)}}</div>
+        <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.rentCost)}}</div>
+        <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.rentDuration)}}</div>
+        <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.activeAccLess)}}</div>
+        <div class="not_jump" style="float: left; margin-bottom: 20px; width: 950px;">{{form_row(form.activeAccHint)}}</div>
+        <div class="creation_prizes" style="float: left; width: 540px; margin-bottom: 20px;">{{form_row(form.countRentMess)}}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px;">{{form_row(form.radarCost)}}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; margin-left: 20px;">{{form_row(form.radarSpec)}}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; margin-left: 20px;">{{form_row(form.nextPointDistance)}}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; ">{{form_row(form.firstLeftBorder)}}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; margin-left: 20px;">{{form_row(form.firstRightBorder)}}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; ">{{form_row(form.secondLeftBorder)}}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; margin-left: 20px;">{{form_row(form.secondRightBorder)}}</div>
+        <div class="not_jump" style="float: left; margin-bottom: 20px;">{{form_row(form.distanceHint)}}</div>
+        <div style="float: left; margin-bottom: 20px; width: 950px;"><span style="font-size: 28px;"><b>Вторая автоматическая зона перемещения</b></span></div>
+        <table style="width: 950px;">
             <tr>
                 <td>{{form_row(form.secondZoneDuration1)}}</td>
                 <td>{{form_row(form.secondZoneCost1)}}</td>
@@ -47,51 +47,49 @@
                 <td>{{form_row(form.secondZoneSpec4)}}</td>
             </tr>
         </table>
-    {% elseif flipper.id == 3 %}
-        {{form_row(form.journalDuration)}}
-        {{form_row(form.rentCost)}}
-        {{form_row(form.rentDuration)}}
-        {{form_row(form.countRentMess)}}
-        {{form_row(form.activeAccLess)}}
-        {{form_row(form.activeAccHint)}}
-        {{form_row(form.messageBuyHint)}}
-        {{form_row(form.radarCost)}}
-        {{form_row(form.radarSpec)}}
-        {{form_row(form.nextPointDistance)}}
-        {{form_row(form.firstLeftBorder)}}
-        {{form_row(form.secondLeftBorder)}}
-        {{form_row(form.firstRightBorder)}}
-        {{form_row(form.secondRightBorder)}}
-        {{form_row(form.distanceHint)}}
-        {{form_row(form.searchZoneCost)}}
-        {{form_row(form.searchZoneSpec)}}
-        <p><strong>Окрестность точки в зоне поиска</strong></p>
-        <table>
+        
+        <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.journalDuration)}}{% elseif flipper.id == 3 %}
+        </div>
+        <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.rentCost)}}</div>
+        <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.rentDuration)}}</div>
+        <div class="creation_prizes" style="float: left; width: 540px; margin-bottom: 20px;">{{form_row(form.countRentMess)}}</div>
+        <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.activeAccLess)}}</div>
+        <div class="not_jump" style="float: left; margin-bottom: 20px; width: 950px;">{{form_row(form.activeAccHint)}}</div>
+        <div class="creation_prizes" style="float: left; width: 400px; margin-bottom: 20px;">{{form_row(form.radarCost)}}</div>
+        <div class="creation_prizes" style="float: left; width: 550px; margin-bottom: 30px;">{{form_row(form.radarSpec)}}</div>
+        <div class="creation_prizes" style="float: left; width: 950px; margin-bottom: 20px;">{{form_row(form.nextPointDistance)}}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 3px; ">{{form_row(form.firstLeftBorder)}}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 3px; margin-left: 20px;">{{form_row(form.firstRightBorder)}}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; ">{{form_row(form.secondLeftBorder)}}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; margin-left: 20px;">{{form_row(form.secondRightBorder)}}</div>
+        <div class="not_jump" style="float: left; margin-bottom: 20px; width: 950px;"> {{form_row(form.distanceHint)}}</div>
+        <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.searchZoneCost)}}</div>
+        <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.searchZoneSpec)}}</div>
+        <div style="float: left; margin-bottom: 20px; width: 950px;"><span style="font-size: 28px;"><strong>Окрестность точки в зоне поиска</strong></span>
+        </div>
+        <table style="width: 950px; margin-bottom: 20px;">
             <tr>
-                <td>{{form_row(form.leftBorderSearchX)}}</td>
-                <td>{{form_row(form.rightBorderSearchX)}}</td>
-                <td>{{form_row(form.deltaSearchX)}}</td>
+                <td style="width:300px;">{{form_row(form.leftBorderSearchX)}}</td>
+                <td style="width:300px;">{{form_row(form.rightBorderSearchX)}}</td>
+                <td style="width:300px;">{{form_row(form.deltaSearchX)}}</td>
             </tr>
             <tr>
-                <td>{{form_row(form.leftBorderSearchY)}}</td>
-                <td>{{form_row(form.rightBorderSearchY)}}</td>
-                <td>{{form_row(form.deltaSearchY)}}</td>
+                <td style="width:300px;">{{form_row(form.leftBorderSearchY)}}</td>
+                <td style="width:300px;">{{form_row(form.rightBorderSearchY)}}</td>
+                <td style="width:300px;">{{form_row(form.deltaSearchY)}}</td>
             </tr>
             <tr>
-                <td>{{form_row(form.leftBorderSearchZ)}}</td>
-                <td>{{form_row(form.rightBorderSearchZ)}}</td>
-                <td>{{form_row(form.deltaSearchZ)}}</td>
+                <td style="width:300px;">{{form_row(form.leftBorderSearchZ)}}</td>
+                <td style="width:300px;">{{form_row(form.rightBorderSearchZ)}}</td>
+                <td style="width:300px;">{{form_row(form.deltaSearchZ)}}</td>
             </tr>
             <tr>
-                <td> {{form_row(form.incLeftSearchRadius)}}</td>
-                <td>{{form_row(form. incRightSearchRadius)}}</td>
-                
+                <td colspan="3">{{form_row(form.incLeftSearchRadius, {'attr': {'id': 'neighborhood'}})}}{{form_row(form. incRightSearchRadius) }}</td>
             </tr>
         </table>
-       
-        
-        <p><strong>Первая автоматическая зона перемещения</strong></p>
-        <table>
+        <div style="float: left; margin-bottom: 20px; width: 950px;"><span style="font-size: 28px;"><strong>Первая автоматическая зона перемещения</strong>
+            </span></div>
+        <table style="width: 950px; margin-bottom: 20px;">
             <tr>
                 <td>{{form_row(form.firstZoneDuration1)}}</td>
                 <td>{{form_row(form.firstZoneCost1)}}</td>
@@ -113,8 +111,9 @@
                 <td>{{form_row(form.firstZoneSpec4)}}</td>
             </tr>
         </table>
-        <p><strong>Вторая автоматическая зона перемещения</strong></p>
-        <table>
+        <div style="float: left; margin-bottom: 20px; width: 950px;"><span style="font-size: 28px;"><strong>Вторая автоматическая зона перемещения</strong>
+            </span></div>
+        <table style="width: 950px;">
             <tr>
                 <td>{{form_row(form.secondZoneDuration1)}}</td>
                 <td>{{form_row(form.secondZoneCost1)}}</td>
@@ -136,10 +135,12 @@
                 <td>{{form_row(form.secondZoneSpec4)}}</td>
             </tr>
         </table>
+    </div> 
+    
     {% endif %}
-
-        <br />
-<button class="btn btn-primary" type="submit">Сохранить</button>
+    <br />
+    <button class="btn btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button>
 </form>
+</div>
 {% endblock body %}
             

@@ -30,17 +30,39 @@ class FlipperType extends AbstractType
             ->add('distanceHint', 'text', array('required' => false))
             ->add('searchZoneCost', 'integer', array('required' => false))
             ->add('searchZoneSpec', 'checkbox', array('required' => false))
-            ->add('leftBorderSearchX', 'integer', array('required' => false))
-            ->add('rightBorderSearchX', 'integer', array('required' => false))
-            ->add('deltaSearchX', 'integer', array('required' => false))
-            ->add('leftBorderSearchY', 'integer', array('required' => false))
-            ->add('rightBorderSearchY', 'integer', array('required' => false))
-            ->add('deltaSearchY', 'integer', array('required' => false))
-            ->add('leftBorderSearchZ', 'integer', array('required' => false))
-            ->add('rightBorderSearchZ', 'integer', array('required' => false))
-            ->add('deltaSearchZ', 'integer', array('required' => false))
-            ->add('incLeftSearchRadius', 'integer', array('required' => false))
-            ->add('incRightSearchRadius', 'integer', array('required' => false))
+            ->add('leftBorderSearchX', 'integer', array('required' => false, 'attr' => array(
+                        'style' => 'width:150px'
+                    )))
+            ->add('rightBorderSearchX', 'integer', array('required' => false, 'attr' => array(
+                        'style' => 'width:150px'
+                    )))
+            ->add('deltaSearchX', 'integer', array('required' => false, 'attr' => array(
+                        'style' => 'width:150px'
+                    )))
+            ->add('leftBorderSearchY', 'integer', array('required' => false, 'attr' => array(
+                        'style' => 'width:150px'
+                    )))
+            ->add('rightBorderSearchY', 'integer', array('required' => false, 'attr' => array(
+                        'style' => 'width:150px'
+                    )))
+            ->add('deltaSearchY', 'integer', array('required' => false, 'attr' => array(
+                        'style' => 'width:150px'
+                    )))
+            ->add('leftBorderSearchZ', 'integer', array('required' => false, 'attr' => array(
+                        'style' => 'width:150px'
+                    )))
+            ->add('rightBorderSearchZ', 'integer', array('required' => false, 'attr' => array(
+                        'style' => 'width:150px'
+                    )))
+            ->add('deltaSearchZ', 'integer', array('required' => false, 'attr' => array(
+                        'style' => 'width:150px'
+                    )))
+            ->add('incLeftSearchRadius', 'integer', array('required' => false, 'attr' => array(
+                        'style' => 'width:150px'
+                    )))
+            ->add('incRightSearchRadius', 'integer', array('required' => false, 'attr' => array(
+                        'style' => 'width:150px'
+                    )))
             ->add('firstZoneDuration1', 'integer', array('required' => false))
             ->add('firstZoneCost1', 'integer', array('required' => false))
             ->add('firstZoneSpec1', 'checkbox', array('required' => false))

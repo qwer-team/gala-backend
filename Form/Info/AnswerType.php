@@ -13,7 +13,8 @@ class AnswerType extends AbstractType
     {
         $builder
                 ->add('answer', 'text', array(
-                    'required' => false
+                    'required' => false,
+                    'label' => ' ',
                 ))
                 
         ;
@@ -28,7 +29,7 @@ class AnswerType extends AbstractType
 
     public function getName()
     {
-        return 'answer';
+        return '';
     }
 
 }
