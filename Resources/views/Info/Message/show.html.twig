@@ -1,6 +1,7 @@
 {% extends 'GalaxyBackendBundle::contentLayout.html.twig' %}
 
 {% block body %}
+<form action="{{ path('update_message', {'id': message.id}) }}" method="post" {{ form_enctype(form) }}>
 <div class="container" style="margin-top: 20px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px 20px 0 20px; width:950px;">
     <div style="float: left; width: 800px; margin-bottom: 10px;"><span style="font-size: 28px;"><b>id {{message.id}}</b></span> <span style="font-size: 28px; padding-left: 20px;">Название {{ form_widget(form.title, {'attr': {'id': 'name_mailbox'}}) }}</span></div>
     <div style="float: right; width: 140px;">
@@ -12,21 +13,21 @@
     <!--Картинка :{% if "img" in message|keys %}<img src="{{message.img}}"/><br>{% endif %}-->
     <div style="float: left; margin-bottom: 20px; width: 800px;">Количество прыжков до вывода вопроса {{ form_widget(form.jumpsToQuestion) }} <span style="padding-left: 20px;">Возраст {{ form_widget(form.age) }}</span></div>
      <div style="float: left; margin-bottom: 20px; width: 240px; height: 250px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">
-         <div id="imgfile" style="margin-left: 0px;"><img src="/bundles/galaxybackend/img/no_photo.png" /> {{ form_widget(form.imgfile) }}</div>
-         <div id="imgfile" style="margin-left: 0px;">Удалить картинку {{form_widget(form.imageDelete)}}</div>
+         <div id="imgfile" style="margin-left: 0px;">{% if "img1" in message|keys %}<img src="{{message.img1}}"/><br>{% else %}<img src="/bundles/galaxybackend/img/no_photo.png" />{% endif %} {{ form_widget(form.imgfile1) }}</div>
+         <div id="imgfile" style="margin-left: 0px;">Удалить картинку {{form_widget(form.imageDelete1)}}</div>
          <div style="clear:left;"></div>
      </div>
     <div style="float: left; margin: 0 20px; width: 240px; height: 250px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">
-         <div id="imgfile" style="margin-left: 0px;"><img src="/bundles/galaxybackend/img/no_photo.png" /> {{ form_widget(form.imgfile) }}</div>
-         <div id="imgfile" style="margin-left: 0px;">Удалить картинку {{form_widget(form.imageDelete)}}</div>
+         <div id="imgfile" style="margin-left: 0px;">{% if "img2" in message|keys %}<img src="{{message.img2}}"/><br>{% else %}<img src="/bundles/galaxybackend/img/no_photo.png" />{% endif %} {{ form_widget(form.imgfile2) }}</div>
+         <div id="imgfile" style="margin-left: 0px;">Удалить картинку {{form_widget(form.imageDelete2)}}</div>
          <div style="clear:left;"></div>
      </div>
     <div style="float: left; margin-bottom: 20px; width: 240px; height: 250px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">
-         <div id="imgfile" style="margin-left: 0px;"><img src="/bundles/galaxybackend/img/no_photo.png" /> {{ form_widget(form.imgfile) }}</div>
-         <div id="imgfile" style="margin-left: 0px;">Удалить картинку {{form_widget(form.imageDelete)}}</div>
+         <div id="imgfile" style="margin-left: 0px;">{% if "img3" in message|keys %}<img src="{{message.img3}}"/><br>{% else %}<img src="/bundles/galaxybackend/img/no_photo.png" />{% endif %}{{ form_widget(form.imgfile3) }}</div>
+         <div id="imgfile" style="margin-left: 0px;">Удалить картинку {{form_widget(form.imageDelete3)}}</div>
          <div style="clear:left;"></div>
      </div>
-     <form action="{{ path('update_message', {'id': message.id}) }}" method="post" {{ form_enctype(form) }}>
+     
         {% if  message.moderatorAccepted%}
             {{ form_row(form.moderatorAccepted, { 'attr': {'disabled': 'true'} }) }}
         {% endif %}

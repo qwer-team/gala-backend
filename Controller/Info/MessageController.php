@@ -10,14 +10,12 @@ use Galaxy\BackendBundle\Form\Info\MessageType;
 use Galaxy\BackendBundle\Entity\Filter\Search;
 use Galaxy\BackendBundle\Form\Filter\SearchType;
 
-class MessageController extends Controller
-{
+class MessageController extends Controller {
 
     /**
      * @Template()
      */
-    public function messageAction($page, $length)
-    {
+    public function messageAction($page, $length) {
         $messageService = $this->get("info.service");
         $themes = $messageService->getThemesList();
         $search = $this->getSearch();
@@ -28,7 +26,7 @@ class MessageController extends Controller
         $searchForm->setThemes($themesArr);
         $form = $this->createForm($searchForm, $search);
         $data = $search->serialize();
-        $messages = (array)$messageService->getMessagesList($page, $length, $data);
+        $messages = (array) $messageService->getMessagesList($page, $length, $data);
         $count = $messageService->getMessagesCount($data);
         $pagesCount = ceil($count / $length);
 
@@ -42,8 +40,7 @@ class MessageController extends Controller
         );
     }
 
-    public function updateSearchAction(Request $request)
-    {
+    public function updateSearchAction(Request $request) {
         $messageService = $this->get("info.service");
         $themes = $messageService->getThemesList();
         $search = $this->getSearch();
@@ -62,8 +59,7 @@ class MessageController extends Controller
         return $this->redirect($this->generateUrl('messages_list'));
     }
 
-    private function getSearch()
-    {
+    private function getSearch() {
         $session = $this->getRequest()->getSession();
         if (!$session->has("search")) {
             $search = new Search();
@@ -74,13 +70,10 @@ class MessageController extends Controller
         return $search;
     }
 
-    
-
     /**
      * @Template()
      */
-    public function newAction()
-    {
+    public function newAction() {
         $infoService = $this->get("info.service");
         $template = (array) $infoService->getTemplate();
         $form = $this->getMessageForm(null, $template);
@@ -92,8 +85,7 @@ class MessageController extends Controller
     /**
      * @Template("GalaxyBackendBundle:Info/Message:new.html.twig")
      */
-    public function createAction(Request $request)
-    {
+    public function createAction(Request $request) {
         $infoService = $this->get("info.service");
         $isRoleContent = $this->get('security.context')->isGranted('ROLE_CONTENT');
         $form = $this->getMessageForm();
@@ -120,37 +112,35 @@ class MessageController extends Controller
     /**
      * @Template()
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $infoService = $this->get("info.service");
         $message = $infoService->getMessage($id);
-        $message['theme'] = array_key_exists("theme", $message) ? $message['theme']['id'] : '' ;
-        $message['imageDelete'] = false;
+        $message['theme'] = array_key_exists("theme", $message) ? $message['theme']['id'] : '';
+        $message['imageDelete1'] = false;
+        $message['imageDelete2'] = false;
+        $message['imageDelete3'] = false;
         $form = $this->getMessageForm($message);
         return array(
             "message" => $message,
             "form" => $form->createView(),
         );
     }
-    
+
     /**
      * @Template()
      */
-    public function previewAction($id)
-    {
+    public function previewAction($id) {
         $infoService = $this->get("info.service");
         $message = $infoService->getMessage($id);
         return array(
             "message" => $message,
-            
         );
     }
 
     /**
      * @Template("GalaxyBackendBundle:Info/Message:show.html.twig")
      */
-    public function updateAction($id, Request $request)
-    {
+    public function updateAction($id, Request $request) {
         $infoService = $this->get("info.service");
         $gameService = $this->get("game.remote_service");
         $message = $infoService->getMessage($id);
@@ -178,35 +168,34 @@ class MessageController extends Controller
         );
     }
 
-    public function deleteAction($id)
-    {
+    public function deleteAction($id) {
         $infoService = $this->get("info.service");
         $infoService->deleteMessage($id);
         return $this->redirect($this->generateUrl('messages_list'));
     }
 
-    private function dataImageProcessing($data, $id = null)
-    {
+    private function dataImageProcessing($data, $id = null) {
         $infoService = $this->get("info.service");
         $storage = $this->get("storage");
-        $img = $data['imgfile'];
         $message = $infoService->getMessage($id);
-        if (!is_null($img)) {
-            $path = $storage->saveImage($img);
-            $data['img'] = $path;
-            unset($data['imgfile']);
-        } elseif ($data['imageDelete'] && array_key_exists("img", $message)) {
-            $storage->deleteImage($message['img']);
-            $data['img'] = Null;
-            $data['imageDelete'] = false;
-        } elseif ($id !== null) {
-            $data['img'] = array_key_exists("img", $message) ? $message['img'] : '';
+        for ($i = 1; $i <= 3; $i++) {
+            $img = $data['imgfile' . $i];
+            if (!is_null($img)) {
+                $path = $storage->save($img);
+                $data['img' . $i] = $path;
+                unset($data['imgfile' . $i]);
+            } elseif ($data['imageDelete' . $i] && array_key_exists("img" . $i, $message)) {
+                $storage->delete($message['img' . $i]);
+                $data['img' . $i] = Null;
+                $data['imageDelete' . $i] = false;
+            } elseif ($id !== null) {
+                $data['img' . $i] = array_key_exists("img" . $i, $message) ? $message['img' . $i] : '';
+            }
         }
         return $data;
     }
 
-    private function getMessageForm($message = null, $template = array())
-    {
+    private function getMessageForm($message = null, $template = array()) {
         $infoService = $this->get("info.service");
         $form = new MessageType();
 
