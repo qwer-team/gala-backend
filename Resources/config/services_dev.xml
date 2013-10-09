@@ -17,6 +17,7 @@
         <parameter key="registersurl">gala.my/registers</parameter>
 	<parameter key="documentsurl">gala.my/documents</parameter>
         <parameter key="documents.rate_url">gala.my/api</parameter>
+        <parameter key="gala.user.url">http://gala.user.my</parameter>
         <!-- -->
 	<!-- Game -->
         <parameter key="flippersurl">gala.my/flippers</parameter>
