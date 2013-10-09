@@ -1,6 +1,7 @@
 {% extends 'GalaxyBackendBundle::layout.html.twig' %}
 
 {% block body %}
+<div style="margin-top: 20px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
 <form action="{{path('type_config', {'tag': tag})}}" method="POST">
     {%set label1%}
        {% if tag == 'theft'%}
@@ -12,25 +13,26 @@
        {%endif%}
     {% endset%}
     {% if tag != 'message'%}
-        {{form_row(form.message1, {label: label1})}}
+        <div class="point_mes">{{form_row(form.message1, {label: label1})}}</div>
     {% endif %}
     {% if tag == 'theft'%}
-        {{form_row(form.message2, {label: 'Уменьшение уровня флиппера на 2'})}}
+        <div class="point_mes">{{form_row(form.message2, {label: 'Уменьшение уровня флиппера на 2'})}}</div>
     {% endif%}
     {% if tag == 'trap'%}
-        {{form_row(form.message2, {label: 'Тип 2'})}}
+        <div class="point_mes">{{form_row(form.message2, {label: 'Тип 2'})}}</div>
     {% endif%}
     {% if tag == 'message'%}
-        {{ form_row(form.messActive) }}
-        {{ form_row(form.messCost) }}
-        <br />
-        {{ form_row(form.messCountCost) }}
-        {{ form_row(form.messCountDepActive) }}
-        <br />
+        <div style="float: left; width: 950px; margin-bottom: 20px;">
+            <div style="float: left;">{{ form_row(form.messActive) }}</div>
+            <div style="float: left; margin-left: 40px;">{{ form_row(form.messCountDepActive) }}</div>
+        </div>
+        <div style="margin-bottom: 20px;" class="creation_prizes">{{ form_row(form.messCost) }}<span style="margin-left: 20px;">{{ form_row(form.messCountCost) }}</div>
+        
     {% endif %}
     {% if tag == 'black'%}
-        {{form_row(form.hours, {label: 'Часы'})}}
-        {{form_row(form.minutes, {label: 'Минуты'})}}
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; width: 950px;">{{form_row(form.hours, {label: 'Часы'})}}
+            <span style="margin-left: 10px;">{{form_row(form.minutes, {label: 'Минуты'})}}</span>
+        </div> 
     {% endif%}
         {{form_row(form.image, {label: 'Путь к картинке'})}}
         <br />
@@ -41,6 +43,6 @@
         {% endif %}
         <div style="display:none;">{{form_rest(form)}}</div>
     <br />
-    <button type="submit" class='btn btn-primary'>Сохранить</button>
+    <button type="submit" class='btn btn-primary'><i class="icon-hdd"></i>Сохранить</button>
 </form>
 {% endblock %}

@@ -4,7 +4,7 @@
 {% block body %}
 <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
   <form method="post" action="{{path('flipper_update', {'id': flipper['id']})}}" {{ form_enctype(form) }}>
-    <div class="flipper_name" style="float: left; width: 950px; margin-bottom: 20px;">{{form_row(form.title)}}</div>
+    <div class="flipper_name" style="float: left; width: 950px; margin-bottom: 20px;">{{form_row(form.title)}}<span style="float:right;"><button class="btn btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button></span></div>
     <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.maxJump)}}</div>
     <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.costJump)}}</div>
     <div class="creation_prizes" style="float: left; width: 1000px; margin-bottom: 20px;">
@@ -47,9 +47,7 @@
                 <td>{{form_row(form.secondZoneSpec4)}}</td>
             </tr>
         </table>
-        
-        <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.journalDuration)}}{% elseif flipper.id == 3 %}
-        </div>
+        <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.journalDuration)}}{% elseif flipper.id == 3 %}</div>
         <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.rentCost)}}</div>
         <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.rentDuration)}}</div>
         <div class="creation_prizes" style="float: left; width: 540px; margin-bottom: 20px;">{{form_row(form.countRentMess)}}</div>
@@ -111,8 +109,7 @@
                 <td>{{form_row(form.firstZoneSpec4)}}</td>
             </tr>
         </table>
-        <div style="float: left; margin-bottom: 20px; width: 950px;"><span style="font-size: 28px;"><strong>Вторая автоматическая зона перемещения</strong>
-            </span></div>
+        <div style="float: left; width: 950px;"><span style="font-size: 28px;"><strong>Вторая автоматическая зона перемещения</strong></span></div>
         <table style="width: 950px;">
             <tr>
                 <td>{{form_row(form.secondZoneDuration1)}}</td>
@@ -136,10 +133,9 @@
             </tr>
         </table>
     </div> 
-    
-    {% endif %}
-    <br />
     <button class="btn btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button>
+    {% endif %}
+    
 </form>
 </div>
 {% endblock body %}

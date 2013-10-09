@@ -6194,6 +6194,13 @@ a.badge:focus {
     display: inline;
     padding-left: 0px;
 }
+.creation_prizes #txtArea{
+    width: 945px;
+}
+.point_mes textarea{
+    width: 945px;
+    margin-bottom: 20px;
+}
 .flipper_name label{
     margin-bottom: 5px;
     margin-right: 10px;
@@ -6212,5 +6219,4 @@ a.badge:focus {
 }
 .flip_btn_save {
     float: left;
-    
 }
