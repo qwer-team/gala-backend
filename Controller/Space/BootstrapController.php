@@ -200,30 +200,46 @@ class BootstrapController extends Controller {
     public function typeConfigAction($tag, Request $request) {
         $typeService = $this->container->get('remote.service');
         $type = $typeService->getType($tag);
-        $imgType = '';
-        if (isset($type['image'])) {
-            $imgType = $this->getImgType($type);
-        }
         $form = $this->createForm(new TypeForm(), $type);
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
             if ($form->isValid()) {
                 $data = $form->getData();
-                $typeService->updateType($data);
+                $response = $typeService->updateType($this->dataFileProcessing($data, $type));
+                if($response->result == 'success'){
+                    $url = $this->generateUrl("type_config", array("tag" => $tag));
+                    return $this->redirect($url);
+                }
             }
         }
+        
         return array(
             'tag' => $tag,
             'type' => $type,
-            'imgType' => $imgType,
             'form' => $form->createView(),
         );
     }
 
-    private function getImgType($type) {
-        $arr = explode(".", $type["image"]);
-        return $arr[count($arr) - 1];
+    
+
+    private function dataFileProcessing($data, $type) {
+        $storage = $this->get("storage");
+        for ($i = 1; $i <= 4; $i++) {
+            $file = $data['fl' . $i];
+            if (!is_null($file)) {
+                $path = $storage->save($file);
+                unset($data['fl' . $i]);
+                $data['file' . $i] = $path;
+            } elseif ($data['fileDelete' . $i] && array_key_exists("file" . $i, $type)) {
+                $storage->delete($type['file' . $i]);
+                $data['file' . $i] = "";
+                $data['fileDelete' . $i] = false;
+            }
+        }
+        return $data;
     }
+
+   
 
     /**
      * @Template()

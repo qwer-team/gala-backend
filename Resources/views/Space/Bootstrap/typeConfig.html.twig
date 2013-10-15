@@ -1,7 +1,7 @@
 {% extends 'GalaxyBackendBundle::layout.html.twig' %}
 
 {% block body %}
-<form action="{{path('type_config', {'tag': tag})}}" method="POST">
+<form action="{{path('type_config', {'tag': tag})}}" method="POST" {{ form_enctype(form) }}>
     {%set label1%}
        {% if tag == 'theft'%}
         Уменьшение уровня флиппера на 1
@@ -32,14 +32,24 @@
         {{form_row(form.hours, {label: 'Часы'})}}
         {{form_row(form.minutes, {label: 'Минуты'})}}
     {% endif%}
-        {{form_row(form.image, {label: 'Путь к картинке'})}}
-        <br />
-        {% if imgType == "swf" %}
-        <object type="application/x-shockwave-flash" id="myContent" name="myContent" style="margin-left: 25%; visibility: visible;" data="/bundles/galaxybackend/{{ type.image }}" width="290" height="150"><param name="menu" value="false"></object>
-        {% elseif type.image != '' %}
-        <img src="/bundles/galaxybackend/{{ type.image }}">
-        {% endif %}
-        <div style="display:none;">{{form_rest(form)}}</div>
+        <br /> 
+        <br /> 
+    {% if type.file1 %}<object type="application/x-shockwave-flash" id="myContent" name="myContent" style="visibility: visible;" data="{{ type.file1 }}" width="290" height="150"><param name="menu" value="false"></object>{% endif %}
+    {{form_row(form.fl1, {label: 'Флеш1'})}}
+    {{form_row(form.fileDelete1, {label: 'Удалить'})}}
+    <br /> 
+    <img src="{{ type.file2 }}">
+    {{form_row(form.fl2, {label: 'Картинка1'})}}
+    {{form_row(form.fileDelete2, {label: 'Удалить'})}}
+    <br /> 
+    {% if type.file3 %}<object type="application/x-shockwave-flash" id="myContent" name="myContent" style="visibility: visible;" data="{{ type.file3 }}" width="290" height="150"><param name="menu" value="false"></object>{% endif %}
+    {{form_row(form.fl3, {label: 'Флеш2'})}}
+    {{form_row(form.fileDelete3, {label: 'Удалить'})}}
+    <br /> 
+    <img src="{{ type.file4 }}">
+    {{form_row(form.fl4, {label: 'Картинка2'})}}
+    {{form_row(form.fileDelete4, {label: 'Удалить'})}}
+    <div style="display:none;">{{form_rest(form)}}</div>
     <br />
     <button type="submit" class='btn btn-primary'>Сохранить</button>
 </form>

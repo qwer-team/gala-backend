@@ -49,7 +49,7 @@ class StorageService {
     public function setRelUrl($relUrl) {
         $this->relUrl = $relUrl;
     }
-    
+
     public function saveResizeImage(UploadedFile $file) {
         $imagine = new Imagine();
         $fileName = $file->getClientOriginalName();
@@ -75,10 +75,12 @@ class StorageService {
         unlink($path);
         unlink($pathOrigin);
     }
-    
+
     public function delete($path) {
         $path = str_replace($this->relUrl, $this->folder, $path);
-        unlink($path);
+        if (is_file($path)) {
+            unlink($path);
+        }
     }
 
 }
