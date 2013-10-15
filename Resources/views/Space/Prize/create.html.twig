@@ -1,16 +1,29 @@
 {% extends 'GalaxyBackendBundle::layout.html.twig' %}
 
 {% block body %}
+<div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
     <form method="POST" action="{{path('prize_add')}}"  {{ form_enctype(form) }}>
-        {{ form_rest(form)}}
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; width: 950px;">{{ form_row(form.name)}} <span style="margin-left: 10px;">{{ form_row(form.flipper)}}</span> <span style="margin-left: 10px;">{{ form_row(form.sms)}}</span> <span style="margin-left: 10px;">{{ form_row(form.penalty)}}</span>
+            <div style="float: right;>
+                 <ul class="record_actions">
+                    <li style="list-style: none outside none;">
+                       <a class="btn btn-warning" href="{{ path('prize_list') }}">
+                         {% trans%}<i class="icon-list-alt"></i>Список призов{%endtrans%}
+                       </a>
+                   </li>
+                 </ul>
+            </div>
+        </div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; width: 950px;">{{ form_row(form.message1)}}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; width: 950px;">{{ form_row(form.message2)}}</div>
+        <div style="float: left; width: 950px; margin-bottom: 20px;">
+             <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; float: left; width: 240px; margin-right: 6px; padding: 5px;">{{ form_row(form.imgfile1)}}</div>
+             <div style="float:left; width:240px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">{{ form_row(form.imgfile2)}}</div>
+        </div>
+       {{ form_rest(form)}}
         <br />
-        <button class="btn btn-primary" type="submit">create</button>
+        <button class="btn btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button>
     </form>
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('prize_list') }}">
-                {% trans%}Back to the list{%endtrans%}
-            </a>
-        </li>
-        </ul>
+    
+</div>
 {% endblock %}

@@ -6,8 +6,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 
-class StorageService
-{
+class StorageService {
 
     private $folder;
     private $relUrl;
@@ -16,46 +15,42 @@ class StorageService
     private $width;
     private $height;
 
-    public function setWidth($width)
-    {
+    public function setFilesystem($filesystem) {
+        $this->filesystem = $filesystem;
+    }
+
+    public function setWidth($width) {
         $this->width = $width;
     }
 
-    public function setHeight($height)
-    {
+    public function setHeight($height) {
         $this->height = $height;
     }
 
-    public function setMinWidth($minWidth)
-    {
+    public function setMinWidth($minWidth) {
         $this->minWidth = $minWidth;
     }
 
-    public function setMinHeight($minHeight)
-    {
+    public function setMinHeight($minHeight) {
         $this->minHeight = $minHeight;
     }
 
-    public function save(UploadedFile $file)
-    {
+    public function save(UploadedFile $file) {
         $fileName = $file->getClientOriginalName();
         $file->move($this->folder, $fileName);
         $path = $this->relUrl . $fileName;
         return $path;
     }
 
-    public function setFolder($folder)
-    {
+    public function setFolder($folder) {
         $this->folder = $folder;
     }
 
-    public function setRelUrl($relUrl)
-    {
+    public function setRelUrl($relUrl) {
         $this->relUrl = $relUrl;
     }
 
-    public function saveImage(UploadedFile $file)
-    {
+    public function saveResizeImage(UploadedFile $file) {
         $imagine = new Imagine();
         $fileName = $file->getClientOriginalName();
         $file->move($this->folder, $fileName);
@@ -74,12 +69,18 @@ class StorageService
         return $this->relUrl . 'resize_' . $fileName;
     }
 
-    public function deleteImage($imagePath)
-    {
+    public function deleteResizeImage($imagePath) {
         $path = str_replace($this->relUrl, $this->folder, $imagePath);
         $pathOrigin = str_replace("resize_", "", $path);
         unlink($path);
         unlink($pathOrigin);
+    }
+
+    public function delete($path) {
+        $path = str_replace($this->relUrl, $this->folder, $path);
+        if (is_file($path)) {
+            unlink($path);
+        }
     }
 
 }

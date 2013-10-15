@@ -5,52 +5,54 @@
 <form method="post" action="{{path('update_register', {'id': register['id']})}}">
     {{ form_errors(form) }}
 {% if register['id'] == 1 %}
-        
-        {{ form_row(form.title) }}
-        {{ form_row(form.pointsTypeName) }}
-        {{ form_row(form.start) }}
-        {{ form_row(form.accountHint) }}
-        
+<div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;"> 
+    <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.title) }}
+        <div style="float: right;"><button class="btn btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button></div>
+    </div>
+    <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.pointsTypeName) }}<span style="margin-left: 40px;">{{ form_row(form.start) }}</span></div>
+    <div class="active_account">{{ form_row(form.accountHint) }}</div>
+</div>
 {% elseif register['id'] == 2 %}
-        
-        {{ form_row(form.title) }}
-        {{ form_row(form.period) }}
-        {{ form_row(form.periodCost) }}
-        {{ form_row(form.acquisitionExtensionServices) }}
-        {{ form_row(form.accountHint) }}
-        
+  <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">          
+      <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.title) }}
+          <div style="float: right;"><button class="btn btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button></div>
+      </div>
+      <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.period) }}<span style="margin-left: 40px;">{{ form_row(form.periodCost) }}</span></div>
+      <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.acquisitionExtensionServices) }}</div>
+      <div class="active_account">{{ form_row(form.accountHint) }}</div>
+  </div>
 {% elseif register['id'] == 3 %}
-        
-        {{ form_row(form.title) }}
-        {{ form_row(form.pointsTypeName) }}
-        {{ form_row(form.start) }}
-        {{ form_row(form.accountHint) }}
-        {{ form_row(form.pointsTypeHint) }}
-        {{ form_row(form.textPaymentService) }}
-        {{ form_row(form.points) }}
-        {{ form_row(form.cost) }}
-        {{ form_row(form.notificationZeroBalance) }}
-
+  <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">     
+        <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.title) }}
+            <div style="float: right;"><button class="btn btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button></div>
+        </div>
+        <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.pointsTypeName) }}<span style="margin-left: 40px;">{{ form_row(form.start) }}</span></div>
+        <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.accountHint) }}</div>
+        <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.pointsTypeHint) }}</div>
+        <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.textPaymentService) }}</div>
+        <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.points) }}<span style="margin-left: 40px;">{{ form_row(form.cost) }}</span></div>
+        <div class="active_account">{{ form_row(form.notificationZeroBalance) }}</div>
+  </div>
         {% elseif register['id'] == 4 %}
-        
-        {{ form_row(form.title) }}
-        {{ form_row(form.pointsTypeName) }}
-        {{ form_row(form.start) }}
-        {{ form_row(form.accountHint) }}
-
+  <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">    
+      <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.title) }}
+          <div style="float: right;"><button class="btn btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button></div>
+      </div>
+      <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.pointsTypeName) }}<span style="margin-left: 40px;">{{ form_row(form.start) }}</span></div>
+      <div class="active_account">{{ form_row(form.accountHint) }}</div>
+  </div> 
         {% elseif register['id'] == 5 %}
-        
-        {{ form_row(form.title) }}
-        {{ form_row(form.pointsTypeName) }}
-        {{ form_row(form.start) }}
-        {{ form_row(form.accountHint) }}
-        {{ form_row(form.pointsTypeHint) }}
-        {{ form_row(form.textPaymentService) }}
-        {{ form_row(form.points) }}
-        {{ form_row(form.cost) }}
-        {{ form_row(form.notificationZeroBalance) }}
+  <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">   
+      <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.title) }}
+          <div style="float: right;"><button class="btn btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button></div>
+      </div>
+      <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.pointsTypeName) }}<span style="margin-left: 40px;">{{ form_row(form.start) }}</span></div>
+      <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.accountHint) }}</div>
+      <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.pointsTypeHint) }}</div>
+      <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.textPaymentService) }}</div>
+      <div class="active_account" style="margin-bottom: 20px;">{{ form_row(form.points) }}<span style="margin-left: 40px;">{{ form_row(form.cost) }}</span></div>
+      <div class="active_account">{{ form_row(form.notificationZeroBalance) }}</div>
+  </div>
 {% endif %}
-        <br />
-<button class="btn btn-primary" type="submit">Сохранить</button>
 </form>
 {% endblock body %}

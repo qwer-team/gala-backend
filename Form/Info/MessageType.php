@@ -45,9 +45,19 @@ class MessageType extends AbstractType
                         '5' => '5',
                     )
                 ))
-                ->add('imgfile', 'file', array("required" => false,
+                ->add('imgfile1', 'file', array("required" => false,
                         ))
-                ->add('imageDelete', 'checkbox', array(
+                ->add('imageDelete1', 'checkbox', array(
+                    'required' => false,
+                ))
+                ->add('imgfile2', 'file', array("required" => false,
+                        ))
+                ->add('imageDelete2', 'checkbox', array(
+                    'required' => false,
+                ))
+                ->add('imgfile3', 'file', array("required" => false,
+                        ))
+                ->add('imageDelete3', 'checkbox', array(
                     'required' => false,
                 ))
                 ->add('incPointsActv', 'checkbox', array(
