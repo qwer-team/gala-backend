@@ -3,8 +3,10 @@
 
 {% block body %}
 <form method="post" action="{{path('update_rate')}}">
-    <input type="text" value="{{rate["value"]}}" name="value" />
-        <br />
-<button class="btn btn-primary" type="submit">Сохранить</button>
+  <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
+      <div><input type="text" value="{{rate["value"]}}" name="value" />
+          <div style="float: right;"><button class="btn btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button></div>
+      </div>
+  </div> 
 </form>
 {% endblock body %}
