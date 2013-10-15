@@ -1,11 +1,12 @@
 {% extends 'GalaxyBackendBundle::contentLayout.html.twig' %}
 
 {% block body %} 
+     <form action="{{ path('search_message') }}" method="post" {{ form_enctype(form) }}>
      <div style="float:left; width: 980px;margin-top: 30px">
          <div style="width: 1000px; float:left; font-size: 22px; text-align: center; ">Поиск
          <div style="border-bottom: 1px solid rgb(224, 224, 224); margin-top: 10px;"></div></div>
          <div style="width: 100px; float:right;"><button title="Поиск" style="width: 90px;" id="button" type="submit" class="btn btn-large btn-info"><i class="icon-search"></i></button></div>
-         <form action="{{ path('search_message') }}" method="post" {{ form_enctype(form) }}>
+         
              
                  <div style = "float:left;">{{ form_widget(form.messageId) }}</div>
                  {{ form_widget(form.userId) }}
