@@ -53,6 +53,8 @@ class PrizeElementType extends AbstractType
                 ))
                 ->add('imgfile1', 'file', array("required" => false))
                 ->add('imgfile2', 'file', array("required" => false))
+                ->add('imgDelete1', 'checkbox', array('required' => false))
+                ->add('imgDelete2', 'checkbox', array('required' => false))
                 ->add('blocked', 'checkbox', array("required" => false))
         ;
     }
