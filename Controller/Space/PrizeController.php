@@ -7,14 +7,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Galaxy\BackendBundle\Form\Space\PrizeType;
 use Symfony\Component\HttpFoundation\Request;
 
-class PrizeController extends Controller
-{
+class PrizeController extends Controller {
 
     /**
      * @Template()
      */
-    public function indexAction($id)
-    {
+    public function indexAction($id) {
         $service = $this->container->get('remote.service');
         $prizes = $service->getPrizesList();
         if ($id) {
@@ -32,16 +30,14 @@ class PrizeController extends Controller
         );
     }
 
-    public function updateAction($id, Request $request)
-    {
+    public function updateAction($id, Request $request) {
         return $this->saveAction($request, $id);
     }
 
     /**
      * @Template()
      */
-    public function createAction()
-    {
+    public function createAction() {
         $form = $this->createForm(new PrizeType());
 
         return array(
@@ -49,13 +45,11 @@ class PrizeController extends Controller
         );
     }
 
-    public function addAction(Request $request)
-    {
+    public function addAction(Request $request) {
         return $this->saveAction($request);
     }
 
-    private function saveAction(Request $request, $id = null)
-    {
+    private function saveAction(Request $request, $id = null) {
         $form = $this->createForm(new PrizeType());
         $form->bind($request);
 
@@ -69,7 +63,11 @@ class PrizeController extends Controller
                     $path = $storage->save($img);
                     $data['img' . $i] = $path;
                     unset($data['imgfile' . $i]);
+                } elseif ($data['imgDelete' . $i]) {
+                    $storage->delete($data['imgfile' . $i]);
+                    $data['img' . $i] = "";
                 }
+                unset($data['imgDelete' . $i]);
             }
 
             $service = $this->container->get('remote.service');
@@ -84,19 +82,18 @@ class PrizeController extends Controller
         return $this->redirect($url);
     }
 
-    public function deleteAction($id)
-    {
+    public function deleteAction($id) {
         $service = $this->container->get('remote.service');
         $service->deletePrize($id);
-        
+
         $url = $this->generateUrl("prize_list");
         return $this->redirect($url);
     }
-    
+
     /**
      * @Template()
      */
-    public function loadingAction(){
+    public function loadingAction() {
         $grailsServer = $this->container->getParameter("grails.server");
         return array(
             "grailsServer" => $grailsServer,

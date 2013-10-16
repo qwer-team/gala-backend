@@ -52,12 +52,14 @@
                         <b>Маленькое фото <span style="font-size: 10px;">(до 110px Х до 75px)</span></b>
                         <img src="{% if main['img1'] != '' %}{{main['img1']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
                         {{ form_widget(prizeForm.imgfile1) }}
+                        {{ form_row(prizeForm.imgDelete1, {label: 'Удалить'}) }}
                     </div>
                     <div style="float:left; width:240px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">
                         <b>Большое фото</b>
                         <img src="{% if main['img2'] != '' %}{{main['img2']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
-
-                        {{ form_widget(prizeForm.imgfile2) }}
+                        
+                        {{ form_widget(prizeForm.imgfile2) }} 
+                        {{ form_row(prizeForm.imgDelete2, {label: 'Удалить'}) }}
                     </div>
                 </div>
             {{ form_rest(prizeForm)}}
