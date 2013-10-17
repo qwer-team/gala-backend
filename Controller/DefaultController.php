@@ -35,7 +35,6 @@ class DefaultController extends Controller
                 //$menu->addGrandchildren('Создание елемента', 'element_create', false);
             $menu->addChild('Точки', 'noroute7');
                 $menu->addGrandchildren('Черные', 'type_config', true, array('tag' => 'black'));
-                $menu->addGrandchildren('Ловушка', 'type_config', true, array('tag' => 'trap'));
                 $menu->addGrandchildren('+%', 'type_config', true, array('tag' => 'plus_percent'));
                 $menu->addGrandchildren('-%', 'type_config', true, array('tag' => 'minus_percent'));
                 $menu->addGrandchildren('Кража флипера', 'type_config', true, array('tag' => 'theft'));
@@ -47,7 +46,10 @@ class DefaultController extends Controller
                 $menu->addGrandchildren('-Период приза', 'type_config', true, array('tag' => 'minus_prize_period'));
                 $menu->addGrandchildren('+Период для всех', 'type_config', true, array('tag' => 'plus_all_period'));
                 $menu->addGrandchildren('-Период для всех', 'type_config', true, array('tag' => 'minus_all_period'));
-                $menu->addGrandchildren('Игровые очки', 'type_config', true, array('tag' => 'game_points'));
+                $menu->addGrandchildren('+Игровые очки', 'type_config', true, array('tag' => 'plus_game_points'));
+                $menu->addGrandchildren('-Игровые очки', 'type_config', true, array('tag' => 'minus_game_points'));
+                $menu->addGrandchildren('Ловушка тип 1', 'type_config', true, array('tag' => 'trap_type_1'));
+                $menu->addGrandchildren('Ловушка тип 2', 'type_config', true, array('tag' => 'trap_type_2'));
         $menu->addMenu('Флиперы', 'noroute17');
             $menu->addChild('Первый', 'flipper_show', true, array("id" => 1));
             $menu->addChild('Второй', 'flipper_show', true, array("id" => 2));
