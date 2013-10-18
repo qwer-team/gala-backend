@@ -15,9 +15,11 @@
                 <tr style="background-color: #f6f7f8; background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);">
                    <td style="padding: 4px; text-align: center; width: 216px;"><b>Кол-во</b></td>
                    <td style="padding: 4px; text-align: center; width: 216px;"><b>%(в отрезке)</b></td>
+                   <td style="padding: 4px; text-align: center;">
                    {% if type.parameter != ""  %}
-                    <td style="padding: 4px; text-align: center;"><b>{{ type.parameter }}</b></td>
+                    <b>{{ type.parameter }}</b>
                    {% endif %}
+                   </td>
                    <td style="padding: 4px; text-align: center; width: 92px;"><b>Блокировать</b></td>
                    <td style="padding: 4px; text-align: center; width: 101px;"><b>Возобновлять</b></td>
                    <td style="padding: 4px 0; text-align: center; width: 95px;"><b>Действия</b></td>
