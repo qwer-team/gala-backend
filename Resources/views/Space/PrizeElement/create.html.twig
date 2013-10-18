@@ -1,5 +1,6 @@
 {% extends 'GalaxyBackendBundle::layout.html.twig' %}
-
+{% block menu %}
+{% endblock %}
 {% block body %}
     <form method="POST" action="{{path('element_add', {prizeId: prizeId})}}"  {{ form_enctype(form) }}>
         <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">

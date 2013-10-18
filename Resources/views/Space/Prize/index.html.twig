@@ -11,11 +11,11 @@
     <table class="table table-bordered table-hover table-striped myStyle">
     {% for id, prize in prizes %}
             <tr>
-                <td class="menuPrize"><span class="backing">{{ prize['name'] }}</span></td>
+                <td class="menuPrize" {% if main['id'] == prize["id"] %}style="background-color: #D1D1D1;"{% endif %}><span class="backing">{{ prize['name'] }}</span></td>
                 <td class="menuPrizeIcon">
                     <div class="btn-group">
                         <div style="float:left;">
-                            <a href="{{path("prize_list", {id: id})}}"><button title="Редактировать" class="btn btn-small"><i class="icon-edit"></i></button></a>
+                            <a href="{{path("prize_list", {id: id})}}" ><button title="Редактировать" class="btn btn-small"><i class="icon-edit"></i></button></a>
                         </div>
                         <form style="margin-bottom:2px;" action="{{path("prize_delete", {id: id})}}">
                             <button title="Удалить" type=submit class="btn btn-danger btn-small"><i class="icon-remove"></i></button>
@@ -26,7 +26,7 @@
     {% endfor %}
         </table>
         <div>
-            <a href="{{path('prize_create')}}">
+            <a href="#"onclick="javascript:window.open('{{path('prize_create')}}', '_blank' , 'Width=990, Height=900px, Toolbar=0, Location=0 , Status=0, Menubar=0, Scrollbars=yes , Resizable=yes ');true;" >
                 <button title="Добавить приз" style="width: 62%" class="btn btn-success"><i class="icon-plus"></i>Добавить</button>
             </a>
         </div>        
@@ -99,7 +99,7 @@
                 <td>
                     <div class="btn-group">
                         <div style="float:left;">
-                            <a href="{{path('element_edit', {id: element.id})}}"><button title="Редактировать" style="width:90%;" class="btn btn-small"><i class="icon-edit"></i></button></a>
+                            <a href="" onclick="javascript:window.open('{{path('element_edit', {id: element.id})}}', '_blank' , 'Width=990, Height=900px, Toolbar=0, Location=0 , Status=0, Menubar=0, Scrollbars=yes , Resizable=yes ');true;"><button title="Редактировать" style="width:90%;" class="btn btn-small"><i class="icon-edit"></i></button></a>
                         </div>
                         <form style="margin-bottom: 0px;" action="{{path('element_delete', {prizeId: main['id'], id: element.id})}}">
                             <button title="Удалить" style="width:85%; margin-left: -6px;" class="btn btn-danger btn-small" type="submit"><i class="icon-remove"></i></button>
@@ -109,7 +109,7 @@
             </tr>
         {% endfor %}
         </table>
-        <a href="{{path('element_create', {prizeId: main['id']})}}">
+        <a href="#" onclick="javascript:window.open('{{path('element_create', {prizeId: main['id']})}}', '_blank' , 'Width=990, Height=900px, Toolbar=0, Location=0 , Status=0, Menubar=0, Scrollbars=yes , Resizable=yes ');true;">
             <button title="Добавить элемент приза" class="btn btn-success"><i class="icon-plus"></i>Добавить</button>
         </a>
      </div>

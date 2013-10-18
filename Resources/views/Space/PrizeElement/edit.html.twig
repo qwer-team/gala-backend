@@ -1,5 +1,6 @@
 {% extends 'GalaxyBackendBundle::layout.html.twig' %}
-
+{% block menu %}
+{% endblock %}
 {% block body %}
     <form method="POST" action="{{path('element_update', {id: element['id']})}}"  {{ form_enctype(form) }}>
        {# {{ form_rest(form)}} #}
