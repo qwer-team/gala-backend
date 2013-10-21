@@ -34,7 +34,7 @@ class DefaultController extends Controller
                 //$menu->addGrandchildren('Редактирование елемента', 'element_edit', false);
                 //$menu->addGrandchildren('Создание елемента', 'element_create', false);
             $menu->addChild('Точки', 'noroute7');
-                $menu->addGrandchildren('Черные', 'type_config', true, array('tag' => 'black'));
+                $menu->addGrandchildren('Блокировка', 'type_config', true, array('tag' => 'black'));
                 $menu->addGrandchildren('+%', 'type_config', true, array('tag' => 'plus_percent'));
                 $menu->addGrandchildren('-%', 'type_config', true, array('tag' => 'minus_percent'));
                 $menu->addGrandchildren('Кража флипера', 'type_config', true, array('tag' => 'theft'));
