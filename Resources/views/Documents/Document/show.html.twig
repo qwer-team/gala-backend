@@ -1,9 +1,10 @@
 {% extends 'GalaxyBackendBundle::layout.html.twig' %}
 
 {% block body %}
-<div class="container" style="margin-top: 20px;">
+<div class="container" style="margin-top: 20px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
     <h3>id {{document['id']}}: {{document['date']}}</h3>
     <form action="{{ path('update_document', {'id': document['id']}) }}" method="post" {{ form_enctype(form) }}>
+        <div style="float: left;">{{form_row(form.OA1)}}<span style="margin-left: 10px;">{{form_row(form.account)}}</span></div>
 {{form_rest(form)}}
 <br />
 <div class="btn-group">
