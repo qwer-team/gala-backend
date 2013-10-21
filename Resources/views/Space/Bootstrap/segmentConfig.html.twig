@@ -9,38 +9,42 @@
     {% for type in types %}
     {% if type.tag != "nihil" %}
         <h2 style="font-size: 24px;">{{type.name}}</h2>
-        {% if type.subtypes|length > 0  %}
         <ul class="subtypes unstyled">
-            <table class="table table-bordered table-hover table-striped" style="margin-bottom: 0px; border-radius: 4px 4px 4px 4px;">
-                 <thead>
-                     <tr style="background-color: #f6f7f8; background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);">
-                        <td style="padding: 4px; text-align: center; width: 216px;"><b>Кол-во</b></td>
-                        <td style="padding: 4px; text-align: center; width: 216px;"><b>%(в отрезке)</b></td>
-                        {% if type.parameter != ""  %}
-                        <td style="padding: 4px; text-align: center;"><b>{{ type.parameter }}</b></td>
-                        {% endif %}
-                        <td style="padding: 4px; text-align: center; width: 92px;"><b>Блокировать</b></td>
-                        <td style="padding: 4px; text-align: center; width: 101px;"><b>Возобновлять</b></td>
-                        <td style="padding: 4px 0; text-align: center; width: 95px;"><b>Действия</b></td>
-                    </tr>
-                 </thead>
+        <table class="table table-bordered table-hover table-striped" style="margin-bottom: 0px; border-radius: 4px 4px 4px 4px;">
+              <thead>
+                <tr style="background-color: #f6f7f8; background-image: linear-gradient (to bottom, #FFFFFF, #E6E6E6);">
+                   <td style="padding: 4px; text-align: center; width: 150px;"><b>Количество</b></td>
+                   <td style="padding: 4px; text-align: center; width: 216px;"><b>в %</b></td>
+                   <td style="padding: 4px; text-align: center;">
+                   {% if type.parameter != ""  %}
+                    <b>{{ type.parameter }}</b>
+                   {% endif %}
+                   </td>
+                   <td style="padding: 4px; text-align: center; width: 92px;"><b>Блокировать</b></td>
+                   <td style="padding: 4px; text-align: center; width: 101px;"><b>Возобновлять</b></td>
+                   <td style="padding: 4px 0; text-align: center; width: 105px;"><b>Действия</b></td>
+                </tr>        
+             </thead>
+        {% if type.subtypes|length > 0  %}
             {% for subtype in type.subtypes %}
                <form class="form-inline">
                  <tbody>
                     <tr>
-                        <td>{{ form_widget(subtype.pointsCount)}}</td>
+                        <td>{{ form_widget(subtype.pointsCount, {'attr': {'id': 'editing_segments_length_amt'}}) }}</td>
                         <td>{{ form_widget(subtype.percent)}}</td>
+                        <td>
                         {% if type.parameter != ""  %}
-                            <td>{{ form_widget(subtype.parameter)}}</td>
+                            {{ form_widget(subtype.parameter)}}
                         {% endif %}
+                        </td>
                         <td style="width: 92px;">{{ form_widget(subtype.block)}}</td>
                         <td style="width: 101px;">{{ form_widget(subtype.restore)}}</td>
-                        <td style="width: 94px;"><button title="Сохранить" type="button" class="btn btn-primary update-subtype">
-                                <i class="icon-hdd"></i>
+                        <td style="width: 105px;"><div style="margin-left: 3px;"><button title="Сохранить" type="button" class="btn btn-primary update-subtype">
+                                <i class="icon-refresh"></i>
                             </button>
                             <button title="Удалить" type="button" class="btn btn-danger remove-subtype">
                                 <i class="icon-remove"></i>
-                            </button></td>
+                            </button></div></td>
                             {{ form_widget(subtype.id)}}
                             {{ form_widget(subtype.typeId)}}
                     </tr>
@@ -49,32 +53,20 @@
             {% endfor %}
                  {% endif %}
             {% for form in type.form %}
-                
                     <form class="form-inline">
-                         <table class="table table-bordered table-hover table-striped" style="margin-bottom: 0px; border-radius: 4px 4px 4px 4px;">
-                    <!--<thead>
-                        <tr>
-                            <td>Кол-во</td>
-                            <td>%(в отрезке)</td>
-                            {% if type.parameter != ""  %}
-                                <td>{{ type.parameter }}</td>
-                            {% endif %}
-                            <td>Блокировать</td>
-                            <td>Возобновлять</td>
-                            <td>Действия</td>
-                        </tr>
-                    </thead>-->
                     <tbody>
                         <tr>
-                            <td style="width: 215px; padding-right: 2px;">{{ form_widget(form.pointsCount)}}</td>
+                            <td style="width: 215px; padding-right: 2px;">{{ form_widget(form.pointsCount, {'attr': {'id': 'editing_segments_length_amt'}}) }}</td>
                             <td style="width: 215px; padding-right: 2px;">{{ form_widget(form.percent)}}</td>
+                            <td style="width: 215px;">
                             {% if type.parameter != ""  %}
-                                <td style="width: 215px;">{{ form_widget(form.parameter)}}</td>
+                                {{ form_widget(form.parameter)}}
                             {% endif %}
+                            </td>
                             <td style="width: 100px;">{{ form_widget(form.block)}}</td>
                             <td style="width: 108px;">{{ form_widget(form.restore)}}</td>
-                            <td style="width: 93px;"><button title="Добавить" style="width: 93px;" type="button" class="btn btn-success add-subtype"><i class="icon-plus"></i>
-                            </button></td>
+                            <td style="width: 105px;"><div style="margin-left: 3px;"><button title="Добавить" style="width: 93px;" type="button" class="btn btn-success add-subtype"><i class="icon-plus"></i>
+                            </button></div></td>
                             {{ form_widget(form.id)}}
                             {{ form_widget(form.typeId)}}
                         </tr>

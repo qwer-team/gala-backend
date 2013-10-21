@@ -7,6 +7,9 @@ $( document ).ready(function() {
         }
         return false; 
     });
+    $(".navbar").click(function (e) {
+       $("#cleanContent").html("");
+    });
     $('#myTab a').click(function (e) {
         if($(this).attr('href').charAt(0)=='#')
         {

@@ -1,43 +1,45 @@
 {% extends 'GalaxyBackendBundle::layout.html.twig' %}
-
+{% block menu %}
+{% endblock %}
 {% block body %}
     <form method="POST" action="{{path('element_update', {id: element['id']})}}"  {{ form_enctype(form) }}>
        {# {{ form_rest(form)}} #}
-        <div>
+        <div style="width: 900px; margin: 20px; float: left; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
             <div>
                  <div style="margin-bottom: 10px;"><div style="width: 75px;" class="lblElPrice">Название</div> {{ form_widget(form.name) }}
                       <div style="float: right;">    
-                      <button style="padding: 11px;" class="btn btn-large btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button>
-                      <ul style="margin: 10px 0 0 0;" class="record_actions">
+                      <button class="btn btn-primary" type="submit"><i class="icon-refresh"></i>Сохранить</button>
+                      <!--<ul style="margin: 10px 0 0 0;" class="record_actions">
                           <li style="list-style:none;">
                              <a title="Вернуться к списку призов" style="padding: 4px 8px;" class="btn btn-warning" href="{{ path('prize_list', {id: element['prizeId']}) }}">
                                  {% trans%}<i class="icon-list-alt"></i>Список призов{%endtrans%}
                              </a>
                           </li>
-                      </ul>
+                      </ul>-->
                       </div> 
                  </div>
-                 <div style="float: left; width: 800px; margin-bottom: 10px;">
+                 <div style="float: left; width: 900px; margin-bottom: 10px;">
                       <div style="float: left;">Стоимость {{ form_widget(form.price) }} {{ form_widget(form.account) }} </div>
                       <div style="float: left; margin: 0 0 0 30px;">Блокировать {{ form_widget(form.blocked) }}</div>
                       <div style="float: left; margin: 0 0 0 30px;">Вариант изменения координат {{ form_widget(form.movingVariant) }}</div>
+                      <div style="float: left; margin: 0 0 0 30px;">Длительность {{ form_widget(form.available) }}</div>
                  </div>
             </div>
-            <div style="float:left; width:800px; margin-bottom: 10px;">
+            <!--<div style="float:left; width:800px; margin-bottom: 10px;">
                 <div style="float: left;">Видимость для радара {{ form_widget(form.visible) }}</div>
-                <div style="float: left; margin: 0 0 0 30px;">Действителен прыжков {{ form_widget(form.available) }}</div>
+                <div style="float: left;">Длительность {{ form_widget(form.available) }}</div>
                 
-            </div>
+            </div>-->
             <div style="float:left; width:800px;">
-                <div style="float:left; width:240px;border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; margin-right: 6px; padding: 5px;">
+                <div style="float:left; width:240px;border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; margin-right: 6px; padding: 5px 0 5px 20px;">
                         <b>Маленькое фото <span style="font-size: 10px;">(до 90px Х до 50px)</span></b>
-                        <img src="{% if element['img1'] != '' %}{{element['img1']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
+                        <img style="width: 200px; height: 200px;" src="{% if element['img1'] != '' %}{{element['img1']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
                         {{ form_widget(form.imgfile1) }}
                         {{ form_row(form.imgDelete1, {label: 'Удалить'}) }}
                 </div>
-                <div style="float:left; width:240px;border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">
+                <div style="float:left; width:240px;border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px 0 5px 20px;">
                         <b>Большое фото</b><br/>
-                        <img src="{% if element['img2'] != '' %}{{element['img2']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
+                        <img style="width: 200px; height: 200px;" src="{% if element['img2'] != '' %}{{element['img2']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
                         {{ form_widget(form.imgfile2) }}
                         {{ form_row(form.imgDelete2, {label: 'Удалить'}) }}
                 </div>

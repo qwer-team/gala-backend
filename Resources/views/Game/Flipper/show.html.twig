@@ -4,7 +4,7 @@
 {% block body %}
 <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
   <form method="post" action="{{path('flipper_update', {'id': flipper['id']})}}" {{ form_enctype(form) }}>
-    <div class="flipper_name" style="float: left; width: 950px; margin-bottom: 20px;">{{form_row(form.title)}}<span style="float:right;"><button class="btn btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button></span></div>
+    <div class="flipper_name" style="float: left; width: 950px; margin-bottom: 20px;">{{form_row(form.title)}}<span style="float:right;"><button class="btn btn-primary" type="submit"><i class="icon-refresh"></i>Сохранить</button></span></div>
     <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.maxJump)}}</div>
     <div class="creation_prizes" style="float: left; width: 450px; margin-bottom: 20px;">{{form_row(form.costJump)}}</div>
     <div class="creation_prizes" style="float: left; width: 1000px; margin-bottom: 20px;">
@@ -133,7 +133,7 @@
             </tr>
         </table>
     </div> 
-    <button class="btn btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button>
+    <button class="btn btn-primary" type="submit"><i class="icon-refresh"></i>Сохранить</button>
     {% endif %}
     
 </form>
