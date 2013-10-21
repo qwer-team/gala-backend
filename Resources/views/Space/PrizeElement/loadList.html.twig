@@ -16,7 +16,7 @@
         </tr>
     </thead>
     {%for subelement in forms%}
-    <tr>
+    <tr id="subTd{{ subelement.id }}">
         <td>
             {%set formId = 'subelement'~subelement.id %} 
             <input type="text"  name="prize" required="required" class="span2" value="{{subelement.prize}}" disabled="">
@@ -40,7 +40,10 @@
                         {{form_rest(subelement.form)}}
                     </form>
              </div>
-            <button title="Сохранить" type="submit" class="btn btn-small btn-primary" form="{{formId}}"><i class="icon-refresh"></i><!--Сохранить--></button>
+
+            <button title="Сохранить" type="submit" class="btn btn-small btn-primary" form="{{formId}}"><i class="icon-hdd"></i><!--Сохранить--></button>
+            <button title="Удалить" id="deleteSubelement" subId="{{ subelement.id }}" type="button" class="btn btn-danger btn-small" ><i class="icon-remove"></i><!--Сохранить--></button>
+
         </td>
     </tr>
     {% endfor %}

@@ -54,6 +54,9 @@ $( document ).ready(function() {
     $(".accordion-group").on("click", ".remove-subelement",function(){
         removeSubelement($(this))
     });
+    $("#deleteSubelement").on("click",function(){
+        removeSubelementFromSpace($(this))
+    });
 });
 
 function loadPrize(obj){
@@ -161,6 +164,24 @@ function removeSubelement(obj){
         success: function(data){
             if(data.result == 'success'){
                 updatePrizeSegmentConfig(segment, '.subelements-form');
+            }
+        }
+    }); 
+}
+
+function removeSubelementFromSpace(obj){
+    var subelementId = parseInt(obj.attr("subId"));
+    console.log(subelementId);
+    var href = Routing.generate('remove_subelement', {
+        id: subelementId
+    });
+    var td = $("#subTd"+subelementId);
+    $.ajax({
+        url: href,
+        dataType: "JSON",
+        success: function(data){
+            if(data.result == 'success'){
+                td.html("");
             }
         }
     }); 
