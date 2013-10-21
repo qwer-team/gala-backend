@@ -11,7 +11,7 @@
             <input type="text" class="totalPoints" value="" disabled='disabled'>
             <input type="text" class="totalPercent" value="" disabled="disabled">
             <span class="help-inline"></span>
-            <label style="float: right; width: 239px; padding-right: 308px;" class="control-label" >Всего кол-во и % призов в отрезках</label>
+            <label style="float: right; width: 239px; padding-right: 308px;" class="control-label" ><!--Всего кол-во и % призов в отрезках--></label>
         </div>
     </div>
 
@@ -46,8 +46,8 @@
                         <div class="controls controls-row">
                             {{ form_widget( segments_form[segment.id].length, {'attr': {'id': 'editing_segments_length'}}) }}
                             {{ form_widget( segments_form[segment.id].percent, {'attr': {'id': 'editing_segments_percent'}}) }}                        
-                            <a style="margin-left: 20px;" class="btn btn-primary" id="sendAjaxForm"><i class="icon-hdd"></i>Сохранить</a>
-                            <a title="Подробнее" style="float:right; margin-right:100px; font-size: 18px;" class="accordion-toggle load-prize-segment-info" data-toggle="collapse" data-parent="#accordion2" href="#segment_{{segment.id}}"> Кол-во призов и % в отрезке № {{loop.index}}</a>
+                            <a style="margin-left: 20px;" class="btn btn-primary" id="sendAjaxForm"><i class="icon-refresh"></i>Сохранить</a>
+                            <a title="Подробнее" style="float:right; margin-right:100px; font-size: 18px;" class="accordion-toggle load-prize-segment-info" data-toggle="collapse" data-parent="#accordion2" href="#segment_{{segment.id}}">Планирование призов № {{loop.index}}</a>
                         </div>
                         {{ form_rest(segments_form[segment.id] ) }}
                     </form>

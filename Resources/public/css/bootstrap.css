@@ -1,4 +1,4 @@
-/*!
+editing_segments_length/*!
  * Bootstrap v2.3.2
  *
  * Copyright 2012 Twitter, Inc
@@ -6184,6 +6184,9 @@ a.badge:focus {
 #editing_segments_length {
     width: 211px;
 }
+#editing_segments_length_amt{
+    width: 201px;
+}
 #editing_segments_percent {
     width: 219px;
     margin-left: 5px;
@@ -6195,7 +6198,7 @@ a.badge:focus {
     padding-left: 0px;
 }
 .creation_prizes #txtArea{
-    width: 945px;
+    width: 900px;
 }
 .point_mes textarea{
     width: 945px;

@@ -2,10 +2,12 @@
 {% block menu %}
 {% endblock %}
 {% block body %}
-<div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
+<div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;  margin: 20px;">
     <form method="POST" action="{{path('prize_add')}}"  {{ form_enctype(form) }}>
-        <div class="creation_prizes" style="float: left; margin-bottom: 20px; width: 950px;">{{ form_row(form.name)}} <span style="margin-left: 10px;">{{ form_row(form.flipper)}}</span> <span style="margin-left: 10px;">{{ form_row(form.sms)}}</span> <span style="margin-left: 10px;">{{ form_row(form.penalty)}}</span>
-            <div style="float: right;>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; width: 900px;">{{ form_row(form.name, {'attr': {'id': 'lbl_input'}}) }}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; width: 900px;">
+            {{ form_row(form.flipper)}}<span style="margin-left: 10px;">{{ form_row(form.sms)}}</span> <span style="margin-left: 10px;">{{ form_row(form.penalty)}}</span>
+            <!--<div style="float: right;">
                  <ul class="record_actions">
                     <li style="list-style: none outside none;">
                        <a class="btn btn-warning" href="{{ path('prize_list') }}">
@@ -13,17 +15,18 @@
                        </a>
                    </li>
                  </ul>
-            </div>
+            </div>-->
         </div>
-        <div class="creation_prizes" style="float: left; margin-bottom: 20px; width: 950px;">{{ form_row(form.message1)}}</div>
-        <div class="creation_prizes" style="float: left; margin-bottom: 20px; width: 950px;">{{ form_row(form.message2)}}</div>
-        <div style="float: left; width: 950px; margin-bottom: 20px;">
-             <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; float: left; width: 240px; margin-right: 6px; padding: 5px;">{{ form_row(form.imgfile1)}}</div>
-             <div style="float:left; width:240px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px;">{{ form_row(form.imgfile2)}}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; width: 900px;">{{ form_row(form.message1)}}</div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; width: 900px;">{{ form_row(form.message2)}}</div>
+        <div style="float: left; width: 900px; margin-bottom: 20px;">
+             <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; float: left; width: 240px; margin-right: 6px; padding: 5px 0 5px 20px;">{{ form_row(form.imgfile1, {label: 'Фото1'})}}{{ form_widget(form.imgfile1) }}{{ form_row(form.imgDelete1, {label: 'Удалить'}) }}
+            </div>
+             <div style="float:left; width:240px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px 0 5px 20px;">{{ form_row(form.imgfile2, {label: 'Фото2'})}}{{ form_row(form.imgDelete2, {label: 'Удалить'}) }}</div>
         </div>
        {{ form_rest(form)}}
         <br />
-        <button class="btn btn-primary" type="submit"><i class="icon-hdd"></i>Сохранить</button>
+        <button class="btn btn-primary" type="submit"><i class="icon-refresh"></i>Сохранить</button>
     </form>
     
 </div>

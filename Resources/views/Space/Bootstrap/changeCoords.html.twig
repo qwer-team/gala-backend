@@ -27,7 +27,7 @@
     <td style="width: 120px;">{{ form_widget(form.c, form_attrs) }}</td>
     <td style="width: 120px;">{{ form_widget(form.delta1, form_attrs) }}</td>
     <td style="width: 120px; padding-right: 0px;">
-        <button type="submit" class="btn btn-primary" form="{{'updateCoord'~loop.index}}" ><i class="icon-hdd"></i>Сохранить</button>
+        <button type="submit" class="btn btn-primary" form="{{'updateCoord'~loop.index}}" ><i class="icon-refresh"></i>Сохранить</button>
         <div style="display: none;">
             <form id="updateCoord{{loop.index}}" class="updateCoords" method="POST" action="{{path('update_coordinates')}}">{{form_rest(form)}}</form>
         </div>
