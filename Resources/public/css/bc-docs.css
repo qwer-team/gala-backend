@@ -25,6 +25,9 @@
     width:130px;
     float: left;
 }
+#lbl_input {
+    width: 500px;
+}
 .lblElPrice {
     width:90px;
     float: left;
@@ -34,7 +37,7 @@
     float: left;
 }
 #txtArea {
-    width: 325px;
+    width: 350px;
 }
 .backing {
     margin-left: 10px;

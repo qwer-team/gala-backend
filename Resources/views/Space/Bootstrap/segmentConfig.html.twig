@@ -12,9 +12,9 @@
         <ul class="subtypes unstyled">
         <table class="table table-bordered table-hover table-striped" style="margin-bottom: 0px; border-radius: 4px 4px 4px 4px;">
               <thead>
-                <tr style="background-color: #f6f7f8; background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);">
-                   <td style="padding: 4px; text-align: center; width: 216px;"><b>Кол-во</b></td>
-                   <td style="padding: 4px; text-align: center; width: 216px;"><b>%(в отрезке)</b></td>
+                <tr style="background-color: #f6f7f8; background-image: linear-gradient (to bottom, #FFFFFF, #E6E6E6);">
+                   <td style="padding: 4px; text-align: center; width: 150px;"><b>Количество</b></td>
+                   <td style="padding: 4px; text-align: center; width: 216px;"><b>в %</b></td>
                    <td style="padding: 4px; text-align: center;">
                    {% if type.parameter != ""  %}
                     <b>{{ type.parameter }}</b>
@@ -22,7 +22,7 @@
                    </td>
                    <td style="padding: 4px; text-align: center; width: 92px;"><b>Блокировать</b></td>
                    <td style="padding: 4px; text-align: center; width: 101px;"><b>Возобновлять</b></td>
-                   <td style="padding: 4px 0; text-align: center; width: 95px;"><b>Действия</b></td>
+                   <td style="padding: 4px 0; text-align: center; width: 105px;"><b>Действия</b></td>
                 </tr>        
              </thead>
         {% if type.subtypes|length > 0  %}
@@ -30,7 +30,7 @@
                <form class="form-inline">
                  <tbody>
                     <tr>
-                        <td>{{ form_widget(subtype.pointsCount)}}</td>
+                        <td>{{ form_widget(subtype.pointsCount, {'attr': {'id': 'editing_segments_length_amt'}}) }}</td>
                         <td>{{ form_widget(subtype.percent)}}</td>
                         <td>
                         {% if type.parameter != ""  %}
@@ -39,12 +39,12 @@
                         </td>
                         <td style="width: 92px;">{{ form_widget(subtype.block)}}</td>
                         <td style="width: 101px;">{{ form_widget(subtype.restore)}}</td>
-                        <td style="width: 94px;"><button title="Сохранить" type="button" class="btn btn-primary update-subtype">
-                                <i class="icon-hdd"></i>
+                        <td style="width: 105px;"><div style="margin-left: 3px;"><button title="Сохранить" type="button" class="btn btn-primary update-subtype">
+                                <i class="icon-refresh"></i>
                             </button>
                             <button title="Удалить" type="button" class="btn btn-danger remove-subtype">
                                 <i class="icon-remove"></i>
-                            </button></td>
+                            </button></div></td>
                             {{ form_widget(subtype.id)}}
                             {{ form_widget(subtype.typeId)}}
                     </tr>
@@ -56,7 +56,7 @@
                     <form class="form-inline">
                     <tbody>
                         <tr>
-                            <td style="width: 215px; padding-right: 2px;">{{ form_widget(form.pointsCount)}}</td>
+                            <td style="width: 215px; padding-right: 2px;">{{ form_widget(form.pointsCount, {'attr': {'id': 'editing_segments_length_amt'}}) }}</td>
                             <td style="width: 215px; padding-right: 2px;">{{ form_widget(form.percent)}}</td>
                             <td style="width: 215px;">
                             {% if type.parameter != ""  %}
@@ -65,8 +65,8 @@
                             </td>
                             <td style="width: 100px;">{{ form_widget(form.block)}}</td>
                             <td style="width: 108px;">{{ form_widget(form.restore)}}</td>
-                            <td style="width: 93px;"><button title="Добавить" style="width: 93px;" type="button" class="btn btn-success add-subtype"><i class="icon-plus"></i>
-                            </button></td>
+                            <td style="width: 105px;"><div style="margin-left: 3px;"><button title="Добавить" style="width: 93px;" type="button" class="btn btn-success add-subtype"><i class="icon-plus"></i>
+                            </button></div></td>
                             {{ form_widget(form.id)}}
                             {{ form_widget(form.typeId)}}
                         </tr>

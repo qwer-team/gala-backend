@@ -19,14 +19,14 @@ class DefaultController extends Controller
         $menu->addMenu('Общие настройки','noroute1');
         $menu->addMenu('Пространство', 'noroute2');
             $menu->addChild('Начальная загрузка', 'noroute3');
-                $menu->addGrandchildren('Разбить на отрезки', 'segments', true);
-                $menu->addGrandchildren('Редактирование отрезков', 'show_segments', true);
+                $menu->addGrandchildren('Конфигурация', 'segments', true);
+                $menu->addGrandchildren('Планирование', 'show_segments', true);
                 $menu->addGrandchildren('Загрузка', 'space_loading', true);
             $menu->addChild('Изминение координат', 'change_coordinates', true);
             $menu->addChild('Перегрузка', 'noroute5');
             $menu->addChild('Призы', 'noroute27');
-                $menu->addGrandchildren('Разбить на отрезки', 'prize_segments', true);
-                $menu->addGrandchildren('Редактирование отрезков', 'show_prize_segments', true);
+                $menu->addGrandchildren('Конфигурация', 'prize_segments', true);
+                $menu->addGrandchildren('Планирование', 'show_prize_segments', true);
                 $menu->addGrandchildren('Список призов', 'prize_list', true);
                 $menu->addGrandchildren('Ручная загрузка', 'element_load_list', true);
                 $menu->addGrandchildren('Изменение координат', 'element_change_coords', true);

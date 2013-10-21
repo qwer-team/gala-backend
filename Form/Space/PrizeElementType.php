@@ -14,7 +14,7 @@ class PrizeElementType extends AbstractType
         $builder
                 ->add('name', 'text', array(
                     'attr' => array(
-                        'style' => 'width:350px'
+                        'style' => 'width:700px'
                     )
                 ))
                 ->add('available', 'integer', array(
