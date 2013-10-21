@@ -54,7 +54,7 @@ $( document ).ready(function() {
     $(".accordion-group").on("click", ".remove-subelement",function(){
         removeSubelement($(this))
     });
-    $("#deleteSubelement").on("click",function(){
+    $(".deleteSubelement").on("click",function(){
         removeSubelementFromSpace($(this))
     });
 });
