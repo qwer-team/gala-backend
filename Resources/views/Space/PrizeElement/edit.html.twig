@@ -4,7 +4,7 @@
 {% block body %}
     <form method="POST" action="{{path('element_update', {id: element['id']})}}"  {{ form_enctype(form) }}>
        {# {{ form_rest(form)}} #}
-        <div style="width: 900px; margin: 20px; float: left; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
+        <div style="width: 920px; margin: 20px; float: left; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
             <div>
                  <div style="margin-bottom: 10px;"><div style="width: 75px;" class="lblElPrice">Название</div> {{ form_widget(form.name) }}
                       <div style="float: right;">    
@@ -31,15 +31,19 @@
                 
             </div>-->
             <div style="float:left; width:800px;">
-                <div style="float:left; width:240px;border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; margin-right: 6px; padding: 5px 0 5px 20px;">
+                <div style="float:left; width:240px; height: 285px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; margin-right: 6px; padding: 5px 20px;">
+                    <div style="width:240px; height: 230px; overflow: hidden; margin-bottom: 5px;">
                         <b>Маленькое фото <span style="font-size: 10px;">(до 90px Х до 50px)</span></b>
-                        <img style="width: 200px; height: 200px;" src="{% if element['img1'] != '' %}{{element['img1']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
+                        <img src="{% if element['img1'] != '' %}{{element['img1']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/>
+                    </div>
                         {{ form_widget(form.imgfile1) }}
                         {{ form_row(form.imgDelete1, {label: 'Удалить'}) }}
                 </div>
-                <div style="float:left; width:240px;border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px 0 5px 20px;">
+                <div style="float:left; width:240px; height: 285px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 5px 20px;">
+                    <div style="width:240px; height: 230px; overflow: hidden; margin-bottom: 5px;">
                         <b>Большое фото</b><br/>
-                        <img style="width: 200px; height: 200px;" src="{% if element['img2'] != '' %}{{element['img2']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/><br/>
+                        <img src="{% if element['img2'] != '' %}{{element['img2']}}{% else %}{{ asset ( '/bundles/galaxybackend/img/no_photo.png' ) }}{% endif %}"/>
+                    </div>
                         {{ form_widget(form.imgfile2) }}
                         {{ form_row(form.imgDelete2, {label: 'Удалить'}) }}
                 </div>

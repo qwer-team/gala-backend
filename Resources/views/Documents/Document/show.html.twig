@@ -4,22 +4,24 @@
 <div class="container" style="margin-top: 20px; border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; padding: 20px;">
     <h3>id {{document['id']}}: {{document['date']}}</h3>
     <form action="{{ path('update_document', {'id': document['id']}) }}" method="post" {{ form_enctype(form) }}>
-        <div style="float: left;">{{form_row(form.OA1)}}<span style="margin-left: 10px;">{{form_row(form.account)}}</span></div>
+        <div class="creation_prizes" style="float: left; margin-bottom: 20px; width: 950px;">{{form_row(form.OA1)}}<span style="margin-left: 20px;">{{form_row(form.account)}}</span><span style="margin-left: 20px;">{{form_row(form.summa1)}}</span></div>
+        <div class="point_mes">{{form_row(form.text1)}}</div>
 {{form_rest(form)}}
-<br />
 <div class="btn-group">
-    <button {% if document['status'] == 2 %}disabled="disabled"{%endif%} type="submit" class="btn btn-primary {% if document['status'] == 2 %}disabled{%endif%}">Изменить</button>
+    <button {% if document['status'] == 2 %}disabled="disabled"{%endif%} type="submit" class="btn {% if document['status'] == 2 %}disabled{%endif%}"><i class="icon-edit"></i>Изменить</button>
     {%if document['status'] == 1 %}
     <button type="button" onClick="location.href='{{path('approve_document', {'id': document['id']})}}'" class="btn btn-success">Провести</button>
     {% elseif document['status'] == 2 %}
-       <button type="button" onClick="location.href='{{path('return_document', {'id': document['id']})}}'" class="btn btn-danger">Откатить</button>
+       <button type="button" onClick="location.href='{{path('return_document', {'id': document['id']})}}'" class="btn btn-danger"><i class="icon-repeat"></i>Откатить</button>
     {% endif %}
+       <a href="{{ path('document_list', {type: document['documentType']})}}">
+    <button style="border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;" class="btn btn-warning" type="button"><i class="icon-list-alt"></i>Вернутся к списку</button>
+</a>
 </div>
 </form>
 
 <br />
-<a href="{{ path('document_list', {type: document['documentType']})}}">
-    <button class="btn" type="button">Вернутся к списку</button>
-</a>
+
 </div>
 {% endblock body %}
