@@ -66,7 +66,7 @@ function checkSegmentPointcount(segment){
 }
 
 function saveSubtype(routing, obj){
-    var parent = obj.parent().parent();
+    var parent = obj.parents("tr");
     var subtypeId = parent.find("input[name='id']").val();
     var points = parent.find("input[name='pointsCount']").val();
     var block = parent.find("input[name='block']").is(':checked')? 1:undefined;
@@ -103,7 +103,7 @@ function saveSubtype(routing, obj){
 }
 
 function removeSubtype(obj){
-    var parent = obj.parent().parent();
+    var parent = obj.parents("tr");
     var subtypeId = parent.find("input[name='id']").val();
     var href = Routing.generate('remove_subtype', {
         id: subtypeId
