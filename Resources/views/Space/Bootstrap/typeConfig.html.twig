@@ -35,24 +35,34 @@
             <span style="margin-left: 10px;">{{form_row(form.minutes, {label: 'Минуты'})}}</span>
         </div>--> 
     {% endif%}
-    <div style="float: left; width: 900px; margin-bottom: 20px;">    
-    {% if type.file1 is defined %}<object type="application/x-shockwave-flash" id="myContent" name="myContent" style="visibility: visible;" data="{{ type.file1 }}" width="290" height="150"><param name="menu" value="false"></object>{% endif %}
-    <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; float: left; width: 240px; margin-right: 6px; padding: 5px 0 5px 20px;">{{form_row(form.fl1, {label: 'Флеш1'})}}
-    {{form_row(form.fileDelete1, {label: 'Удалить'})}}</div>
-    <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; float: left; width: 240px; margin-right: 6px; padding: 5px 0 5px 20px;">
-    {% if type.file2 is defined %}<img style="width: 200px; height: 200px;" src="{{ type.file2 }}">{% endif %}
-    {{form_row(form.fl2, {label: 'Картинка1'})}}
+    <div style="float: left; width: 900px; margin-bottom: 20px;">   
+        <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; float: left; width: 240px; height: 285px; margin-right: 6px; padding: 5px 20px;">
+            <div style="width:240px; height: 230px; overflow: hidden; margin-bottom: 5px;">
+                {% if type.file1 is defined %}<object type="application/x-shockwave-flash" id="myContent" name="myContent" style="visibility: visible;" data="{{ type.file1 }}" width="240" height="150"><param name="menu" value="false"></object>{% endif %}
+                {{form_row(form.fl1, {label: 'Флеш1'})}}
+            </div>
+        {{form_row(form.fileDelete1, {label: 'Удалить'})}}
+        </div>
+        <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; float: left; width: 240px; height: 285px; margin-right: 6px; padding: 5px 20px;">
+            <div style="width:240px; height: 230px; overflow: hidden; margin-bottom: 5px;">
+                {% if type.file2 is defined %}<img src="{{ type.file2 }}">{% endif %}
+                {{form_row(form.fl2, {label: 'Картинка1'})}}
+            </div>
     {{form_row(form.fileDelete2, {label: 'Удалить'})}}</div>
     </div>
     <div style="float: left; width: 900px; margin-bottom: 20px;">
     {% if type.id in [1, 4, 5, 6, 7, 11, 13, 14, 17, 18, 19] %}
-<div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; float: left; width: 240px; margin-right: 6px; padding: 5px 0 5px 20px;">        
-{% if type.file3 is defined %}<object type="application/x-shockwave-flash" id="myContent" name="myContent" style="visibility: visible;" data="{{ type.file3 }}" width="290" height="150"><param name="menu" value="false"></object>{% endif %}
+<div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; float: left; width: 240px; height: 285px; margin-right: 6px; padding: 5px 20px;">    
+    <div style="width:240px; height: 230px; overflow: hidden; margin-bottom: 5px;">
+        {% if type.file3 is defined %}<object type="application/x-shockwave-flash" id="myContent" name="myContent" style="visibility: visible;" data="{{ type.file3 }}" width="240" height="150"><param name="menu" value="false"></object>{% endif %}
         {{form_row(form.fl3, {label: 'Флеш2'})}}
+    </div>
         {{form_row(form.fileDelete3, {label: 'Удалить'})}}</div>
-        <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; float: left; width: 240px; margin-right: 6px; padding: 5px 0 5px 20px;">
-        {% if type.file2 is defined %}<img style="width: 200px; height: 200px;" src="{{ type.file4 }}">{% endif %}
-        {{form_row(form.fl4, {label: 'Картинка2'})}}
+        <div style="border: 1px solid rgb(224, 224, 224); border-radius: 5px 5px 5px 5px; float: left; width: 240px; height: 285px; margin-right: 6px; padding: 5px 20px;">
+            <div style="width:240px; height: 230px; overflow: hidden; margin-bottom: 5px;">
+                {% if type.file2 is defined %}<img src="{{ type.file4 }}">{% endif %}
+                {{form_row(form.fl4, {label: 'Картинка2'})}}
+            </div>
         {{form_row(form.fileDelete4, {label: 'Удалить'})}}</div>
     {% endif %}
     <div style="display:none;">{{form_rest(form)}}</div>
