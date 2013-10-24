@@ -7,7 +7,15 @@
 <table class="table table-bordered table-hover table-striped" id="loadPrize">
     <thead>
         <tr style="background-color: #f6f7f8; background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);">
-            <td style="padding: 4px; text-align: center;"><b>Приз</b></td>
+            <td style="padding: 4px; text-align: center;"><b>Приз</b>
+            <select size="1"  name="prizeFilter">
+                <option selected disabled="true">Выберите приз</option>
+                <option value="">Все призы</option>
+                {% for prize in entities %}
+                       <option value="{{ prize.id }}">{{ prize.name }}</option>
+                {% endfor %}
+           </select>
+            </td>
             <td style="padding: 4px; text-align: center;"><b>Элемент</b></td>
             <td style="padding: 4px; text-align: center;"><b>x</b></td>
             <td style="padding: 4px; text-align: center;"><b>y</b></td>

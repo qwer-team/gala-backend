@@ -41,6 +41,10 @@
     <route id="element_load_list" pattern="/element_load">
         <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:loadList</default>
     </route>
+    <route id="element_filter_list" pattern="/element_filter" methods="POST">
+        <default key="_controller">GalaxyBackendBundle:Space\PrizeElement:updateFilterPrize</default>
+        <option key="expose">true</option>
+    </route>
     <route id="prize_loading" pattern="/prize_loading">
         <default key="_controller">GalaxyBackendBundle:Space\Prize:loading</default>
     </route>
