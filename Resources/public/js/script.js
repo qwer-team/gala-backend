@@ -71,7 +71,10 @@ $( document ).ready(function() {
             onSegmentPercent($(this));
         }
     });
-                
+   
+    $("#loadPrize").on("change", "[name='prizeFilter']", function(){
+        updatePrizeFilter($(this).val());
+    });            
     $('.load-segment-info').on('click',function(){
         var segment = $(this).parents('.accordion-group');
         if(!segment.hasClass('in'))
@@ -197,5 +200,23 @@ function updatePrizeSegmentConfig(segment, body){
             segment.find(body).replaceWith(html);
         }
     }); 
+    
+}
+function updatePrizeFilter(id){
+    var href = Routing.generate('element_filter_list');
+    var params = {
+        id: id,
+    };
+    $.ajax({
+        url: href,
+        data: params,
+        type: 'POST',
+        dataType: "JSON",
+        success: function(data){
+            if(data.result == 'success'){
+                location.reload();
+            }
+        }
+    });
     
 }

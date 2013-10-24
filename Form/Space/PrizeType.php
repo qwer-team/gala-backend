@@ -17,6 +17,11 @@ class PrizeType extends AbstractType
                         'id' => 'inp'
                     )
                 ))
+                ->add('shortName', 'text', array(
+                    'attr' => array(
+                        'id' => 'inp'
+                    )
+                ))
                 ->add('flipper', 'choice', array(
                     'choices' => array(
                         '1' => '1',

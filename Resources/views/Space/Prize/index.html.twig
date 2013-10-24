@@ -35,12 +35,14 @@
 
         <form method="POST" action="{{path('prize_update', {id: main['id']})}}"  {{ form_enctype(prizeForm) }}>
                 <div style="float:left; width: 750px;">
-                    <div style="margin-bottom: 5px; float:left; width: 750px;"><div style="width: 115px;" class="lbl">Название</div> {{ form_widget(prizeForm.name, {'attr': {'id': 'lbl_input'}}) }}
+                    <div style="margin-bottom: 5px; float:left; width: 750px;">
+                        <div style="width: 115px;" class="lbl">Название</div> {{ form_widget(prizeForm.name, {'attr': {'id': 'lbl_input'}}) }}
                         <div style="float: right;">
                            <button class="btn btn-primary" type="submit"><i class="icon-refresh"></i>Сохранить</button>
                         </div>
                     </div>
                     <div style="float:left; width: 265px;">
+                       <div style="margin-bottom: 5px;"><div style="width: 115px;" class="lbl">Кратк.</div> {{ form_widget(prizeForm.shortName) }} </div>
                        <div style="margin-bottom: 5px;"><div style="width: 115px;" class="lbl">Флиппер</div> {{ form_widget(prizeForm.flipper) }} </div>
                        <div style="margin-bottom: 5px;"><div style="width: 115px;" class="lbl">SMS код</div> {{ form_widget(prizeForm.sms) }}</div>
                        <div style="margin-bottom: 5px;"><div style="width: 115px;" class="lbl">Штраф</div>{{ form_widget(prizeForm.penalty) }}</div>

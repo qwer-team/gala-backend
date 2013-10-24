@@ -8,6 +8,9 @@ use Galaxy\BackendBundle\Form\Space\PrizeElementType;
 use Galaxy\BackendBundle\Form\Space\PrizeElementsCoordsType;
 use Galaxy\BackendBundle\Form\Space\SubelementType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Galaxy\BackendBundle\Entity\Filter\Prize;
+use Galaxy\BackendBundle\Form\Filter\PrizeFilterType;
+use Symfony\Component\HttpFoundation\Response;
 
 class PrizeElementController extends Controller {
 
@@ -111,23 +114,25 @@ class PrizeElementController extends Controller {
         $prizesList = $service->getPrizesList();
         $prizes = array();
         $forms = array();
-
+        $filterPrizes = $this->getFilterPrize();
         foreach ($prizesList as $prize) {
-            $prizes[$prize["id"]] = array();
-            foreach ($prize["elements"] as $element) {
-                $prizes[$prize["id"]][] = array("id" => $element["id"], "name" => $element["name"]);
-                foreach ($subelements as $i => $subelement) {
-                    if ($subelement->elementId == $element["id"]) {
-                        list($x, $y, $z) = $this->getCoords($subelement->pointId);
-                        $data = array(
-                            "x" => $x,
-                            "y" => $y,
-                            "z" => $z,
-                            "element" => $subelement->elementId,
-                        );
-                        $form = $this->createForm(new SubelementType(), $data);
-                        $forms[] = array("prize" => $prize["name"], "element" => $element["name"], "form" => $form->createView(), "id" => $subelement->id);
-                        unset($subelements[$i]);
+            if ($filterPrizes->getId() == $prize["id"] || $filterPrizes->getId() == null) {
+                $prizes[$prize["id"]] = array();
+                foreach ($prize["elements"] as $element) {
+                    $prizes[$prize["id"]][] = array("id" => $element["id"], "name" => $element["name"]);
+                    foreach ($subelements as $i => $subelement) {
+                        if ($subelement->elementId == $element["id"]) {
+                            list($x, $y, $z) = $this->getCoords($subelement->pointId);
+                            $data = array(
+                                "x" => $x,
+                                "y" => $y,
+                                "z" => $z,
+                                "element" => $subelement->elementId,
+                            );
+                            $form = $this->createForm(new SubelementType(), $data);
+                            $forms[] = array("prize" => $prize["name"], "element" => $element["name"], "form" => $form->createView(), "id" => $subelement->id);
+                            unset($subelements[$i]);
+                        }
                     }
                 }
             }
@@ -140,6 +145,31 @@ class PrizeElementController extends Controller {
             'entities' => $prizesList,
             "newForm" => $this->createForm(new SubelementType())->createView(),
         );
+    }
+    
+    public function updateFilterPrizeAction(Request $request) {
+        $form = $this->createForm(new PrizeFilterType());
+        
+        $result = array("result" => "fail");
+        $form->bind($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+            $request->getSession()->set('prize', $data);
+            $result["result"] = "success";
+        }
+        $response = new Response;
+        return $response->setContent(json_encode($result));
+    }
+
+    private function getFilterPrize() {
+        $session = $this->getRequest()->getSession();
+        if (!$session->has("prize")) {
+            $prize = new Prize();
+            $session->set("prize", $prize);
+        } else {
+            $prize = $session->get("prize");
+        }
+        return $prize;
     }
 
     /**
