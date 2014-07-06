@@ -6,7 +6,7 @@
 
     <parameters>
         <parameter key="flippersurl">http://demo11.qwer.com.ua/flippers</parameter>
-        <parameter key="garilsurl">http://localhost:8080</parameter>
+        <parameter key="garilsurl">http://demo11.qwer.com.ua:8080</parameter>
         <parameter key="registersurl">http://demo11.qwer.com.ua/registers</parameter>
         <parameter key="documentsurl">http://demo11.qwer.com.ua/documents</parameter>
         <parameter key="documents.rate_url">http://demo11.qwer.com.ua/api</parameter>
